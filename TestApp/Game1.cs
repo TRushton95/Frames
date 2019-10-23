@@ -36,6 +36,8 @@
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
 
+            this.IsMouseVisible = true;
+
             var positionProfile = new RelativePositionProfile
             {
                 VerticalAlign = VerticalAlign.Middle,
