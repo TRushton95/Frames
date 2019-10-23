@@ -14,6 +14,25 @@
     /// </summary>
     public abstract class BaseComponent
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initialises the default instance of the <see cref="BaseComponent"/> class.
+        /// </summary>
+        public BaseComponent()
+        {
+        }
+
+        /// <summary>
+        /// Initialises an instance of the <see cref="BaseComponent"/> class.
+        /// </summary>
+        public BaseComponent(IPositionProfile positionProfile)
+        {
+            this.PositionProfile = positionProfile;
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>

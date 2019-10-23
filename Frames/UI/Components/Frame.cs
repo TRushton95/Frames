@@ -25,12 +25,15 @@
 
         #region Constructors
 
+        /// <summary>
+        /// Initialises an instance of the <see cref="Frame"/> class.
+        /// </summary>
         public Frame(int width, int height, Color color, IPositionProfile positionProfile)
+            : base(positionProfile)
         {
             this.Width = width;
             this.Height = height;
             this.Color = color;
-            this.PositionProfile = positionProfile;
 
             this.Children = new List<BaseComponent>();
         }
