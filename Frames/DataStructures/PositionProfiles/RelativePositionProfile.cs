@@ -12,6 +12,21 @@
     /// </summary>
     public class RelativePositionProfile : IPositionProfile
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initialises an instance of the <see cref="RelativePositionProfile"/> class.
+        /// </summary>
+        public RelativePositionProfile(HorizontalAlign horizontalAlign, VerticalAlign verticalAlign, int offsetX, int offsetY)
+        {
+            this.HorizontalAlign = horizontalAlign;
+            this.VerticalAlign = verticalAlign;
+            this.OffsetX = offsetX;
+            this.OffsetY = offsetY;
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
