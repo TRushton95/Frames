@@ -8,6 +8,7 @@
     using Frames.UI.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using Resources;
 
     #endregion
 
@@ -85,15 +86,43 @@
         /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(this.texture, this.GetPosition(), Color.White);
+
+            foreach (BaseComponent child in this.Children)
+            {
+                child.Draw(spriteBatch);
+            }
         }
 
         /// <summary>
         /// Initialises the component.
         /// </summary>
-        public override void Initialise()
+        public override void Initialise(Rectangle parent)
         {
-            throw new NotImplementedException();
+            this.UpdatePosition(parent);
+
+            this.texture = this.BuildTexture();
+
+            foreach (BaseComponent child in this.Children)
+            {
+                child.Initialise(this.GetBounds());
+            }
+        }
+
+        private Texture2D BuildTexture()
+        {
+            Texture2D result = new Texture2D(Resources.Instance.GraphicsDevice, this.Width, this.Height);
+
+            Color[] data = new Color[this.Width * this.Height];
+            for (int pixel = 0; pixel < data.Length; pixel++)
+            {
+                data[pixel] = this.Color;
+            }
+
+            result.SetData(data);
+
+
+            return result;
         }
 
         #endregion

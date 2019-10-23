@@ -90,7 +90,7 @@
         /// <summary>
         /// Initialises the component.
         /// </summary>
-        public override void Initialise()
+        public override void Initialise(Rectangle parent)
         {
             throw new NotImplementedException();
         }

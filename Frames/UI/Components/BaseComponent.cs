@@ -89,7 +89,7 @@
         /// <summary>
         /// Initialises the component.
         /// </summary>
-        public abstract void Initialise();
+        public abstract void Initialise(Rectangle parent);
 
         #endregion
     }
