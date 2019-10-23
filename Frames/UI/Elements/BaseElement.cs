@@ -1,11 +1,45 @@
 ﻿namespace Frames.UI.Elements
 {
+    #region Usings
+
+    using Frames.DataStructures.PositionProfiles;
+    using Frames.UI.Components;
+
+    #endregion
+
     /// <summary>
     /// The base structure of a user interface element.
     /// </summary>
-    public abstract class BaseElement
+    public abstract class BaseElement : BaseComponent
     {
+        public BaseElement()
+        {
+        }
+
+        public BaseElement(int width, int height, IPositionProfile positionProfile)
+            : base(positionProfile)
+        {
+            this.Width = width;
+            this.Height = height;
+        }
+
         #region Properties
+
+        /// <summary>
+        /// Gets the width.
+        /// </summary>
+        public int Width
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the height.
+        /// </summary>
+        public int Height
+        {
+            get;
+        }
 
         /// <summary>
         /// Gets or sets the priority.
@@ -13,6 +47,7 @@
         public int Priority
         {
             get;
+            set;
         }
 
         /// <summary>

@@ -1,12 +1,14 @@
 ﻿namespace TestApp
 {
-    #region Usings
-
     using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
+    #region Usings
+
+    using Frames.Factories;
     using Frames.Resources;
     using Frames.Structure.Components;
     using Frames.UI.Components;
+    using Frames.UI.Elements;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
@@ -28,6 +30,8 @@
         private Frame frame;
         private TextGraphics textGraphics;
         private ImageGraphics imageGraphics;
+
+        private Button button;
 
         #endregion
 
@@ -112,6 +116,7 @@
             this.frame.Draw(this.spriteBatch);
             this.textGraphics.Draw(this.spriteBatch);
             this.imageGraphics.Draw(this.spriteBatch);
+            this.button.Draw(this.spriteBatch);
             this.spriteBatch.End();
 
             base.Draw(gameTime);
@@ -124,32 +129,17 @@
         {
             Rectangle windowBounds = new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
-            var centerPositionProfile = new RelativePositionProfile
-            {
-                VerticalAlign = VerticalAlign.Middle,
-                HorizontalAlign = HorizontalAlign.Middle
-            };
-
-            this.frame = new Frame(100, 100, Color.DarkRed, centerPositionProfile);
+            this.frame = new Frame(100, 100, Color.DarkRed, PositionFactory.CenteredRelative());
             this.frame.Initialise(windowBounds);
 
-            var topPositionProfile = new RelativePositionProfile
-            {
-                VerticalAlign = VerticalAlign.Top,
-                HorizontalAlign = HorizontalAlign.Left
-            };
-
-            this.textGraphics = new TextGraphics("Hello world!", font, Color.Black, topPositionProfile);
+            this.textGraphics = new TextGraphics("Hello world!", font, Color.Black, PositionFactory.TopLeftRelative());
             this.textGraphics.Initialise(windowBounds);
 
-            var bottomPositionProfile = new RelativePositionProfile
-            {
-                VerticalAlign = VerticalAlign.Bottom,
-                HorizontalAlign = HorizontalAlign.Right
-            };
-
-            this.imageGraphics = new ImageGraphics(this.image, bottomPositionProfile);
+            this.imageGraphics = new ImageGraphics(this.image, PositionFactory.BottomRightRelative());
             this.imageGraphics.Initialise(windowBounds);
+
+            this.button = new Button(150, 50, PositionFactory.CenterLeftRelative(), "Button", font, Color.LightBlue, Color.Black, Color.LightCyan, Color.White);
+            this.button.Initialise(windowBounds);
         }
 
         #endregion
