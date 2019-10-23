@@ -3,10 +3,10 @@
     #region Usings
 
     using Frames.DataStructures;
+    using Frames.DataStructures.PositionProfiles;
     using Frames.UI.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-    using System;
 
     #endregion
 
@@ -15,6 +15,21 @@
     /// </summary>
     public class ImageGraphics : BaseComponent
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initialises a new instance of the <see cref="ImageGraphics"/> class.
+        /// </summary>
+        public ImageGraphics(Texture2D image, IPositionProfile positionProfile)
+            : base(positionProfile)
+        {
+            this.Image = image;
+            this.Width = image.Width;
+            this.Height = image.Height;
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -66,7 +81,7 @@
         /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(this.Image, this.GetBounds(), Color.White);
         }
 
         /// <summary>
@@ -74,7 +89,7 @@
         /// </summary>
         public override void Initialise(Rectangle parent)
         {
-            throw new NotImplementedException();
+            this.UpdatePosition(parent);
         }
 
         #endregion

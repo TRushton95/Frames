@@ -24,8 +24,10 @@
         private SpriteBatch spriteBatch;
 
         private SpriteFont font;
+        private Texture2D image;
         private Frame frame;
         private TextGraphics textGraphics;
+        private ImageGraphics imageGraphics;
 
         #endregion
 
@@ -57,6 +59,7 @@
             // TODO: Add your initialization logic here
 
             font = this.Content.Load<SpriteFont>("Fonts/Font");
+            image = this.Content.Load<Texture2D>("Images/Fireball");
 
             Resources.Instance.Initialise(this.GraphicsDevice);
             this.InitialiseTestComponents();
@@ -108,6 +111,7 @@
             this.spriteBatch.Begin();
             this.frame.Draw(this.spriteBatch);
             this.textGraphics.Draw(this.spriteBatch);
+            this.imageGraphics.Draw(this.spriteBatch);
             this.spriteBatch.End();
 
             base.Draw(gameTime);
@@ -118,6 +122,8 @@
         /// </summary>
         private void InitialiseTestComponents()
         {
+            Rectangle windowBounds = new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+
             var centerPositionProfile = new RelativePositionProfile
             {
                 VerticalAlign = VerticalAlign.Middle,
@@ -125,16 +131,25 @@
             };
 
             this.frame = new Frame(100, 100, Color.DarkRed, centerPositionProfile);
-            this.frame.Initialise(new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+            this.frame.Initialise(windowBounds);
 
             var topPositionProfile = new RelativePositionProfile
             {
                 VerticalAlign = VerticalAlign.Top,
-                HorizontalAlign = HorizontalAlign.Middle
+                HorizontalAlign = HorizontalAlign.Left
             };
 
             this.textGraphics = new TextGraphics("Hello world!", font, Color.Black, topPositionProfile);
-            this.textGraphics.Initialise(new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+            this.textGraphics.Initialise(windowBounds);
+
+            var bottomPositionProfile = new RelativePositionProfile
+            {
+                VerticalAlign = VerticalAlign.Bottom,
+                HorizontalAlign = HorizontalAlign.Right
+            };
+
+            this.imageGraphics = new ImageGraphics(this.image, bottomPositionProfile);
+            this.imageGraphics.Initialise(windowBounds);
         }
 
         #endregion

@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\Fireball.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
