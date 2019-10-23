@@ -6,6 +6,7 @@
     using Frames.Enums;
     using Frames.Resources;
     using Frames.Structure.Components;
+    using Frames.UI.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
@@ -22,7 +23,9 @@
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
+        private SpriteFont font;
         private Frame frame;
+        private TextGraphics textGraphics;
 
         #endregion
 
@@ -37,14 +40,6 @@
             this.Content.RootDirectory = "Content";
 
             this.IsMouseVisible = true;
-
-            var positionProfile = new RelativePositionProfile
-            {
-                VerticalAlign = VerticalAlign.Middle,
-                HorizontalAlign = HorizontalAlign.Middle
-            };
-
-            this.frame = new Frame(100, 100, Color.DarkRed, positionProfile);
         }
 
         #endregion
@@ -61,8 +56,10 @@
         {
             // TODO: Add your initialization logic here
 
+            font = this.Content.Load<SpriteFont>("Fonts/Font");
+
             Resources.Instance.Initialise(this.GraphicsDevice);
-            this.frame.Initialise(new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+            this.InitialiseTestComponents();
 
             base.Initialize();
         }
@@ -110,9 +107,34 @@
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
             this.spriteBatch.Begin();
             this.frame.Draw(this.spriteBatch);
+            this.textGraphics.Draw(this.spriteBatch);
             this.spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Initialises the test components.
+        /// </summary>
+        private void InitialiseTestComponents()
+        {
+            var centerPositionProfile = new RelativePositionProfile
+            {
+                VerticalAlign = VerticalAlign.Middle,
+                HorizontalAlign = HorizontalAlign.Middle
+            };
+
+            this.frame = new Frame(100, 100, Color.DarkRed, centerPositionProfile);
+            this.frame.Initialise(new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+
+            var topPositionProfile = new RelativePositionProfile
+            {
+                VerticalAlign = VerticalAlign.Top,
+                HorizontalAlign = HorizontalAlign.Middle
+            };
+
+            this.textGraphics = new TextGraphics("Hello world!", font, Color.Black, topPositionProfile);
+            this.textGraphics.Initialise(new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
         }
 
         #endregion

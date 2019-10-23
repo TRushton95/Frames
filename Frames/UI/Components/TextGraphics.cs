@@ -3,6 +3,7 @@
     #region Usings
 
     using Frames.DataStructures;
+    using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +16,24 @@
     /// </summary>
     public class TextGraphics : BaseComponent
     {
+        #region Constructors
+
+
+        /// <summary>
+        /// Initialises a new instance of the <see cref="TextGraphics"/> class.
+        /// </summary>
+        public TextGraphics(string text, SpriteFont font, Color color, IPositionProfile positionProfile)
+            : base(positionProfile)
+        {
+            this.Text = text;
+            this.Font = font;
+            this.Color = color;
+
+            this.Scale = 1;
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -29,6 +48,14 @@
         /// Gets the font.
         /// </summary>
         public SpriteFont Font
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the color.
+        /// </summary>
+        public Color Color
         {
             get;
         }
@@ -76,7 +103,8 @@
         {
             Vector2 textDimensions = this.Font.MeasureString(this.Text);
 
-            return new Size(this.MaxWidth, (int)textDimensions.Y);
+            // return new Size(this.MaxWidth, (int)textDimensions.Y); // TODO: Use this once MaxWidth is fully implemented
+            return new Size((int)textDimensions.X, (int)textDimensions.Y);
         }
 
         /// <summary>
@@ -84,7 +112,7 @@
         /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.DrawString(this.Font, this.Text, this.GetPosition(), this.Color, 0, default(Vector2), this.Scale, SpriteEffects.None, 0);
         }
 
         /// <summary>
@@ -92,7 +120,7 @@
         /// </summary>
         public override void Initialise(Rectangle parent)
         {
-            throw new NotImplementedException();
+            this.UpdatePosition(parent);
         }
 
         #endregion
