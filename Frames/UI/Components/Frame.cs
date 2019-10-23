@@ -2,9 +2,9 @@
 {
     #region Usings
 
-    using System;
     using System.Collections.Generic;
     using Frames.DataStructures;
+    using Frames.DataStructures.PositionProfiles;
     using Frames.UI.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -25,25 +25,19 @@
 
         #region Constructors
 
-        public Frame(Color color, int width, int height)
+        public Frame(int width, int height, Color color, IPositionProfile positionProfile)
         {
-            this.Color = color;
             this.Width = width;
             this.Height = height;
+            this.Color = color;
+            this.PositionProfile = positionProfile;
+
             this.Children = new List<BaseComponent>();
         }
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Gets the color.
-        /// </summary>
-        public Color Color
-        {
-            get;
-        }
 
         /// <summary>
         /// Gets the width.
@@ -57,6 +51,14 @@
         /// Gets the height.
         /// </summary>
         public int Height
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the color.
+        /// </summary>
+        public Color Color
         {
             get;
         }
