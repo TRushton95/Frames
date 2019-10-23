@@ -48,10 +48,13 @@
     <Compile Include="DataStructures\PositionProfiles\IPositionProfile.cs" />
     <Compile Include="DataStructures\PositionProfiles\RelativePositionProfile.cs" />
     <Compile Include="DataStructures\Size.cs" />
+    <Compile Include="Enums\FontFlow.cs" />
     <Compile Include="Enums\HorizontalAlign.cs" />
+    <Compile Include="Enums\Justify.cs" />
     <Compile Include="Enums\VerticalAlign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Components\BaseComponent.cs" />
+    <Compile Include="UI\Components\TextGraphics.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\MonoGame.Framework.dll" />
