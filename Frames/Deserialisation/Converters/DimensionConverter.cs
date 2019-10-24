@@ -3,33 +3,38 @@
     #region Usings
 
     using System;
-    using Frames.DataStructures.PositionProfiles;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Resources;
 
     #endregion
 
-    /// <summary>
-    /// Deserializes the <see cref="IPositionProfile"/> class from json.
-    /// </summary>
-    public class PositionProfileConverter : JsonConverter
+    public class DimensionConverter : JsonConverter
     {
         #region Methods
 
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(IPositionProfile));
+            return (objectType == typeof(int));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            JObject jObject = JObject.Load(reader);
+            JToken jToken = JToken.Load(reader);
 
-            IPositionProfile result = null;
+            int result = -1;
 
-            if (jObject["Type"].Value<string>() == "Relative")
+            if (jToken.Value<string>() == "WindowWidth")
             {
-                result = jObject.ToObject<RelativePositionProfile>(serializer);
+                result = Resources.Instance.GraphicsDevice.Viewport.Width;
+            }
+            else if (jToken.Value<string>() == "WindowHeight")
+            {
+                result = Resources.Instance.GraphicsDevice.Viewport.Height;
+            }
+            else
+            {
+                result = jToken.Value<int>();
             }
 
             return result;

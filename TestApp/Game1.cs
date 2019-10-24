@@ -162,7 +162,8 @@
                 new PositionProfileConverter(),
                 new SpriteFontConverter(),
                 new ColorConverter(),
-                new ElementConverter()
+                new ElementConverter(),
+                new DimensionConverter()
             };
 
             elements = JsonConvert.DeserializeObject<List<BaseElement>>(json, new JsonSerializerSettings() { Converters = converters });

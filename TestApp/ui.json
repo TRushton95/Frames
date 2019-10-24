@@ -20,10 +20,11 @@
 
   {
     "Type": "Text",
-    "Value": "Here is some test text!",
+    "Value": "Here is some test text, and a lot of it too to test the scaling! There is a lot of text!",
     "Font": "Font",
     "Color": "Black",
-    "FontFlow": "None",
+    "MaxWidth":  "WindowWidth",
+    "FontFlow": "Scale",
     "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Left",

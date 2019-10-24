@@ -25,7 +25,7 @@
         {
             JObject jObject = JObject.Load(reader);
 
-            object result = null;
+            BaseElement result = null;
 
             string type = jObject["Type"].Value<string>();
             switch (type)
