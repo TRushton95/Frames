@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using Frames.Enums;
     using Frames.Factories;
     using Frames.Resources;
     using Frames.Structure.Components;
@@ -138,13 +139,13 @@
             this.frame = new Frame(100, 100, Color.DarkRed, PositionFactory.CenteredRelative());
             this.frame.Initialise(windowBounds);
 
-            this.textGraphics = new TextGraphics("Hello world!", font, Color.Black, 0, PositionFactory.TopLeftRelative());
+            this.textGraphics = new TextGraphics("Hello world!", font, Color.Black, 0, FontFlow.None, PositionFactory.TopLeftRelative());
             this.textGraphics.Initialise(windowBounds);
 
             this.imageGraphics = new ImageGraphics(this.image, PositionFactory.BottomRightRelative());
             this.imageGraphics.Initialise(windowBounds);
 
-            this.button = new Button(150, 50, PositionFactory.CenterLeftRelative(), "Button with text", font, Color.LightBlue, Color.Black, Color.LightCyan, Color.White);
+            this.button = new Button(150, 50, PositionFactory.CenterLeftRelative(), "Button with text", font, Color.LightBlue, Color.Black, Color.LightCyan, Color.Gray);
             this.button.Initialise(windowBounds);
         }
 

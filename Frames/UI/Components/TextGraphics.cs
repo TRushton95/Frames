@@ -8,6 +8,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using System;
+    using System.Text;
 
     #endregion
 
@@ -16,18 +17,27 @@
     /// </summary>
     public class TextGraphics : BaseComponent
     {
+        #region Fields
+
+        private string displayText;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
         /// Initialises a new instance of the <see cref="TextGraphics"/> class.
         /// </summary>
-        public TextGraphics(string text, SpriteFont font, Color color, int maxWidth, IPositionProfile positionProfile)
+        public TextGraphics(string text, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, IPositionProfile positionProfile)
             : base(positionProfile)
         {
             this.Text = text;
             this.Font = font;
             this.Color = color;
             this.MaxWidth = maxWidth;
+            this.FontFlow = fontFlow;
+
+            this.displayText = text;
         }
 
         #endregion
@@ -67,15 +77,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the scale.
-        /// </summary>
-        public float Scale
-        {
-            get;
-            private set;
-        } = 1;
-
-        /// <summary>
         /// Gets the font flow.
         /// </summary>
         public FontFlow FontFlow
@@ -90,6 +91,15 @@
         {
             get;
         }
+
+        /// <summary>
+        /// Gets or sets the scale.
+        /// </summary>
+        public float Scale
+        {
+            get;
+            private set;
+        } = 1;
 
         #endregion
 
@@ -114,7 +124,7 @@
         /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(this.Font, this.Text, this.GetPosition(), this.Color, 0, default(Vector2), this.Scale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(this.Font, this.displayText, this.GetPosition(), this.Color, 0, default(Vector2), this.Scale, SpriteEffects.None, 0);
         }
 
         /// <summary>
@@ -131,8 +141,19 @@
         /// </summary>
         private void InitialiseFontFlow()
         {
-            // TODO: Alter based on font flow
-            this.ScaleText();
+            switch (FontFlow)
+            {
+                case FontFlow.Scale:
+                    this.ScaleText();
+                    break;
+
+                case FontFlow.Wrap:
+                    this.WrapText();
+                    break;
+
+                case FontFlow.None:
+                    break;
+            }
         }
 
         /// <summary>
@@ -155,6 +176,45 @@
             {
                 this.Scale = 1;
             }
+        }
+
+        /// <summary>
+        /// Rewrites the display text to wrap if it exceeds the maximum width.
+        /// </summary>
+        private void WrapText()
+        {
+            string[] words = this.Text.Split(' ');
+
+            StringBuilder result = new StringBuilder();
+            StringBuilder line = new StringBuilder();
+
+            foreach (string word in words)
+            {
+                if (this.Font.MeasureString(line).X + this.Font.MeasureString(word).X > this.MaxWidth)
+                {
+                    result.Append(line);
+                    result.Append("\n");
+
+                    line.Clear();
+                    line.Append(word);
+
+                    continue;
+                }
+
+                if (!string.IsNullOrEmpty(line.ToString()))
+                {
+                    line.Append(" ");
+                }
+
+                line.Append(word);
+            }
+
+            if (!string.IsNullOrEmpty(line.ToString()))
+            {
+                result.Append(line);
+            }
+
+            this.displayText = result.ToString();
         }
 
         #endregion

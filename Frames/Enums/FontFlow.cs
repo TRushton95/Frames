@@ -6,6 +6,7 @@
     public enum FontFlow
     {
         Wrap,
-        Scale
+        Scale,
+        None
     }
 }

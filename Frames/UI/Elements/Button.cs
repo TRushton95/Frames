@@ -4,6 +4,7 @@
 
     using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
+    using Frames.Enums;
     using Frames.Factories;
     using Frames.Structure.Components;
     using Frames.UI.Components;
@@ -126,13 +127,12 @@
         private void BuildComponents()
         {
             defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative());
-            TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width, PositionFactory.CenteredRelative());
+            TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width, FontFlow.Scale, PositionFactory.CenteredRelative());
             defaultFrame.Children.Add(defaultTextGraphics);
             defaultFrame.Initialise(this.GetBounds());
 
-
             hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative());
-            TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width, PositionFactory.CenteredRelative());
+            TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width, FontFlow.Scale, PositionFactory.CenteredRelative());
             hoverFrame.Children.Add(hoverTextGraphics);
             hoverFrame.Initialise(this.GetBounds());
 
