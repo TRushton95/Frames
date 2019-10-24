@@ -13,6 +13,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using System.IO;
 
     #endregion
@@ -33,7 +34,7 @@
         private TextGraphics textGraphics;
         private ImageGraphics imageGraphics;
 
-        private Button button;
+        private List<BaseElement> elements;
 
         #endregion
 
@@ -103,14 +104,17 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            if (!this.button.Hovered && this.button.GetBounds().Contains(Mouse.GetState().Position))
+            foreach (BaseElement element in this.elements)
             {
-                this.button.Hover();
-            }
-            else if (this.button.Hovered && !this.button.GetBounds().Contains(Mouse.GetState().Position))
-            {
-                this.button.HoverLeave();
+                // TODO: Add your update logic here
+                if (!element.Hovered && element.GetBounds().Contains(Mouse.GetState().Position))
+                {
+                    element.Hover();
+                }
+                else if (element.Hovered && !element.GetBounds().Contains(Mouse.GetState().Position))
+                {
+                    element.HoverLeave();
+                }
             }
 
             base.Update(gameTime);
@@ -126,7 +130,12 @@
             this.frame.Draw(this.spriteBatch);
             this.textGraphics.Draw(this.spriteBatch);
             this.imageGraphics.Draw(this.spriteBatch);
-            this.button.Draw(this.spriteBatch);
+
+            foreach (BaseElement element in this.elements)
+            {
+                element.Draw(this.spriteBatch);
+            }
+
             this.spriteBatch.End();
 
             base.Draw(gameTime);
@@ -148,18 +157,20 @@
             this.imageGraphics = new ImageGraphics(this.image, PositionFactory.BottomRightRelative());
             this.imageGraphics.Initialise(windowBounds);
 
-            //this.button = new Button(150, 50, PositionFactory.CenterLeftRelative(), "Button with text", font, Color.LightBlue, Color.Black, Color.LightCyan, Color.Gray);
-            //this.button.Initialise(windowBounds);
-
             string json = File.ReadAllText("ui.json");
             JsonConverter[] converters = {
                 new PositionProfileConverter(),
                 new SpriteFontConverter(),
-                new ColorConverter()
+                new ColorConverter(),
+                new ElementConverter()
             };
 
-            this.button = JsonConvert.DeserializeObject<Button>(json, new JsonSerializerSettings() { Converters = converters });
-            button.Initialise(windowBounds);
+            elements = JsonConvert.DeserializeObject<List<BaseElement>>(json, new JsonSerializerSettings() { Converters = converters });
+
+            foreach (BaseElement element in elements)
+            {
+                element.Initialise(windowBounds);
+            }
         }
 
         #endregion

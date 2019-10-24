@@ -1,17 +1,35 @@
-{
-  "Width": 150,
-  "Height": 50,
-  "PositionProfile": {
-    "Type": "Relative",
-    "HorizontalAlign": "Left",
-    "VerticalAlign": "Middle",
-    "OffsetX": 0,
-    "OffsetY": 0
+[
+  {
+    "Type": "Button",
+    "Width": 150,
+    "Height": 50,
+    "PositionProfile": {
+      "Type": "Relative",
+      "HorizontalAlign": "Left",
+      "VerticalAlign": "Middle",
+      "OffsetX": 0,
+      "OffsetY": 0
+    },
+    "Text": "Button with text",
+    "Font": "Font",
+    "FrameColor": "Red",
+    "TextColor": "Black",
+    "FrameHoverColor": "Black",
+    "TextHoverColor": "White"
   },
-  "Text": "Button with text",
-  "Font": "Font",
-  "FrameColor": "Red",
-  "TextColor": "Black",
-  "FrameHoverColor": "Black",
-  "TextHoverColor": "White"
-}
+
+  {
+    "Type": "Text",
+    "Value": "Here is some test text!",
+    "Font": "Font",
+    "Color": "Black",
+    "FontFlow": "None",
+    "PositionProfile": {
+      "Type": "Relative",
+      "HorizontalAlign": "Left",
+      "VerticalAlign": "Bottom",
+      "OffsetX": 0,
+      "OffsetY": 0
+    }
+  }
+]

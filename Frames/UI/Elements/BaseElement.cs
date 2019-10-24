@@ -99,14 +99,6 @@
         #region Interactions
 
         /// <summary>
-        /// The left click handler.
-        /// </summary>
-        public void LeftClick()
-        {
-            this.LeftClickDetail();
-        }
-
-        /// <summary>
         /// The mouse hover handler.
         /// </summary>
         public void Hover()
@@ -122,6 +114,14 @@
         {
             this.Hovered = false;
             this.HoverLeaveDetail();
+        }
+
+        /// <summary>
+        /// The left click handler.
+        /// </summary>
+        public void LeftClick()
+        {
+            this.LeftClickDetail();
         }
 
         #endregion

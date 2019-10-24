@@ -111,12 +111,10 @@
         public override Size GetSize()
         {
             Vector2 textDimensions = this.Font.MeasureString(this.Text);
+            textDimensions = Vector2.Multiply(textDimensions, this.Scale);
 
             // return new Size(this.MaxWidth, (int)textDimensions.Y); // TODO: Use this once MaxWidth is fully implemented
-            return new Size(
-                (int)(textDimensions.X * this.Scale),
-                (int)(textDimensions.Y * this.Scale)
-            );
+            return new Size(textDimensions);
         }
 
         /// <summary>

@@ -52,6 +52,7 @@
     <Compile Include="DataStructures\PositionProfiles\RelativePositionProfile.cs" />
     <Compile Include="DataStructures\Size.cs" />
     <Compile Include="Deserialisation\Converters\ColorConverter.cs" />
+    <Compile Include="Deserialisation\Converters\ElementConverter.cs" />
     <Compile Include="Deserialisation\Converters\PositionProfileConverter.cs" />
     <Compile Include="Deserialisation\Converters\SpriteFontConverter.cs" />
     <Compile Include="Enums\FontFlow.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="UI\Components\TextGraphics.cs" />
     <Compile Include="UI\Elements\BaseElement.cs" />
     <Compile Include="UI\Elements\Button.cs" />
+    <Compile Include="UI\Elements\Text.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\MonoGame.Framework.dll" />
