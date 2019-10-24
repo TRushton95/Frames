@@ -37,6 +37,7 @@
         public int Width
         {
             get;
+            set;
         }
 
         /// <summary>
@@ -45,6 +46,7 @@
         public int Height
         {
             get;
+            set;
         }
 
         /// <summary>

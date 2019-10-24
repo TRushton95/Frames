@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using Frames.Deserialisation.Converters;
     using Frames.Enums;
     using Frames.Factories;
     using Frames.Resources;
@@ -11,6 +12,8 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Newtonsoft.Json;
+    using System.IO;
 
     #endregion
 
@@ -64,7 +67,7 @@
             font = this.Content.Load<SpriteFont>("Fonts/Font");
             image = this.Content.Load<Texture2D>("Images/Fireball");
 
-            Resources.Instance.Initialise(this.GraphicsDevice);
+            Resources.Instance.Initialise(this.GraphicsDevice, this.Content);
             this.InitialiseTestComponents();
 
             base.Initialize();
@@ -145,8 +148,18 @@
             this.imageGraphics = new ImageGraphics(this.image, PositionFactory.BottomRightRelative());
             this.imageGraphics.Initialise(windowBounds);
 
-            this.button = new Button(150, 50, PositionFactory.CenterLeftRelative(), "Button with text", font, Color.LightBlue, Color.Black, Color.LightCyan, Color.Gray);
-            this.button.Initialise(windowBounds);
+            //this.button = new Button(150, 50, PositionFactory.CenterLeftRelative(), "Button with text", font, Color.LightBlue, Color.Black, Color.LightCyan, Color.Gray);
+            //this.button.Initialise(windowBounds);
+
+            string json = File.ReadAllText("ui.json");
+            JsonConverter[] converters = {
+                new PositionProfileConverter(),
+                new SpriteFontConverter(),
+                new ColorConverter()
+            };
+
+            this.button = JsonConvert.DeserializeObject<Button>(json, new JsonSerializerSettings() { Converters = converters });
+            button.Initialise(windowBounds);
         }
 
         #endregion

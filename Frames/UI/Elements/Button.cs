@@ -111,7 +111,7 @@
         /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            frame.Draw(spriteBatch);
+            this.frame.Draw(spriteBatch);
         }
 
         /// <summary>
