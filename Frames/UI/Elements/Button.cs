@@ -18,6 +18,16 @@
     /// </summary>
     public class Button : BaseElement
     {
+        #region Constants
+
+        /// <summary>
+        /// The gutter placed between the edge of the text and the button.
+        /// </summary>
+        /// <remarks>Consider placing this in a variable and passed in.</remarks>
+        private const int Gutter = 20;
+
+        #endregion
+
         #region Fields
 
         private Frame frame, defaultFrame, hoverFrame;
@@ -127,12 +137,12 @@
         private void BuildComponents()
         {
             defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative());
-            TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width, FontFlow.Scale, PositionFactory.CenteredRelative());
+            TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - Gutter, FontFlow.Scale, PositionFactory.CenteredRelative());
             defaultFrame.Children.Add(defaultTextGraphics);
             defaultFrame.Initialise(this.GetBounds());
 
             hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative());
-            TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width, FontFlow.Scale, PositionFactory.CenteredRelative());
+            TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width - Gutter, FontFlow.Scale, PositionFactory.CenteredRelative());
             hoverFrame.Children.Add(hoverTextGraphics);
             hoverFrame.Initialise(this.GetBounds());
 
