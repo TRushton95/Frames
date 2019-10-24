@@ -131,7 +131,7 @@
         protected override void InternalInitialise(Rectangle parent)
         {
             this.InitialiseFontFlow();
-            this.UpdatePosition(parent);
+            this.SetPosition(parent);
         }
 
         /// <summary>

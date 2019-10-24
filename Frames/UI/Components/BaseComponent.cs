@@ -99,9 +99,9 @@
         #region Methods
 
         /// <summary>
-        /// Updates the position.
+        /// Sets the position.
         /// </summary>
-        public void UpdatePosition(Rectangle parentBounds)
+        public void SetPosition(Rectangle parentBounds)
         {
             Vector2 position = this.PositionProfile.CalculatePosition(parentBounds, this.GetSize());
 

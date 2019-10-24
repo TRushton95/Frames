@@ -89,7 +89,7 @@
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
-            this.UpdatePosition(parent);
+            this.SetPosition(parent);
         }
 
         #endregion
