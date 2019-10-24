@@ -6,6 +6,7 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using System;
+    using System.Reflection;
 
     #endregion
 
@@ -20,12 +21,31 @@
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            JObject jObject = JObject.Load(reader);
+            JToken jToken = JToken.Load(reader);
 
-            byte r = jObject["R"].Value<byte>();
-            byte g = jObject["G"].Value<byte>();
-            byte b = jObject["B"].Value<byte>();
-            byte a = jObject["A"].Value<byte>();
+            // If ui specification used a preset colour string
+            if (jToken.Type == JTokenType.String)
+            {
+                Color result = Color.Transparent;
+
+                string presetColour = jToken.Value<string>();
+                Color color = new Color();
+                Type colorType = color.GetType();
+                PropertyInfo propertyInfo = colorType.GetProperty(presetColour);
+
+                if (propertyInfo != null)
+                {
+                    result = (Color)propertyInfo.GetValue(color, null);
+                }
+
+                return result;
+            }
+
+            // If an RGBA object in supplied, exctract an build a color from the values
+            byte r = jToken["R"].Value<byte>();
+            byte g = jToken["G"].Value<byte>();
+            byte b = jToken["B"].Value<byte>();
+            byte a = jToken["A"].Value<byte>();
 
             return new Color(r, g, b, a);
         }

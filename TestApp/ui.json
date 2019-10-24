@@ -10,28 +10,8 @@
   },
   "Text": "Button with text",
   "Font": "Font",
-  "FrameColor": {
-    "R": "255",
-    "G": "0",
-    "B": "0",
-    "A": "255"
-  },
-  "TextColor": {
-    "R": "0",
-    "G": "0",
-    "B": "0",
-    "A": "255"
-  },
-  "FrameHoverColor": {
-    "R": "0",
-    "G": "0",
-    "B": "0",
-    "A": "255"
-  },
-  "TextHoverColor": {
-    "R": "255",
-    "G": "255",
-    "B": "255",
-    "A": "255"
-  },
+  "FrameColor": "Red",
+  "TextColor": "Black",
+  "FrameHoverColor": "Black",
+  "TextHoverColor": "White"
 }
