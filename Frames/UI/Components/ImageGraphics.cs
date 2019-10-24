@@ -85,7 +85,7 @@
         }
 
         /// <summary>
-        /// Initialises the component.
+        /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
