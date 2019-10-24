@@ -10,6 +10,9 @@
 
     #endregion
 
+    /// <summary>
+    /// Deserializes the <see cref="Color"/> class from json.
+    /// </summary>
     public class ColorConverter : JsonConverter
     {
         #region Methods

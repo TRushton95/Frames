@@ -30,6 +30,9 @@
 
         #region Constructors
 
+        /// <summary>
+        /// Initialises an instance of the <see cref="Resources"/> class.
+        /// </summary>
         public Resources()
         {
             this.fonts = new Dictionary<string, SpriteFont>();
@@ -65,6 +68,9 @@
         /// </summary>
         public ContentManager ContentManager => this.contentManager;
 
+        /// <summary>
+        /// Gets the fonts.
+        /// </summary>
         public Dictionary<string, SpriteFont> Fonts => this.fonts;
 
         #endregion
@@ -83,11 +89,14 @@
             this.InitialiseFonts();
         }
 
+        /// <summary>
+        /// Initialises all spritefonts provided in the Fonts directory.
+        /// </summary>
         private void InitialiseFonts()
         {
-            DirectoryInfo fontsDir = new DirectoryInfo(Path.Combine(ContentDirectoryName, "Fonts"));
+            DirectoryInfo fontsDirectory = new DirectoryInfo(Path.Combine(ContentDirectoryName, "Fonts"));
 
-            foreach (FileInfo file in fontsDir.GetFiles())
+            foreach (FileInfo file in fontsDirectory.GetFiles())
             {
                 string fileName = Path.GetFileNameWithoutExtension(file.Name);
                 string path = Path.Combine(FontsDirectoryName, fileName);

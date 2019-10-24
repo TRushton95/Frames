@@ -9,6 +9,9 @@
 
     #endregion
 
+    /// <summary>
+    /// Deserializes the <see cref="IPositionProfile"/> class from json.
+    /// </summary>
     public class PositionProfileConverter : JsonConverter
     {
         #region Methods

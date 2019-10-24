@@ -11,6 +11,9 @@
 
     #endregion
 
+    /// <summary>
+    /// Deserializes the <see cref="SpriteFont"/> class from json.
+    /// </summary>
     public class SpriteFontConverter : JsonConverter
     {
         #region Methods
