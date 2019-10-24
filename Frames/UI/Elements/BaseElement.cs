@@ -93,5 +93,54 @@
         }
 
         #endregion
+
+        #region Interactions
+
+        /// <summary>
+        /// The left click handler.
+        /// </summary>
+        public void LeftClick()
+        {
+            this.LeftClickDetail();
+        }
+
+        /// <summary>
+        /// The mouse hover handler.
+        /// </summary>
+        public void Hover()
+        {
+            this.Hovered = true;
+            this.HoverDetail();
+        }
+
+        /// <summary>
+        /// The mouse hover leave handler.
+        /// </summary>
+        public void HoverLeave()
+        {
+            this.Hovered = false;
+            this.HoverLeaveDetail();
+        }
+
+        #endregion
+
+        #region Internal Interaction Handlers
+
+        /// <summary>
+        /// The implementation details for the <see cref="LeftClick"/> method.
+        /// </summary>
+        public abstract void LeftClickDetail();
+
+        /// <summary>
+        /// The implementation details for the <see cref="Hover"/> method.
+        /// </summary>
+        public abstract void HoverDetail();
+
+        /// <summary>
+        /// The implementation details for the <see cref="HoverLeave"/> method.
+        /// </summary>
+        public abstract void HoverLeaveDetail();
+
+        #endregion
     }
 }

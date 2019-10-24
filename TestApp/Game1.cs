@@ -100,6 +100,14 @@
                 Exit();
 
             // TODO: Add your update logic here
+            if (!this.button.Hovered && this.button.GetBounds().Contains(Mouse.GetState().Position))
+            {
+                this.button.Hover();
+            }
+            else if (this.button.Hovered && !this.button.GetBounds().Contains(Mouse.GetState().Position))
+            {
+                this.button.HoverLeave();
+            }
 
             base.Update(gameTime);
         }

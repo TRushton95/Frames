@@ -140,5 +140,33 @@
         }
 
         #endregion
+
+        #region Internal Interaction Handlers
+
+        /// <summary>
+        /// The implementation details for the <see cref="LeftClick"/> method.
+        /// </summary>
+        public override void LeftClickDetail()
+        {
+
+        }
+
+        /// <summary>
+        /// The implementation details for the <see cref="Hover"/> method.
+        /// </summary>
+        public override void HoverDetail()
+        {
+            this.frame = this.hoverFrame;
+        }
+
+        /// <summary>
+        /// The implementation details for the <see cref="HoverLeave"/> method.
+        /// </summary>
+        public override void HoverLeaveDetail()
+        {
+            this.frame = this.defaultFrame;
+        }
+
+        #endregion
     }
 }
