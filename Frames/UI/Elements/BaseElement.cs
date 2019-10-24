@@ -12,10 +12,16 @@
     /// </summary>
     public abstract class BaseElement : BaseComponent
     {
+        /// <summary>
+        /// Initialises a default instance of the <see cref="BaseElement"/> class.
+        /// </summary>
         public BaseElement()
         {
         }
 
+        /// <summary>
+        /// Initialises an instance of the <see cref="BaseElement"/> class.
+        /// </summary>
         public BaseElement(int width, int height, IPositionProfile positionProfile)
             : base(positionProfile)
         {
