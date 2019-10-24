@@ -156,6 +156,10 @@
             }
         }
 
+        #endregion
+
+        #region FontFlow Methods
+
         /// <summary>
         /// Scales the text size down if it exceeds the maximum width.
         /// </summary>
