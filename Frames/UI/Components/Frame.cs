@@ -102,7 +102,7 @@
         /// <summary>
         /// Initialises the component.
         /// </summary>
-        public override void Initialise(Rectangle parent)
+        protected override void InternalInitialise(Rectangle parent)
         {
             this.UpdatePosition(parent);
 

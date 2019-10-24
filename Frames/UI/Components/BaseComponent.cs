@@ -14,6 +14,12 @@
     /// </summary>
     public abstract class BaseComponent
     {
+        #region Fields
+
+        private bool initialised = false;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -59,12 +65,11 @@
         public IPositionProfile PositionProfile
         {
             get;
-            set;
         }
 
         #endregion
 
-        #region Methods
+        #region Get Methods
 
         /// <summary>
         /// Gets the position.
@@ -89,6 +94,10 @@
             return new Rectangle(this.X, this.Y, size.Width, size.Height);
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Updates the position.
         /// </summary>
@@ -106,9 +115,27 @@
         public abstract void Draw(SpriteBatch spriteBatch);
 
         /// <summary>
-        /// Initialises the component.
+        /// Initialises the component if not already initialised.
         /// </summary>
-        public abstract void Initialise(Rectangle parent);
+        public void Initialise(Rectangle parent)
+        {
+            if (this.initialised)
+            {
+                return;
+            }
+
+            this.InternalInitialise(parent);
+            this.initialised = true;
+        }
+
+        #endregion
+
+        #region Internal Implementations
+
+        /// <summary>
+        /// Provides the initialisation behaviour specific to the implementing component.
+        /// </summary>
+        protected abstract void InternalInitialise(Rectangle parent);
 
         #endregion
     }

@@ -114,9 +114,9 @@
         /// <summary>
         /// Initialises the element.
         /// </summary>
-        public override void Initialise(Rectangle parent)
+        protected override void InternalInitialise(Rectangle parent)
         {
-            this.UpdatePosition(parent);
+            this.UpdatePosition(parent); // TODO: Could this be refactored into the base Initialise() call
             this.BuildComponents();
         }
         
@@ -148,7 +148,6 @@
         /// </summary>
         public override void LeftClickDetail()
         {
-
         }
 
         /// <summary>
