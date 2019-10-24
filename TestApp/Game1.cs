@@ -1,7 +1,5 @@
 ﻿namespace TestApp
 {
-    using Frames.DataStructures.PositionProfiles;
-    using Frames.Enums;
     #region Usings
 
     using Frames.Factories;
