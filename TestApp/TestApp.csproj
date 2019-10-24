@@ -59,6 +59,9 @@
   <ItemGroup>
     <Content Include="Content\Images\Fireball.png" />
     <Content Include="Icon.ico" />
+    <Content Include="Scripts\Text.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

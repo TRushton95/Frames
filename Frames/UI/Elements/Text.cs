@@ -6,6 +6,8 @@
     using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
     using Frames.UI.Components;
+    using IronPython.Hosting;
+    using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
@@ -87,7 +89,10 @@
         /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            this.textGraphics.Draw(spriteBatch);
+            if (this.Visible)
+            {
+                this.textGraphics.Draw(spriteBatch);
+            }
         }
 
         /// <summary>
@@ -108,6 +113,16 @@
         {
             this.SetPosition(parent);
             this.BuildComponents();
+
+
+            // TEST CODE - PLEASE REMOVE
+            const string ScriptFilePath = "C:/Tom/gitrepos/Frames/TestApp/bin/Windows/x86/Debug/Scripts/Text.py";
+            ScriptEngine scriptEngine = Python.CreateEngine();
+            ScriptSource source = scriptEngine.CreateScriptSourceFromFile(ScriptFilePath);
+            ScriptScope scope = scriptEngine.CreateScope();
+
+            scope.SetVariable("element", this);
+            source.Execute(scope);
         }
 
         /// <summary>
