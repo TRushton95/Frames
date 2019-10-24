@@ -18,18 +18,16 @@
     {
         #region Constructors
 
-
         /// <summary>
         /// Initialises a new instance of the <see cref="TextGraphics"/> class.
         /// </summary>
-        public TextGraphics(string text, SpriteFont font, Color color, IPositionProfile positionProfile)
+        public TextGraphics(string text, SpriteFont font, Color color, int maxWidth, IPositionProfile positionProfile)
             : base(positionProfile)
         {
             this.Text = text;
             this.Font = font;
             this.Color = color;
-
-            this.Scale = 1;
+            this.MaxWidth = maxWidth;
         }
 
         #endregion
@@ -69,12 +67,13 @@
         }
 
         /// <summary>
-        /// Gets the scale.
+        /// Gets or sets the scale.
         /// </summary>
-        public int Scale
+        public float Scale
         {
             get;
-        }
+            private set;
+        } = 1;
 
         /// <summary>
         /// Gets the font flow.
@@ -104,7 +103,10 @@
             Vector2 textDimensions = this.Font.MeasureString(this.Text);
 
             // return new Size(this.MaxWidth, (int)textDimensions.Y); // TODO: Use this once MaxWidth is fully implemented
-            return new Size((int)textDimensions.X, (int)textDimensions.Y);
+            return new Size(
+                (int)(textDimensions.X * this.Scale),
+                (int)(textDimensions.Y * this.Scale)
+            );
         }
 
         /// <summary>
@@ -120,7 +122,39 @@
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
+            this.InitialiseFontFlow();
             this.UpdatePosition(parent);
+        }
+
+        /// <summary>
+        /// Initialises how the text handles exceeding its maximum width.
+        /// </summary>
+        private void InitialiseFontFlow()
+        {
+            // TODO: Alter based on font flow
+            this.ScaleText();
+        }
+
+        /// <summary>
+        /// Scales the text size down if it exceeds the maximum width.
+        /// </summary>
+        private void ScaleText()
+        {
+            if (this.MaxWidth == 0) // TODO: This should be removed, it's here for low effort initialising of components for testing.
+            {
+                return;
+            }
+
+            int width = this.GetSize().Width;
+
+            if (width > this.MaxWidth)
+            {
+                this.Scale = (float)this.MaxWidth / width;
+            }
+            else
+            {
+                this.Scale = 1;
+            }
         }
 
         #endregion

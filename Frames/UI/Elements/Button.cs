@@ -110,7 +110,7 @@
         {
             return new Size(this.Width, this.Height);
         }
-
+        
         /// <summary>
         /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>
@@ -126,13 +126,13 @@
         private void BuildComponents()
         {
             defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative());
-            TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, PositionFactory.CenteredRelative());
+            TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width, PositionFactory.CenteredRelative());
             defaultFrame.Children.Add(defaultTextGraphics);
             defaultFrame.Initialise(this.GetBounds());
 
 
             hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative());
-            TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, PositionFactory.CenteredRelative());
+            TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width, PositionFactory.CenteredRelative());
             hoverFrame.Children.Add(hoverTextGraphics);
             hoverFrame.Initialise(this.GetBounds());
 
