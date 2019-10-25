@@ -15,7 +15,7 @@
         #region Constructors
 
         /// <summary>
-        /// Initialises a new instance of the <see cref="BaseEvent"/> class.
+        /// Initialises a new instance of the <see cref="Event"/> class.
         /// </summary>
         public Event(EventType eventType, object data)
         {

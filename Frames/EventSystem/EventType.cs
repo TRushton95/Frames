@@ -8,7 +8,7 @@
 
     /// <summary>
     /// Represents a unique event type by mapping an id to a human-readable event name.<br/>
-    /// An EventType must be requested through <see cref="GetEventType(string)"/> as strict control is maintained over the id mappings to event names.
+    /// An event type must be requested through the namespace access classes as strict control is maintained over the id mappings to event names.
     /// </summary>
     public class EventType
     {
@@ -48,7 +48,6 @@
         public int Id
         {
             get;
-            set;
         }
 
         #endregion

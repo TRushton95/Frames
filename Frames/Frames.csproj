@@ -84,6 +84,7 @@
     <Compile Include="EventSystem\Event.cs" />
     <Compile Include="EventSystem\EventManager.cs" />
     <Compile Include="EventSystem\EventType.cs" />
+    <Compile Include="EventSystem\EventTypes.cs" />
     <Compile Include="EventSystem\Listener.cs" />
     <Compile Include="Factories\PositionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

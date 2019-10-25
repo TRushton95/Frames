@@ -62,11 +62,6 @@
         /// </summary>
         public void AddEventListener(EventType eventType, Listener listener)
         {
-            if (eventType.Id == -1)
-            {
-                eventType.Id = nextEventId++;
-            }
-
             List<Listener> eventListeners;
             bool eventTypeFound = eventListenerLookup.TryGetValue(eventType.Id, out eventListeners);
 
