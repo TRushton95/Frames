@@ -131,6 +131,8 @@
         {
             this.SetPosition(parent); // TODO: Could this be refactored into the base Initialise() call
             this.BuildComponents();
+
+            base.InternalInitialise(parent);
         }
         
         /// <summary>

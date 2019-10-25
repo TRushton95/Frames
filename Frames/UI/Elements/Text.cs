@@ -116,6 +116,8 @@
         {
             this.SetPosition(parent);
             this.BuildComponents();
+
+            base.InternalInitialise(parent);
         }
 
         public void Show(Event e)

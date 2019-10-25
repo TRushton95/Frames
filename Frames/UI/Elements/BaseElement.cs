@@ -28,12 +28,14 @@
             this.Name = name;
             this.Width = width;
             this.Height = height;
-
-            this.InitialiseScript();
         }
 
         #region Properties
 
+        /// <summary>
+        /// Gets the name of the property.
+        /// This is used for linking an element with its corresponding script file.
+        /// </summary>
         public string Name
         {
             get;
@@ -107,13 +109,24 @@
 
         #region Methods
 
+        /// <summary>
+        /// Provides the initialisation behaviour specific to the implementing component.
+        /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
-            this.InitialiseScript();
+            this.ExecuteScript();
         }
 
-        private void InitialiseScript()
+        /// <summary>
+        /// Executes the corresponding python script, if it exists.
+        /// </summary>
+        private void ExecuteScript()
         {
+            if (string.IsNullOrWhiteSpace(this.Name))
+            {
+                return;
+            }
+
             string scriptFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Scripts", $"{this.Name}.py");
 
             if (!File.Exists(scriptFilePath))
