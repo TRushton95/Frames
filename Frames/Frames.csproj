@@ -104,6 +104,7 @@
     <Compile Include="UserInterface\Elements\BaseElement.cs" />
     <Compile Include="UserInterface\Elements\Button.cs" />
     <Compile Include="UserInterface\Elements\Text.cs" />
+    <Compile Include="UserInterface\UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\MonoGame.Framework.dll" />

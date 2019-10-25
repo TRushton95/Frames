@@ -2,18 +2,13 @@
 {
     #region Usings
 
-    using Frames.Deserialisation.Converters;
-    using Frames.Enums;
-    using Frames.Factories;
     using Frames.Resources;
-    using Frames.UserInterface.Components;
+    using Frames.UserInterface;
     using Frames.UserInterface.Elements;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using Newtonsoft.Json;
     using System.Collections.Generic;
-    using System.IO;
 
     #endregion
 
@@ -27,13 +22,7 @@
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private SpriteFont font;
-        private Texture2D image;
-        private Frame frame;
-        private TextGraphics textGraphics;
-        private ImageGraphics imageGraphics;
-
-        private List<BaseElement> elements;
+        private UserInterface userInterface;
 
         #endregion
 
@@ -63,9 +52,6 @@
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            font = this.Content.Load<SpriteFont>("Fonts/Font");
-            image = this.Content.Load<Texture2D>("Images/Fireball");
 
             Resources.Instance.Initialise(this.GraphicsDevice, this.Content);
             this.InitialiseTestComponents();
@@ -103,19 +89,6 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            foreach (BaseElement element in this.elements)
-            {
-                // TODO: Add your update logic here
-                if (!element.Hovered && element.GetBounds().Contains(Mouse.GetState().Position))
-                {
-                    element.Hover();
-                }
-                else if (element.Hovered && !element.GetBounds().Contains(Mouse.GetState().Position))
-                {
-                    element.HoverLeave();
-                }
-            }
-
             base.Update(gameTime);
         }
 
@@ -126,15 +99,7 @@
         {
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
             this.spriteBatch.Begin();
-            this.frame.Draw(this.spriteBatch);
-            this.textGraphics.Draw(this.spriteBatch);
-            this.imageGraphics.Draw(this.spriteBatch);
-
-            foreach (BaseElement element in this.elements)
-            {
-                element.Draw(this.spriteBatch);
-            }
-
+            this.userInterface.Draw(spriteBatch);
             this.spriteBatch.End();
 
             base.Draw(gameTime);
@@ -145,32 +110,9 @@
         /// </summary>
         private void InitialiseTestComponents()
         {
-            Rectangle windowBounds = new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
-
-            this.frame = new Frame(100, 100, Color.DarkRed, PositionFactory.CenteredRelative());
-            this.frame.Initialise(windowBounds);
-
-            this.textGraphics = new TextGraphics("Hello world!", font, Color.Black, 0, FontFlow.None, PositionFactory.TopLeftRelative());
-            this.textGraphics.Initialise(windowBounds);
-
-            this.imageGraphics = new ImageGraphics(this.image, PositionFactory.BottomRightRelative());
-            this.imageGraphics.Initialise(windowBounds);
-
-            string json = File.ReadAllText("ui.json");
-            JsonConverter[] converters = {
-                new PositionProfileConverter(),
-                new SpriteFontConverter(),
-                new ColorConverter(),
-                new ElementConverter(),
-                new DimensionConverter()
-            };
-
-            elements = JsonConvert.DeserializeObject<List<BaseElement>>(json, new JsonSerializerSettings() { Converters = converters });
-
-            foreach (BaseElement element in elements)
-            {
-                element.Initialise(windowBounds);
-            }
+            userInterface = new UserInterface();
+            userInterface.Load("ui.json");
+            userInterface.Initialise();
         }
 
         #endregion
