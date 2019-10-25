@@ -1,6 +1,7 @@
 [
   {
     "Type": "Button",
+    "Name": "button",
     "Width": 150,
     "Height": 50,
     "PositionProfile": {
@@ -20,6 +21,7 @@
 
   {
     "Type": "Text",
+    "Name": "text",
     "Value": "Here is some test text, and a lot of it too to test the scaling! There is a lot of text!",
     "Font": "Font",
     "Color": "Black",

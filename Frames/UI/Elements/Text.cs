@@ -5,11 +5,14 @@
     using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
+    using Frames.Events.EventSystem;
+    using Frames.EventSystem;
     using Frames.UI.Components;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using System.Reflection;
 
     #endregion
 
@@ -26,8 +29,8 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="Text"/> class.
         /// </summary>
-        public Text(string value, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, IPositionProfile positionProfile)
-            : base(0, 0, positionProfile)
+        public Text(string name, string value, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, IPositionProfile positionProfile)
+            : base(name, 0, 0, positionProfile)
         {
             this.Value = value;
             this.Font = font;
@@ -113,16 +116,16 @@
         {
             this.SetPosition(parent);
             this.BuildComponents();
+        }
 
+        public void Show(Event e)
+        {
+            this.Visible = true;
+        }
 
-            // TEST CODE - PLEASE REMOVE
-            const string ScriptFilePath = "C:/Tom/gitrepos/Frames/TestApp/bin/Windows/x86/Debug/Scripts/Text.py";
-            ScriptEngine scriptEngine = Python.CreateEngine();
-            ScriptSource source = scriptEngine.CreateScriptSourceFromFile(ScriptFilePath);
-            ScriptScope scope = scriptEngine.CreateScope();
-
-            scope.SetVariable("element", this);
-            source.Execute(scope);
+        public void Hide(Event e)
+        {
+            this.Visible = false;
         }
 
         /// <summary>

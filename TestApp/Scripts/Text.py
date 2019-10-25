@@ -1,4 +1,6 @@
 ﻿import clr
-clr.AddReference('Frames')
+clr.AddReference("Frames")
+from Frames.EventSystem import *
 
-element.Visible = True
+this.AddEventHandler(EventTypes.Frames.ElementHover, this.Show)
+this.AddEventHandler(EventTypes.Frames.ElementHoverLeave, this.Hide)

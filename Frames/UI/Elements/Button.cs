@@ -5,6 +5,8 @@
     using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
+    using Frames.Events.EventSystem;
+    using Frames.EventSystem;
     using Frames.Factories;
     using Frames.Structure.Components;
     using Frames.UI.Components;
@@ -39,8 +41,8 @@
         /// <summary>
         /// Initialises an instance of the <see cref="Button"/> class.
         /// </summary>
-        public Button(int width, int height, IPositionProfile positionProfile, string text, SpriteFont font, Color frameColor, Color textColor, Color frameHoverColor, Color textHoverColor)
-            : base(width, height, positionProfile)
+        public Button(string name, int width, int height, IPositionProfile positionProfile, string text, SpriteFont font, Color frameColor, Color textColor, Color frameHoverColor, Color textHoverColor)
+            : base(name, width, height, positionProfile)
         {
             this.Text = text;
             this.Font = font;
@@ -159,6 +161,8 @@
         public override void HoverDetail()
         {
             this.frame = this.hoverFrame;
+
+            this.eventManager.Notify(new Event(EventTypes.Frames.ElementHover, null));
         }
 
         /// <summary>
@@ -167,6 +171,8 @@
         public override void HoverLeaveDetail()
         {
             this.frame = this.defaultFrame;
+
+            this.eventManager.Notify(new Event(EventTypes.Frames.ElementHoverLeave, null));
         }
 
         /// <summary>

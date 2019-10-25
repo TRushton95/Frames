@@ -3,7 +3,14 @@
     #region Usings
 
     using Frames.DataStructures.PositionProfiles;
+    using Frames.Events.EventSystem;
+    using Frames.EventSystem;
     using Frames.UI.Components;
+    using IronPython.Hosting;
+    using Microsoft.Scripting.Hosting;
+    using Microsoft.Xna.Framework;
+    using System;
+    using System.IO;
 
     #endregion
 
@@ -13,23 +20,25 @@
     public abstract class BaseElement : BaseComponent
     {
         /// <summary>
-        /// Initialises a default instance of the <see cref="BaseElement"/> class.
-        /// </summary>
-        public BaseElement()
-        {
-        }
-
-        /// <summary>
         /// Initialises an instance of the <see cref="BaseElement"/> class.
         /// </summary>
-        public BaseElement(int width, int height, IPositionProfile positionProfile)
+        public BaseElement(string name, int width, int height, IPositionProfile positionProfile)
             : base(positionProfile)
         {
+            this.Name = name;
             this.Width = width;
             this.Height = height;
+
+            this.InitialiseScript();
         }
 
         #region Properties
+
+        public string Name
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Gets the width.
@@ -92,6 +101,32 @@
         {
             get;
             set;
+        }
+
+        #endregion
+
+        #region Methods
+
+        protected override void InternalInitialise(Rectangle parent)
+        {
+            this.InitialiseScript();
+        }
+
+        private void InitialiseScript()
+        {
+            string scriptFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Scripts", $"{this.Name}.py");
+
+            if (!File.Exists(scriptFilePath))
+            {
+                return;
+            }
+
+            ScriptEngine scriptEngine = Python.CreateEngine();
+            ScriptScope scope = scriptEngine.CreateScope();
+
+            ScriptSource source = scriptEngine.CreateScriptSourceFromFile(scriptFilePath);
+            scope.SetVariable("this", this);
+            source.Execute(scope);
         }
 
         #endregion
