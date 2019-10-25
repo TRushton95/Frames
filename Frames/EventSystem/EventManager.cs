@@ -14,7 +14,7 @@
         #region Fields
 
         private static EventManager _instance;
-        private SortedDictionary<int, List<Listener>> eventListenerLookup;
+        private SortedDictionary<int, List<Listener>> eventListenerLookup = new SortedDictionary<int, List<Listener>>();
         private int nextEventId = 0;
 
         #endregion
