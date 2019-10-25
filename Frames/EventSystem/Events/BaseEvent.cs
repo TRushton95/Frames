@@ -1,5 +1,11 @@
-﻿namespace Frames.EventSystem
+﻿namespace Frames.Events.EventSystem
 {
+    #region Usings
+
+    using Frames.EventSystem;
+
+    #endregion
+
     /// <summary>
     /// The base structure of the event that is used to notify listeners of a change of state.
     /// </summary>
