@@ -7,18 +7,19 @@
     #endregion
 
     /// <summary>
-    /// The base structure of the event that is used to notify listeners of a change of state.
+    /// The event that is used to notify listeners of a change of state along with any necessary data regarding that change.
     /// </summary>
-    public abstract class BaseEvent
+    public class Event
     {
         #region Constructors
 
         /// <summary>
         /// Initialises a new instance of the <see cref="BaseEvent"/> class.
         /// </summary>
-        public BaseEvent(EventType eventType)
+        public Event(string name, object data)
         {
-            this.EventType = eventType;
+            this.Name = name;
+            this.Data = data;
         }
 
         #endregion
@@ -26,9 +27,17 @@
         #region Properties
 
         /// <summary>
-        /// Gets or sets the event type.
+        /// Gets the event name.
         /// </summary>
-        public EventType EventType
+        public string Name
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the event data.
+        /// </summary>
+        public object Data
         {
             get;
         }
