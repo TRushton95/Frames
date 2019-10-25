@@ -9,7 +9,7 @@
 
     #region Delegates
 
-    public delegate void EventHandler(BaseEvent e);
+    public delegate void EventHandler(Event e);
 
     #endregion
 
@@ -31,7 +31,7 @@
         /// Invoke the relevant event handlers on a received event.
         /// TO-DO: Using string name comparison for events in Listeners, ids get set int <see cref="EventManager"/> but not here.
         /// </summary>
-        public void OnEventReceived(BaseEvent e)
+        public void OnEventReceived(Event e)
         {
             string eventType = e.EventType.Name;
 

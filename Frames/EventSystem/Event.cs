@@ -3,6 +3,7 @@
     #region Usings
 
     using Frames.EventSystem;
+    using System.Collections.Generic;
 
     #endregion
 
@@ -16,9 +17,9 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="BaseEvent"/> class.
         /// </summary>
-        public Event(string name, object data)
+        public Event(EventType eventType, object data)
         {
-            this.Name = name;
+            this.EventType = eventType;
             this.Data = data;
         }
 
@@ -27,9 +28,9 @@
         #region Properties
 
         /// <summary>
-        /// Gets the event name.
+        /// Gets the event type.
         /// </summary>
-        public string Name
+        public EventType EventType
         {
             get;
         }

@@ -41,7 +41,7 @@
         /// <summary>
         /// Notify the event manager of a new event
         /// </summary>
-        public void Notify(BaseEvent e)
+        public void Notify(Event e)
         {
             List<Listener> eventListeners;
             bool eventTypeFound = eventListenerLookup.TryGetValue(e.EventType.Id, out eventListeners);
