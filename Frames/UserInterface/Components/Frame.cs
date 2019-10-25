@@ -1,11 +1,10 @@
-﻿namespace Frames.Structure.Components
+﻿namespace Frames.UserInterface.Components
 {
     #region Usings
 
     using System.Collections.Generic;
     using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
-    using Frames.UI.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Resources;

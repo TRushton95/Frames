@@ -6,9 +6,8 @@
     using Frames.Enums;
     using Frames.Factories;
     using Frames.Resources;
-    using Frames.Structure.Components;
-    using Frames.UI.Components;
-    using Frames.UI.Elements;
+    using Frames.UserInterface.Components;
+    using Frames.UserInterface.Elements;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;

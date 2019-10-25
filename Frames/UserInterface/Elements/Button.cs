@@ -1,4 +1,4 @@
-﻿namespace Frames.UI.Elements
+﻿namespace Frames.UserInterface.Elements
 {
     #region Usings
 
@@ -8,8 +8,7 @@
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;
-    using Frames.Structure.Components;
-    using Frames.UI.Components;
+    using Frames.UserInterface.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 

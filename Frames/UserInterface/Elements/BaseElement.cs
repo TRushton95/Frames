@@ -1,11 +1,9 @@
-﻿namespace Frames.UI.Elements
+﻿namespace Frames.UserInterface.Elements
 {
     #region Usings
 
     using Frames.DataStructures.PositionProfiles;
-    using Frames.Events.EventSystem;
-    using Frames.EventSystem;
-    using Frames.UI.Components;
+    using Frames.UserInterface.Components;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;

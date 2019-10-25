@@ -1,4 +1,4 @@
-﻿namespace Frames.UI.Components
+﻿namespace Frames.UserInterface.Components
 {
     #region Usings
 

@@ -1,4 +1,4 @@
-﻿namespace Frames.UI.Elements
+﻿namespace Frames.UserInterface.Elements
 {
     #region Usings
 
@@ -6,13 +6,9 @@
     using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
     using Frames.Events.EventSystem;
-    using Frames.EventSystem;
-    using Frames.UI.Components;
-    using IronPython.Hosting;
-    using Microsoft.Scripting.Hosting;
+    using Frames.UserInterface.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-    using System.Reflection;
 
     #endregion
 
