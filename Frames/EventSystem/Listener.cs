@@ -20,19 +20,7 @@
         #region Fields
 
         protected EventManager eventManager = EventManager.Instance;
-        private SortedDictionary<string, List<EventHandler>> eventHandlerLookup;
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        /// Initialises a new instance of the <see cref="Listener"/> class.
-        /// </summary>
-        public Listener()
-        {
-            eventHandlerLookup = new SortedDictionary<string, List<EventHandler>>();
-        }
+        private SortedDictionary<string, List<EventHandler>> eventHandlerLookup = new SortedDictionary<string, List<EventHandler>>();
 
         #endregion
 
