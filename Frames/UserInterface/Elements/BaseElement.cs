@@ -108,10 +108,11 @@
         #region Methods
 
         /// <summary>
-        /// Updates the element.
+        /// Recursively searches the element tree and creates a flat list of the element and it's children, if it has any.
         /// </summary>
-        public void Update(Vector2 mousePosition)
+        public virtual List<BaseElement> BuildFlattenedSubTree()
         {
+            return new List<BaseElement> { this };
         }
 
         /// <summary>
@@ -120,14 +121,6 @@
         protected override void InternalInitialise(Rectangle parent)
         {
             this.ExecuteScript();
-        }
-
-        /// <summary>
-        /// Recursively searches the element tree and creates a flat list of the element and it's children, if it has any.
-        /// </summary>
-        public virtual List<BaseElement> BuildFlattenedSubTree()
-        {
-            return new List<BaseElement> { this };
         }
 
         /// <summary>

@@ -10,7 +10,7 @@
       "OffsetX": 0,
       "OffsetY": 0
     },
-    "Text": "Button with text",
+    "Text": "Click to toggle text!",
     "Font": "Font",
     "FrameColor": "Red",
     "TextColor": "Black",

@@ -78,11 +78,6 @@
         {
             MouseInfo.Update();
 
-            foreach (BaseElement element in this.elements)
-            {
-                element.Update(mousePosition);
-            }
-
             this.UpdateHoveredElement();
             if (this.hoveredElement != null && MouseInfo.LeftMouseClicked)
             {
