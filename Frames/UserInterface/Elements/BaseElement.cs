@@ -121,9 +121,9 @@
         }
 
         /// <summary>
-        /// Recursively searches the element tree and creates a list of all the elements.
+        /// Recursively searches the element tree and creates a flat list of the element and it's children, if it has any.
         /// </summary>
-        public virtual List<BaseElement> BuildElementTree()
+        public virtual List<BaseElement> BuildFlattenedSubTree()
         {
             return new List<BaseElement> { this };
         }

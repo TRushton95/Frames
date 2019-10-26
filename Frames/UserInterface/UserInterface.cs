@@ -104,7 +104,7 @@
 
             foreach (BaseElement element in this.elements)
             {
-                result.AddRange(element.BuildElementTree());
+                result.AddRange(element.BuildFlattenedSubTree());
             }
 
             return result;
