@@ -68,6 +68,7 @@
             foreach (BaseElement element in this.elements)
             {
                 element.Initialise(viewportBounds);
+                element.SetPriority(0); // TODO: See if this can be integraed into the initialisation process.
             }
         }
 
@@ -124,7 +125,8 @@
 
             if (hoveredElements.Count > 0)
             {
-                nextHoveredElement = hoveredElements.First(); // TODO: Select highest priority
+                // If multiple hovered elements share priority, leave it to fate
+                nextHoveredElement = hoveredElements.OrderBy(element => element.Priority).First();
             }
 
             this.previousHoveredElement = this.hoveredElement;

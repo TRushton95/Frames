@@ -108,7 +108,7 @@
         #region Methods
 
         /// <summary>
-        /// Recursively searches the element tree and creates a flat list of the element and it's children, if it has any.
+        /// Recursively searches the element tree and creates a flat list of the element and its children if it has any.
         /// </summary>
         public virtual List<BaseElement> BuildFlattenedSubTree()
         {
@@ -116,8 +116,17 @@
         }
 
         /// <summary>
+        /// Sets the priority of the element and its children if it has any.
+        /// </summary>
+        public virtual void SetPriority(int priority)
+        {
+            this.Priority = priority;
+        }
+
+        /// <summary>
         /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>
+        /// <remarks>TODO: This has a very untidy integration with the inheritence of BaseComponent. See if this can be refactored.</remarks>
         protected override void InternalInitialise(Rectangle parent)
         {
             this.ExecuteScript();
