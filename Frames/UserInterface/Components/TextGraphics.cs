@@ -162,11 +162,6 @@
         /// </summary>
         private void ScaleText()
         {
-            if (this.MaxWidth == 0) // TODO: This should be removed, it's here for low effort initialising of components for testing.
-            {
-                return;
-            }
-
             int width = (int)this.Font.MeasureString(this.Text).X;
 
             if (width > this.MaxWidth)
