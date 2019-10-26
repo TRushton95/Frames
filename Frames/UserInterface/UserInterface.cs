@@ -4,6 +4,7 @@
 
     using Frames.Deserialisation.Converters;
     using Frames.UserInterface.Elements;
+    using Frames.Utilities;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Newtonsoft.Json;
@@ -11,6 +12,7 @@
     using Resources;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
 
     #endregion
 
@@ -20,6 +22,7 @@
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private List<BaseElement> elements = new List<BaseElement>();
+        private BaseElement hoveredElement, previousHoveredElement;
 
         private readonly JsonConverter[] converters = {
                 new PositionProfileConverter(),
@@ -71,10 +74,14 @@
         /// </summary>
         public void Update(Vector2 mousePosition)
         {
+            MouseInfo.Update();
+
             foreach (BaseElement element in this.elements)
             {
                 element.Update(mousePosition);
             }
+
+            this.UpdateHoveredElement();
         }
 
         /// <summary>
@@ -85,6 +92,56 @@
             foreach (BaseElement element in this.elements)
             {
                 element.Draw(spriteBatch);
+            }
+        }
+
+        /// <summary>
+        /// Gets all the elements in the user interface.
+        /// </summary>
+        private List<BaseElement> GetAllElements()
+        {
+            List<BaseElement> result = new List<BaseElement>();
+
+            foreach (BaseElement element in this.elements)
+            {
+                result.AddRange(element.BuildElementTree());
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Updates the hovered element
+        /// </summary>
+        private void UpdateHoveredElement()
+        {
+            List<BaseElement> hoveredElements = this.GetAllElements()
+                                                    .Where(element => element.GetBounds().Contains(MouseInfo.Position))
+                                                    .ToList();
+            
+            BaseElement nextHoveredElement = null;
+
+            if (hoveredElements.Count > 0)
+            {
+                nextHoveredElement = hoveredElements.First(); // TODO: Select highest priority
+            }
+
+            this.previousHoveredElement = this.hoveredElement;
+            this.hoveredElement = nextHoveredElement;
+
+            if (this.hoveredElement == this.previousHoveredElement)
+            {
+                return;
+            }
+
+            if (this.previousHoveredElement != null)
+            {
+                this.previousHoveredElement.HoverLeave();
+            }
+
+            if (this.hoveredElement != null)
+            {
+                this.hoveredElement.Hover();
             }
         }
 

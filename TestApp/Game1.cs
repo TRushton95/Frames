@@ -4,6 +4,7 @@
 
     using Frames.Resources;
     using Frames.UserInterface;
+    using Frames.Utilities;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
@@ -87,7 +88,7 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            this.userInterface.Update(Mouse.GetState().Position.ToVector2());
+            this.userInterface.Update(MouseInfo.Position);
 
             base.Update(gameTime);
         }
