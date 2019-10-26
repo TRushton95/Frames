@@ -8,6 +8,7 @@
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
     using System;
+    using System.Collections.Generic;
     using System.IO;
 
     #endregion
@@ -109,16 +110,6 @@
         /// </summary>
         public void Update(Vector2 mousePosition)
         {
-            bool mouseOver = this.GetBounds().Contains(mousePosition);
-
-            if (mouseOver && !this.Hovered)
-            {
-                this.Hover();
-            }
-            if (!mouseOver && this.Hovered)
-            {
-                this.HoverLeave();
-            }
         }
 
         /// <summary>
@@ -127,6 +118,14 @@
         protected override void InternalInitialise(Rectangle parent)
         {
             this.ExecuteScript();
+        }
+
+        /// <summary>
+        /// Recursively searches the element tree and creates a list of all the elements.
+        /// </summary>
+        public virtual List<BaseElement> BuildElementTree()
+        {
+            return new List<BaseElement> { this };
         }
 
         /// <summary>
