@@ -105,6 +105,7 @@
     <Compile Include="UserInterface\Elements\Button.cs" />
     <Compile Include="UserInterface\Elements\Text.cs" />
     <Compile Include="UserInterface\UserInterface.cs" />
+    <Compile Include="Utilities\MouseInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\MonoGame.Framework.dll" />
@@ -116,5 +117,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
