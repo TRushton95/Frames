@@ -54,6 +54,8 @@
             }
 
             elements = JsonConvert.DeserializeObject<List<BaseElement>>(json, new JsonSerializerSettings() { Converters = converters });
+
+            logger.Debug($"Loaded user interface from: {path}");
         }
 
         /// <summary>
@@ -82,6 +84,10 @@
             }
 
             this.UpdateHoveredElement();
+            if (this.hoveredElement != null && MouseInfo.LeftMouseClicked)
+            {
+                this.hoveredElement.LeftClick();
+            }
         }
 
         /// <summary>

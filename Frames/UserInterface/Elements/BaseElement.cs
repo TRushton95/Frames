@@ -3,6 +3,8 @@
     #region Usings
 
     using Frames.DataStructures.PositionProfiles;
+    using Frames.Events.EventSystem;
+    using Frames.EventSystem;
     using Frames.UserInterface.Components;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
@@ -164,6 +166,8 @@
         {
             this.Hovered = true;
             this.HoverDetail();
+
+            this.eventManager.Notify(new Event(EventTypes.Frames.ElementHover, null));
         }
 
         /// <summary>
@@ -173,6 +177,8 @@
         {
             this.Hovered = false;
             this.HoverLeaveDetail();
+
+            this.eventManager.Notify(new Event(EventTypes.Frames.ElementHoverLeave, null));
         }
 
         /// <summary>
@@ -181,6 +187,8 @@
         public void LeftClick()
         {
             this.LeftClickDetail();
+
+            this.eventManager.Notify(new Event(EventTypes.Frames.ElementClick, null));
         }
 
         #endregion
@@ -190,17 +198,17 @@
         /// <summary>
         /// The implementation details for the <see cref="LeftClick"/> method.
         /// </summary>
-        public abstract void LeftClickDetail();
+        protected abstract void LeftClickDetail();
 
         /// <summary>
         /// The implementation details for the <see cref="Hover"/> method.
         /// </summary>
-        public abstract void HoverDetail();
+        protected abstract void HoverDetail();
 
         /// <summary>
         /// The implementation details for the <see cref="HoverLeave"/> method.
         /// </summary>
-        public abstract void HoverLeaveDetail();
+        protected abstract void HoverLeaveDetail();
 
         #endregion
     }

@@ -116,14 +116,9 @@
             base.InternalInitialise(parent);
         }
 
-        public void Show(Event e)
+        public void ToggleVisibility(Event e)
         {
-            this.Visible = true;
-        }
-
-        public void Hide(Event e)
-        {
-            this.Visible = false;
+            this.Visible = !this.Visible;
         }
 
         /// <summary>
@@ -142,7 +137,7 @@
         /// <summary>
         /// The implementation details for the <see cref="Hover"/> method.
         /// </summary>
-        public override void HoverDetail()
+        protected override void HoverDetail()
         {
             throw new System.NotImplementedException();
         }
@@ -150,7 +145,7 @@
         /// <summary>
         /// The implementation details for the <see cref="HoverLeave"/> method.
         /// </summary>
-        public override void HoverLeaveDetail()
+        protected override void HoverLeaveDetail()
         {
             throw new System.NotImplementedException();
         }
@@ -158,7 +153,7 @@
         /// <summary>
         /// The implementation details for the <see cref="LeftClick"/> method.
         /// </summary>
-        public override void LeftClickDetail()
+        protected override void LeftClickDetail()
         {
             throw new System.NotImplementedException();
         }

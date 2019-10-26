@@ -159,27 +159,23 @@
         /// <summary>
         /// The implementation details for the <see cref="Hover"/> method.
         /// </summary>
-        public override void HoverDetail()
+        protected override void HoverDetail()
         {
             this.frame = this.hoverFrame;
-
-            this.eventManager.Notify(new Event(EventTypes.Frames.ElementHover, null));
         }
 
         /// <summary>
         /// The implementation details for the <see cref="HoverLeave"/> method.
         /// </summary>
-        public override void HoverLeaveDetail()
+        protected override void HoverLeaveDetail()
         {
             this.frame = this.defaultFrame;
-
-            this.eventManager.Notify(new Event(EventTypes.Frames.ElementHoverLeave, null));
         }
 
         /// <summary>
         /// The implementation details for the <see cref="LeftClick"/> method.
         /// </summary>
-        public override void LeftClickDetail()
+        protected override void LeftClickDetail()
         {
         }
 

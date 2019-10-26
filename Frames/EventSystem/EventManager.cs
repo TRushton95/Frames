@@ -3,6 +3,7 @@
     #region Usings
 
     using System.Collections.Generic;
+    using System.Diagnostics;
     using Frames.Events.EventSystem;
 
     #endregion
@@ -44,6 +45,8 @@
         {
             List<Listener> eventListeners;
             bool eventTypeFound = eventListenerLookup.TryGetValue(e.EventType.Id, out eventListeners);
+
+            Debug.WriteLine(string.Format("Event received: {0} ({1} listeners)", e.EventType.Name, eventListeners == null ? 0 : eventListeners.Count)); //TODO: Remove me
 
             if (!eventTypeFound)
             {

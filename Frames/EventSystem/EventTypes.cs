@@ -6,6 +6,7 @@
         {
             public static EventType ElementHover = EventType.GetEventType("FRAMES_ELEMENT-HOVER");
             public static EventType ElementHoverLeave = EventType.GetEventType("FRAMES_ELEMENT-HOVER-LEAVE");
+            public static EventType ElementClick = EventType.GetEventType("FRAMES_ELEMENT-CLICK");
         }
     }
 }
