@@ -101,8 +101,7 @@
         {
             Vector2 textDimensions = this.Font.MeasureString(this.Value);
 
-            // return new Size(this.MaxWidth, (int)textDimensions.Y); // TODO: Use this once MaxWidth is fully implemented
-            return new Size(textDimensions);
+            return new Size(this.MaxWidth, (int)textDimensions.Y);
         }
 
         /// <summary>
