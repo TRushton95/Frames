@@ -67,6 +67,17 @@
         }
 
         /// <summary>
+        /// Updates the elements.
+        /// </summary>
+        public void Update(Vector2 mousePosition)
+        {
+            foreach (BaseElement element in this.elements)
+            {
+                element.Update(mousePosition);
+            }
+        }
+
+        /// <summary>
         /// Draws the elements.
         /// </summary>
         public void Draw(SpriteBatch spriteBatch)

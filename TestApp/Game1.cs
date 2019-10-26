@@ -4,11 +4,9 @@
 
     using Frames.Resources;
     using Frames.UserInterface;
-    using Frames.UserInterface.Elements;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using System.Collections.Generic;
 
     #endregion
 
@@ -88,6 +86,8 @@
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            this.userInterface.Update(Mouse.GetState().Position.ToVector2());
 
             base.Update(gameTime);
         }

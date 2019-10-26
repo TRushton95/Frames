@@ -105,6 +105,23 @@
         #region Methods
 
         /// <summary>
+        /// Updates the element.
+        /// </summary>
+        public void Update(Vector2 mousePosition)
+        {
+            bool mouseOver = this.GetBounds().Contains(mousePosition);
+
+            if (mouseOver && !this.Hovered)
+            {
+                this.Hover();
+            }
+            if (!mouseOver && this.Hovered)
+            {
+                this.HoverLeave();
+            }
+        }
+
+        /// <summary>
         /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
