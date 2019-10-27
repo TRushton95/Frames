@@ -35,7 +35,8 @@
                 new SpriteFontConverter(),
                 new ColorConverter(),
                 new ElementConverter(),
-                new DimensionConverter()
+                new DimensionConverter(),
+                new ImageConverter()
             };
 
         #endregion

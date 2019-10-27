@@ -136,7 +136,6 @@
         /// </summary>
         protected override void HoverDetail()
         {
-            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -144,7 +143,6 @@
         /// </summary>
         protected override void HoverLeaveDetail()
         {
-            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -152,7 +150,6 @@
         /// </summary>
         protected override void LeftClickDetail()
         {
-            throw new System.NotImplementedException();
         }
 
         #endregion

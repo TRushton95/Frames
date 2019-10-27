@@ -20,7 +20,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Font.spritefont
 
-#begin Images/Fireball.png
+#begin Textures/Fireball.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -30,5 +30,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Fireball.png
+/build:Textures/Fireball.png
 

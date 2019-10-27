@@ -24,11 +24,24 @@
     "Value": "Here is some test text, and a lot of it too to test the scaling! There is a lot of text!",
     "Font": "Font",
     "Color": "Black",
-    "MaxWidth":  "WindowWidth",
+    "MaxWidth": "WindowWidth",
     "FontFlow": "Scale",
     "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Left",
+      "VerticalAlign": "Bottom",
+      "OffsetX": 0,
+      "OffsetY": 0
+    }
+  },
+
+  {
+    "Type": "Icon",
+    "Name": "icon",
+    "Texture": "Fireball",
+    "PositionProfile":  {
+      "Type": "Relative",
+      "HorizontalAlign": "Middle",
       "VerticalAlign": "Bottom",
       "OffsetX": 0,
       "OffsetY": 0

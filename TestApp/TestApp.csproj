@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\Fireball.png" />
+    <Content Include="Content\Textures\Fireball.png" />
     <Content Include="Icon.ico" />
     <Content Include="Scripts\Text.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

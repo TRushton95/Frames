@@ -15,6 +15,7 @@
 
         private const string ContentDirectoryName = "Content";
         private const string FontsDirectoryName = "Fonts";
+        private const string TexturesDirectoryname = "Textures";
 
         #endregion
 
@@ -24,19 +25,8 @@
 
         private GraphicsDevice graphicsDevice;
         private ContentManager contentManager;
-        private Dictionary<string, SpriteFont> fonts;
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        /// Initialises an instance of the <see cref="Resources"/> class.
-        /// </summary>
-        public Resources()
-        {
-            this.fonts = new Dictionary<string, SpriteFont>();
-        }
+        private Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
+        private Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
 
         #endregion
 
@@ -73,6 +63,11 @@
         /// </summary>
         public Dictionary<string, SpriteFont> Fonts => this.fonts;
 
+        /// <summary>
+        /// Gets the textures.
+        /// </summary>
+        public Dictionary<string, Texture2D> Textures => this.textures;
+
         #endregion
 
         #region Methods
@@ -87,6 +82,7 @@
 
             this.contentManager.RootDirectory = ContentDirectoryName;
             this.InitialiseFonts();
+            this.InitialiseTextures();
         }
 
         /// <summary>
@@ -101,6 +97,21 @@
                 string fileName = Path.GetFileNameWithoutExtension(file.Name);
                 string path = Path.Combine(FontsDirectoryName, fileName);
                 this.fonts[fileName] = this.ContentManager.Load<SpriteFont>(path);
+            }
+        }
+
+        /// <summary>
+        /// Initialises all textures provided in the Textures directory.
+        /// </summary>
+        private void InitialiseTextures()
+        {
+            DirectoryInfo fontsDirectory = new DirectoryInfo(Path.Combine(ContentDirectoryName, "Textures"));
+
+            foreach (FileInfo file in fontsDirectory.GetFiles())
+            {
+                string fileName = Path.GetFileNameWithoutExtension(file.Name);
+                string path = Path.Combine(TexturesDirectoryname, fileName);
+                this.textures[fileName] = this.ContentManager.Load<Texture2D>(path);
             }
         }
 

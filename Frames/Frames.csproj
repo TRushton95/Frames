@@ -83,6 +83,7 @@
     <Compile Include="Deserialisation\Converters\ColorConverter.cs" />
     <Compile Include="Deserialisation\Converters\DimensionConverter.cs" />
     <Compile Include="Deserialisation\Converters\ElementConverter.cs" />
+    <Compile Include="Deserialisation\Converters\ImageConverter.cs" />
     <Compile Include="Deserialisation\Converters\PositionProfileConverter.cs" />
     <Compile Include="Deserialisation\Converters\SpriteFontConverter.cs" />
     <Compile Include="Enums\FontFlow.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="UserInterface\Components\TextGraphics.cs" />
     <Compile Include="UserInterface\Elements\BaseElement.cs" />
     <Compile Include="UserInterface\Elements\Button.cs" />
+    <Compile Include="UserInterface\Elements\Icon.cs" />
     <Compile Include="UserInterface\Elements\Text.cs" />
     <Compile Include="UserInterface\UserInterface.cs" />
     <Compile Include="Utilities\MouseInfo.cs" />

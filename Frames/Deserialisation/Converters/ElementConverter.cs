@@ -6,6 +6,7 @@
     using Frames.UserInterface.Elements;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using NLog;
 
     #endregion
 
@@ -14,6 +15,13 @@
     /// </summary>
     public class ElementConverter : JsonConverter
     {
+        #region Fields
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly string elementsNamespace = typeof(BaseElement).Namespace;
+
+        #endregion
+
         #region Methods
 
         public override bool CanConvert(Type objectType)
@@ -25,21 +33,17 @@
         {
             JObject jObject = JObject.Load(reader);
 
-            BaseElement result = null;
+            string typeName = jObject["Type"].Value<string>();
 
-            string type = jObject["Type"].Value<string>();
-            switch (type)
+            Type type = Type.GetType($"{this.elementsNamespace}.{typeName}");
+
+            if (type == null || !type.IsSubclassOf(typeof(BaseElement)))
             {
-                case "Button":
-                    result = jObject.ToObject<Button>(serializer);
-                    break;
-
-                case "Text":
-                    result = jObject.ToObject<Text>(serializer);
-                    break;
+                logger.Warn($"Cannot convert type {typeName} to element.");
+                return null;
             }
 
-            return result;
+            return jObject.ToObject(type, serializer);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

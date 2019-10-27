@@ -19,12 +19,10 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="ImageGraphics"/> class.
         /// </summary>
-        public ImageGraphics(Texture2D image, IPositionProfile positionProfile)
+        public ImageGraphics(Texture2D texture, IPositionProfile positionProfile)
             : base(positionProfile)
         {
-            this.Image = image;
-            this.Width = image.Width;
-            this.Height = image.Height;
+            this.Texture = texture;
         }
 
         #endregion
@@ -32,33 +30,9 @@
         #region Properties
 
         /// <summary>
-        /// Gets the height.
-        /// </summary>
-        public int Width
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Gets the height.
-        /// </summary>
-        public int Height
-        {
-            get;
-        }
-
-        /// <summary>
         /// Gets the image.
         /// </summary>
-        public Texture2D Image
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Gets the colour filter.
-        /// </summary>
-        public Color Filter
+        public Texture2D Texture
         {
             get;
         }
@@ -72,7 +46,7 @@
         /// </summary>
         public override Size GetSize()
         {
-            return new Size(this.Width, this.Height);
+            return new Size(this.Texture.Width, this.Texture.Height);
         }
 
         /// <summary>
@@ -80,7 +54,7 @@
         /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Image, this.GetBounds(), Color.White);
+            spriteBatch.Draw(this.Texture, this.GetBounds(), Color.White);
         }
 
         /// <summary>
