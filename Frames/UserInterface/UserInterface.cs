@@ -18,6 +18,12 @@
 
     public class UserInterface
     {
+        #region Constants
+
+        private int InitialPriority = 0;
+
+        #endregion
+
         #region Fields
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -67,8 +73,7 @@
 
             foreach (BaseElement element in this.elements)
             {
-                element.Initialise(viewportBounds);
-                element.SetPriority(0); // TODO: See if this can be integraed into the initialisation process.
+                element.Initialise(viewportBounds, InitialPriority);
             }
         }
 

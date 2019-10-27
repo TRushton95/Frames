@@ -18,7 +18,7 @@
     /// <summary>
     /// The base structure of a user interface element.
     /// </summary>
-    public abstract class BaseElement : BaseComponent
+    public abstract class BaseElement : BaseBody
     {
         /// <summary>
         /// Initialises an instance of the <see cref="BaseElement"/> class.
@@ -116,20 +116,22 @@
         }
 
         /// <summary>
-        /// Sets the priority of the element and its children if it has any.
+        /// Initialise the element.
         /// </summary>
-        public virtual void SetPriority(int priority)
+        public void Initialise(Rectangle parent, int priority)
         {
-            this.Priority = priority;
+            this.ExecuteScript();
+
+            this.SetPriority(priority);
+            this.InternalInitialise(parent);
         }
 
         /// <summary>
-        /// Provides the initialisation behaviour specific to the implementing component.
+        /// Sets the priority of the element and its children if it has any.
         /// </summary>
-        /// <remarks>TODO: This has a very untidy integration with the inheritence of BaseComponent. See if this can be refactored.</remarks>
-        protected override void InternalInitialise(Rectangle parent)
+        protected virtual void SetPriority(int priority)
         {
-            this.ExecuteScript();
+            this.Priority = priority;
         }
 
         /// <summary>
@@ -156,6 +158,16 @@
             scope.SetVariable("this", this);
             source.Execute(scope);
         }
+
+        #endregion
+
+        #region Internal Implementations
+
+
+        /// <summary>
+        /// Provides the initialisation behaviour specific to the implementing component.
+        /// </summary>
+        protected abstract void InternalInitialise(Rectangle parent);
 
         #endregion
 

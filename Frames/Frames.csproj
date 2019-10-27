@@ -97,6 +97,7 @@
     <Compile Include="Factories\PositionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resources.cs" />
+    <Compile Include="UserInterface\BaseBody.cs" />
     <Compile Include="UserInterface\Components\BaseComponent.cs" />
     <Compile Include="UserInterface\Components\Frame.cs" />
     <Compile Include="UserInterface\Components\ImageGraphics.cs" />
