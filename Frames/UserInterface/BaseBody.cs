@@ -13,6 +13,7 @@
     /// <summary>
     /// The base structure of a any composite part of user interface that has dimensions and can be displayed.
     /// </summary>
+    /// <remarks>TODO: This will work for now, but the seprataion between elements and component could probably be cleaner/></remarks>
     public abstract class BaseBody : Listener
     {
         #region Constructors
