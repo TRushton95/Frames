@@ -70,16 +70,17 @@
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
-            this.BuildComponents(parent);
+            this.SetPosition(parent);
+            this.BuildComponents();
         }
 
         /// <summary>
         /// Builds the components.
         /// </summary>
-        private void BuildComponents(Rectangle parent)
+        private void BuildComponents()
         {
             this.imageGraphics = new ImageGraphics(this.Texture, PositionFactory.CenteredRelative());
-            this.imageGraphics.Initialise(parent);
+            this.imageGraphics.Initialise(this.GetBounds());
         }
 
         #endregion
