@@ -107,6 +107,7 @@
     <Compile Include="UserInterface\Elements\Button.cs" />
     <Compile Include="UserInterface\Elements\Icon.cs" />
     <Compile Include="UserInterface\Elements\Text.cs" />
+    <Compile Include="UserInterface\Elements\Textbox.cs" />
     <Compile Include="UserInterface\UserInterface.cs" />
     <Compile Include="Utilities\MouseInfo.cs" />
   </ItemGroup>

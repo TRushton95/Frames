@@ -36,14 +36,30 @@
   },
 
   {
+    "Type": "Textbox",
+    "Name": "textbox",
+    "Font": "Font",
+    "Width": 400,
+    "Height": 150,
+    "Text": "Here is a load of text, we need to make sure it's a lot because it has to wrap around and then get cut off by this new system that is being tested. This ought to be enough. What happens if I add a shit load more and just bombard it, does it expand?",
+    "PositionProfile": {
+      "Type": "Relative",
+      "HorizontalAlign": "Middle",
+      "VerticalAlign": "Top",
+      "OffsetX": 0,
+      "OffsetY": 0
+    }
+  },
+
+  {
     "Type": "Icon",
     "Name": "icon",
     "Texture": "Fireball",
-    "PositionProfile":  {
+    "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Middle",
-      "VerticalAlign": "Bottom",
-      "OffsetX": 0,
+      "VerticalAlign": "top",
+      "OffsetX": -200,
       "OffsetY": 0
     }
   }
