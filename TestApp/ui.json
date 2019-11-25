@@ -58,8 +58,8 @@
     "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Middle",
-      "VerticalAlign": "top",
-      "OffsetX": -200,
+      "VerticalAlign": "Bottom",
+      "OffsetX": 0,
       "OffsetY": 0
     }
   }

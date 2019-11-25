@@ -15,12 +15,17 @@
 
     public class Textbox : BaseElement
     {
+        #region Constants
+
+        private const int Gutter = 20;
+
+        #endregion
+
         #region Fields
 
         private Frame frame;
         private TextGraphics textGraphics;
         private RasterizerState rasterizerState;
-
         private int scrollHeight;
 
         #endregion
@@ -103,7 +108,7 @@
         private void BuildComponents()
         {
             this.frame = new Frame(this.Width, this.Height, Color.Cyan, PositionFactory.CenteredRelative());
-            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, this.Width, FontFlow.Wrap, PositionFactory.TopCenterRelative());
+            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, this.Width - (Gutter * 2), FontFlow.Wrap, PositionFactory.TopCenterRelative());
             frame.Children.Add(this.textGraphics);
             this.frame.Initialise(this.GetBounds());
         }
