@@ -42,7 +42,8 @@
         {
             if (this.initialised)
             {
-                return;
+                //TODO: Should this be reworked? This needed to be removed to allow for position reinitialisation of textboxes when scrolled.
+                //return;
             }
 
             this.InternalInitialise(parent);

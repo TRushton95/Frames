@@ -21,6 +21,8 @@
         private TextGraphics textGraphics;
         private RasterizerState rasterizerState;
 
+        private int scrollHeight;
+
         #endregion
 
         #region Constructors
@@ -54,21 +56,6 @@
 
         #region Methods
 
-        /*
-        public override void Update()
-        {
-            if (MouseInfo.LeftMouseClicked)
-            {
-                this.scrollHeight -= 10;
-            }
-            
-            if (MouseInfo.RightMouseClicked)
-            {
-                this.scrollHeight += 10;
-            }
-        }
-        */
-
         /// <summary>
         /// Draws the element.
         /// </summary>
@@ -78,7 +65,7 @@
             Rectangle origScissorRect = spriteBatch.GraphicsDevice.ScissorRectangle;
 
             spriteBatch.End();
-            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetBounds();
+            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetScrollView();
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, this.rasterizerState);
             this.frame.Draw(spriteBatch);
@@ -107,6 +94,7 @@
             this.BuildComponents();
             this.rasterizerState = new RasterizerState();
             rasterizerState.ScissorTestEnable = true;
+            this.scrollHeight = this.GetBounds().Y;
         }
 
         /// <summary>
@@ -120,29 +108,56 @@
             this.frame.Initialise(this.GetBounds());
         }
 
+        /// <summary>
+        /// Gets the scroll view.
+        /// </summary>
+        private Rectangle GetScrollView()
+        {
+            Rectangle bounds = this.GetBounds();
+
+            return new Rectangle(bounds.X, bounds.Y, bounds.Width, bounds.Height);
+        }
+
         #endregion
 
         #region Internal Interaction Handlers
 
+
         /// <summary>
-        /// The implementation details for the <see cref="Hover"/> method.
+        /// The implementation details for the <see cref="MouseWheelScrollUp"/> method.
         /// </summary>
-        protected override void HoverDetail()
+        protected override void MouseWheelScrollUpDetail()
         {
+            scrollHeight += 50;
+
+            if (scrollHeight >= 0)
+            {
+                scrollHeight = 0;
+            }
+
+            this.SetTextOffsetY(scrollHeight);
         }
 
         /// <summary>
-        /// The implementation details for the <see cref="HoverLeave"/> method.
+        /// The implementation details for the <see cref="MouseWheelScrollDown"/> method.
         /// </summary>
-        protected override void HoverLeaveDetail()
+        protected override void MouseWheelScrollDownDetail()
         {
+            scrollHeight -= 50;
+            if (scrollHeight <= -this.textGraphics.GetBounds().Height + this.Height)
+            {
+                scrollHeight = -this.textGraphics.GetBounds().Height + this.Height;
+            }
+
+            this.SetTextOffsetY(scrollHeight);
         }
 
-        /// <summary>
-        /// The implementation details for the <see cref="LeftClick"/> method.
-        /// </summary>
-        protected override void LeftClickDetail()
+        private void SetTextOffsetY(int offsety)
         {
+            RelativePositionProfile positionProfile = PositionFactory.TopCenterRelative();
+            positionProfile.OffsetY = offsety;
+            this.textGraphics.PositionProfile = positionProfile;
+            this.frame.Initialise(this.GetBounds());
         }
 
         #endregion

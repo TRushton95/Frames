@@ -86,9 +86,21 @@
             MouseInfo.Update();
 
             this.UpdateHoveredElement();
-            if (this.hoveredElement != null && MouseInfo.LeftMouseClicked)
+            if (this.hoveredElement != null)
             {
-                this.hoveredElement.LeftClick();
+                if (MouseInfo.LeftMouseClicked)
+                {
+                    this.hoveredElement.LeftClick();
+                }
+
+                if (MouseInfo.MouseWheelScrolledUp)
+                {
+                    this.hoveredElement.MouseWheelScrollUp();
+                }
+                if (MouseInfo.MouseWheelScrolledDown)
+                {
+                    this.hoveredElement.MouseWheelScrollDown();
+                }
             }
         }
 

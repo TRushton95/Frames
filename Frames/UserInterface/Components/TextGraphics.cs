@@ -109,7 +109,7 @@
         /// </summary>
         public override Size GetSize()
         {
-            Vector2 textDimensions = this.Font.MeasureString(this.Text);
+            Vector2 textDimensions = this.Font.MeasureString(this.displayText);
             textDimensions = Vector2.Multiply(textDimensions, this.Scale);
 
             return new Size(this.MaxWidth, (int)textDimensions.Y);

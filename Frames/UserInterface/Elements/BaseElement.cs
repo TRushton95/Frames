@@ -205,6 +205,26 @@
             this.eventManager.Notify(new Event(EventTypes.Frames.ElementClick, null));
         }
 
+        /// <summary>
+        /// The mouse wheel scroll up handler.
+        /// </summary>
+        public void MouseWheelScrollUp()
+        {
+            this.MouseWheelScrollUpDetail();
+
+            this.eventManager.Notify(new Event(EventTypes.Frames.ElementMouseWheelScrollUp, null));
+        }
+
+        /// <summary>
+        /// The mouse wheel scroll down handler.
+        /// </summary>
+        public void MouseWheelScrollDown()
+        {
+            this.MouseWheelScrollDownDetail();
+
+            this.eventManager.Notify(new Event(EventTypes.Frames.ElementMouseWheelScrollDown, null));
+        }
+
         #endregion
 
         #region Internal Interaction Handlers
@@ -212,17 +232,27 @@
         /// <summary>
         /// The implementation details for the <see cref="LeftClick"/> method.
         /// </summary>
-        protected abstract void LeftClickDetail();
+        protected virtual void LeftClickDetail() { }
 
         /// <summary>
         /// The implementation details for the <see cref="Hover"/> method.
         /// </summary>
-        protected abstract void HoverDetail();
+        protected virtual void HoverDetail() { }
 
         /// <summary>
         /// The implementation details for the <see cref="HoverLeave"/> method.
         /// </summary>
-        protected abstract void HoverLeaveDetail();
+        protected virtual void HoverLeaveDetail() { }
+
+        /// <summary>
+        /// The implementation details for the <see cref="MouseWheelScrollUp"/> method.
+        /// </summary>
+        protected virtual void MouseWheelScrollUpDetail() { }
+
+        /// <summary>
+        /// The implementation details for the <see cref="MouseWheelScrollDown"/> method.
+        /// </summary>
+        protected virtual void MouseWheelScrollDownDetail() { }
 
         #endregion
     }

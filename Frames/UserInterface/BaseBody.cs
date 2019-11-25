@@ -54,6 +54,7 @@
         public IPositionProfile PositionProfile
         {
             get;
+            set;
         }
 
         #endregion

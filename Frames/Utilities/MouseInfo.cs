@@ -72,6 +72,16 @@
         public static bool RightMouseClicked => currentState.LeftButton == ButtonState.Pressed &&
                                                 previousState.LeftButton == ButtonState.Released;
 
+        /// <summary>
+        /// Checks if the mouse wheel has just been scrolled up.
+        /// </summary>
+        public static bool MouseWheelScrolledUp => currentState.ScrollWheelValue > previousState.ScrollWheelValue;
+
+        /// <summary>
+        /// Checks if the mouse wheel has just been scrolled down.
+        /// </summary>
+        public static bool MouseWheelScrolledDown => currentState.ScrollWheelValue < previousState.ScrollWheelValue;
+
         #endregion
     }
 }
