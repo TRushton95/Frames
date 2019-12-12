@@ -255,5 +255,17 @@
         protected virtual void MouseWheelScrollDownDetail() { }
 
         #endregion
+
+        #region Api
+
+        /// <summary>
+        /// Set the position.
+        /// </summary>
+        public void SetPosition(IPositionProfile positionProfile)
+        {
+            this.PositionProfile = positionProfile;
+        }
+
+        #endregion
     }
 }

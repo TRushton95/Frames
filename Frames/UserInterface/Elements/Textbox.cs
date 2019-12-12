@@ -41,7 +41,7 @@
 
         #endregion
 
-        #region Methods
+        #region Properties
 
         public string Text
         {
