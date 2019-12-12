@@ -70,7 +70,7 @@
             Rectangle origScissorRect = spriteBatch.GraphicsDevice.ScissorRectangle;
 
             spriteBatch.End();
-            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetScrollView();
+            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetBounds();
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, this.rasterizerState);
             this.frame.Draw(spriteBatch);
@@ -78,8 +78,6 @@
 
             spriteBatch.GraphicsDevice.ScissorRectangle = origScissorRect;
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, origRasterizerState);
-
-            // this.frame.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -111,16 +109,6 @@
             this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, this.Width - (Gutter * 2), FontFlow.Wrap, PositionFactory.TopCenterRelative());
             frame.Children.Add(this.textGraphics);
             this.frame.Initialise(this.GetBounds());
-        }
-
-        /// <summary>
-        /// Gets the scroll view.
-        /// </summary>
-        private Rectangle GetScrollView()
-        {
-            Rectangle bounds = this.GetBounds();
-
-            return new Rectangle(bounds.X, bounds.Y, bounds.Width, bounds.Height);
         }
 
         #endregion
