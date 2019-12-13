@@ -1,4 +1,4 @@
-﻿namespace Frames.UserInterface.Components
+namespace Frames.UserInterface.Components
 {
     #region Usings
 
@@ -112,7 +112,7 @@
             Vector2 textDimensions = this.Font.MeasureString(this.displayText);
             textDimensions = Vector2.Multiply(textDimensions, this.Scale);
 
-            return new Size(this.MaxWidth, (int)textDimensions.Y);
+            return new Size((int)textDimensions.X, (int)textDimensions.Y);
         }
 
         /// <summary>
