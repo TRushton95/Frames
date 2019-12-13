@@ -1,4 +1,4 @@
-namespace Frames.UserInterface.Components
+﻿namespace Frames.UserInterface.Components
 {
     #region Usings
 
@@ -79,14 +79,6 @@ namespace Frames.UserInterface.Components
         /// Gets the font flow.
         /// </summary>
         public FontFlow FontFlow
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Gets the justification.
-        /// </summary>
-        public Justify Justify
         {
             get;
         }
