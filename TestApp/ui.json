@@ -1,6 +1,7 @@
 [
   {
     "Type": "Button",
+    "Name": "button",
     "Width": 150,
     "Height": 50,
     "PositionProfile": {
