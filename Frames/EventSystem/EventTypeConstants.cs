@@ -1,6 +1,6 @@
 ﻿namespace Frames.EventSystem
 {
-    public static class EventTypes
+    public static class EventTypeConstants
     {
         public static class Frames
         {

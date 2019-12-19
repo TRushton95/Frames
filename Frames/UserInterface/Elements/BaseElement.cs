@@ -181,7 +181,7 @@
             this.Hovered = true;
             this.HoverDetail();
 
-            this.eventManager.Notify(new Event(this.Name, EventTypes.Frames.ElementHover, null));
+            this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementHover, null));
         }
 
         /// <summary>
@@ -192,7 +192,7 @@
             this.Hovered = false;
             this.HoverLeaveDetail();
 
-            this.eventManager.Notify(new Event(this.Name, EventTypes.Frames.ElementHoverLeave, null));
+            this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementHoverLeave, null));
         }
 
         /// <summary>
@@ -202,7 +202,7 @@
         {
             this.LeftClickDetail();
 
-            this.eventManager.Notify(new Event(this.Name, EventTypes.Frames.ElementClick, null));
+            this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementClick, null));
         }
 
         /// <summary>
@@ -212,7 +212,7 @@
         {
             this.MouseWheelScrollUpDetail();
 
-            this.eventManager.Notify(new Event(this.Name, EventTypes.Frames.ElementMouseWheelScrollUp, null));
+            this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementMouseWheelScrollUp, null));
         }
 
         /// <summary>
@@ -222,7 +222,7 @@
         {
             this.MouseWheelScrollDownDetail();
 
-            this.eventManager.Notify(new Event(this.Name, EventTypes.Frames.ElementMouseWheelScrollDown, null));
+            this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementMouseWheelScrollDown, null));
         }
 
         #endregion
