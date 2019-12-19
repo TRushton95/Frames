@@ -92,8 +92,7 @@
     <Compile Include="Enums\VerticalAlign.cs" />
     <Compile Include="EventSystem\Event.cs" />
     <Compile Include="EventSystem\EventManager.cs" />
-    <Compile Include="EventSystem\EventType.cs" />
-    <Compile Include="EventSystem\EventTypes.cs" />
+    <Compile Include="EventSystem\EventTypeConstants.cs" />
     <Compile Include="EventSystem\Listener.cs" />
     <Compile Include="Factories\PositionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +108,7 @@
     <Compile Include="UserInterface\Elements\Text.cs" />
     <Compile Include="UserInterface\Elements\Textbox.cs" />
     <Compile Include="UserInterface\UserInterface.cs" />
+    <Compile Include="Utilities\EventHelper.cs" />
     <Compile Include="Utilities\MouseInfo.cs" />
   </ItemGroup>
   <ItemGroup>

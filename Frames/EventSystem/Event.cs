@@ -17,8 +17,9 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="Event"/> class.
         /// </summary>
-        public Event(EventType eventType, object data)
+        public Event(string sender, string eventType, object data)
         {
+            this.Sender = sender;
             this.EventType = eventType;
             this.Data = data;
         }
@@ -28,9 +29,17 @@
         #region Properties
 
         /// <summary>
+        /// Gets the sender name.
+        /// </summary>
+        public string Sender
+        {
+            get;
+        }
+
+        /// <summary>
         /// Gets the event type.
         /// </summary>
-        public EventType EventType
+        public string EventType
         {
             get;
         }

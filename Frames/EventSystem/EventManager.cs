@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using Frames.Events.EventSystem;
+    using Frames.Utilities;
 
     #endregion
 
@@ -16,7 +17,7 @@
         #region Fields
 
         private static EventManager _instance;
-        private SortedDictionary<int, List<Listener>> eventListenerLookup = new SortedDictionary<int, List<Listener>>();
+        private SortedDictionary<string, List<Listener>> eventListenerLookup = new SortedDictionary<string, List<Listener>>();
 
         #endregion
 
@@ -38,15 +39,21 @@
             }
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Notify the event manager of a new event
         /// </summary>
         public void Notify(Event e)
         {
-            List<Listener> eventListeners;
-            bool eventTypeFound = eventListenerLookup.TryGetValue(e.EventType.Id, out eventListeners);
+            string eventId = EventHelper.GetEventId(e.Sender, e.EventType);
 
-            Debug.WriteLine(string.Format("Event received: {0} ({1} listeners)", e.EventType.Name, eventListeners == null ? 0 : eventListeners.Count)); //TODO: Remove me
+            List<Listener> eventListeners;
+            bool eventTypeFound = eventListenerLookup.TryGetValue(eventId, out eventListeners);
+
+            Debug.WriteLine(string.Format("Event received: {0} ({1} listeners)", eventId, eventListeners == null ? 0 : eventListeners.Count)); //TODO: Remove me
 
             if (!eventTypeFound)
             {
@@ -62,15 +69,17 @@
         /// <summary>
         /// Register a new listener for a given event type.
         /// </summary>
-        public void AddEventListener(EventType eventType, Listener listener)
+        public void AddEventListener(string sender, string eventType, Listener listener)
         {
+            string eventId = EventHelper.GetEventId(sender, eventType);
+
             List<Listener> eventListeners;
-            bool eventTypeFound = eventListenerLookup.TryGetValue(eventType.Id, out eventListeners);
+            bool eventTypeFound = eventListenerLookup.TryGetValue(eventId, out eventListeners);
 
             if (!eventTypeFound)
             {
                 eventListeners = new List<Listener>();
-                eventListenerLookup.Add(eventType.Id, eventListeners);
+                eventListenerLookup.Add(eventId, eventListeners);
             }
 
             if (!eventListeners.Contains(listener))
@@ -83,10 +92,12 @@
         /// Deregister an event listener from a given event type.
         /// </summary>
         /// <remarks>If no listeners remain for a given event type, remove the empty list entry.</remarks>
-        public void RemoveEventListener(EventType eventType, Listener listener)
+        public void RemoveEventListener(string sender, string eventType, Listener listener)
         {
+            string eventId = EventHelper.GetEventId(sender, eventType);
+
             List<Listener> eventListeners;
-            bool eventTypeFound = eventListenerLookup.TryGetValue(eventType.Id, out eventListeners);
+            bool eventTypeFound = eventListenerLookup.TryGetValue(eventId, out eventListeners);
 
             if (!eventTypeFound)
             {
@@ -97,7 +108,7 @@
 
             if (eventListeners.Count == 0)
             {
-                eventListenerLookup.Remove(eventType.Id);
+                eventListenerLookup.Remove(eventId);
             }
         }
 

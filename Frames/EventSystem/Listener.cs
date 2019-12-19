@@ -4,6 +4,7 @@
 
     using System.Collections.Generic;
     using Frames.Events.EventSystem;
+    using Frames.Utilities;
 
     #endregion
 
@@ -25,6 +26,23 @@
 
         #endregion
 
+        #region Properties
+
+        /// <summary> 
+        /// Gets the name of the property.
+        /// </summary>
+        /// <remarks>
+        /// This is used for the routing of events and linking an element with its corresponding script file.
+        /// Must be unique.
+        /// </remarks>
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -33,15 +51,14 @@
         /// </summary>
         public void OnEventReceived(Event e)
         {
-            string eventType = e.EventType.Name;
-
-            if (string.IsNullOrWhiteSpace(eventType))
+            if (e == null || string.IsNullOrWhiteSpace(e.EventType))
             {
                 return;
             }
+            string eventId = EventHelper.GetEventId(e.Sender, e.EventType);
 
             List<EventHandler> eventHandlers;
-            bool eventTypeFound = eventHandlerLookup.TryGetValue(eventType, out eventHandlers);
+            bool eventTypeFound = eventHandlerLookup.TryGetValue(eventId, out eventHandlers);
 
             if (!eventTypeFound)
             {
@@ -57,29 +74,39 @@
         /// <summary>
         /// Add a new event handler to handle a given event type.
         /// </summary>
-        public void AddEventHandler(EventType eventType, EventHandler eventHandlerToAdd)
+        /// <remarks>
+        /// To be called from python scripts.
+        /// </remarks>
+        public void AddEventHandler(string sender, string eventType, EventHandler eventHandlerToAdd)
         {
+            string eventId = EventHelper.GetEventId(sender, eventType);
+
             List<EventHandler> eventHandlers;
-            bool eventTypeFound = eventHandlerLookup.TryGetValue(eventType.Name, out eventHandlers);
+            bool eventTypeFound = eventHandlerLookup.TryGetValue(eventId, out eventHandlers);
 
             if (!eventTypeFound)
             {
                 eventHandlers = new List<EventHandler>();
-                eventHandlerLookup.Add(eventType.Name, eventHandlers);
+                eventHandlerLookup.Add(eventId, eventHandlers);
             }
 
             eventHandlers.Add(eventHandlerToAdd);
 
-            eventManager.AddEventListener(eventType, this);
+            eventManager.AddEventListener(sender, eventType, this);
         }
 
         /// <summary>
         /// Remove an event handler.
         /// </summary>
-        public void RemoveEventHandler(EventType eventType, EventHandler eventHandlerToRemove)
+        /// <remarks>
+        /// To be called from python scripts.
+        /// </remarks>
+        public void RemoveEventHandler(string sender, string eventType, EventHandler eventHandlerToRemove)
         {
+            string eventId = EventHelper.GetEventId(sender, eventType);
+
             List<EventHandler> eventHandlers;
-            bool eventTypeFound = eventHandlerLookup.TryGetValue(eventType.Name, out eventHandlers);
+            bool eventTypeFound = eventHandlerLookup.TryGetValue(eventId, out eventHandlers);
 
             if (!eventTypeFound)
             {
@@ -90,7 +117,7 @@
 
             if (eventHandlers.Count == 0)
             {
-                eventManager.RemoveEventListener(eventType, this);
+                eventManager.RemoveEventListener(sender, eventType, this);
             }
         }
 
