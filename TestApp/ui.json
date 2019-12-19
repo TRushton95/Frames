@@ -58,8 +58,8 @@
     "Texture": "Fireball",
     "PositionProfile": {
       "Type": "Relative",
-      "HorizontalAlign": "Middle",
-      "VerticalAlign": "Bottom",
+      "HorizontalAlign": "Left",
+      "VerticalAlign": "Top",
       "OffsetX": 0,
       "OffsetY": 0
     }
