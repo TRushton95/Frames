@@ -1,0 +1,5 @@
+- Add api methods to components
+
+- Implement Blocking behaviour
+
+- Implement Interactive behaviour
