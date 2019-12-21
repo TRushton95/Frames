@@ -27,10 +27,11 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="Icon"/> class.
         /// </summary>
-        public Icon(string name, Texture2D texture, IPositionProfile positionProfile)
+        public Icon(string name, IPositionProfile positionProfile, Texture2D texture, Texture2D hoverTexture = null)
             : base (name, texture.Width, texture.Height, positionProfile)
         {
             this.Texture = texture;
+            this.HoverTexture = hoverTexture;
         }
 
         #endregion
@@ -90,7 +91,7 @@
             this.defaultImageGraphics = new ImageGraphics(this.Texture, PositionFactory.CenteredRelative());
             this.defaultImageGraphics.Initialise(this.GetBounds());
 
-            if (this.hoverImageGraphics != null)
+            if (this.HoverTexture != null)
             {
                 this.hoverImageGraphics = new ImageGraphics(this.HoverTexture, PositionFactory.CenteredRelative());
                 this.hoverImageGraphics.Initialise(this.GetBounds());
