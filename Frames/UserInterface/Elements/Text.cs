@@ -1,4 +1,4 @@
-namespace Frames.UserInterface.Elements
+﻿namespace Frames.UserInterface.Elements
 {
     #region Usings
 
@@ -17,6 +17,23 @@ namespace Frames.UserInterface.Elements
         #region Fields
 
         private TextGraphics textGraphics;
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initialises a new instance of the <see cref="Text"/> class.
+        /// </summary>
+        public Text(string name, string value, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, IPositionProfile positionProfile)
+            : base(name, 0, 0, positionProfile)
+        {
+            this.Value = value;
+            this.Font = font;
+            this.Color = color;
+            this.MaxWidth = maxWidth;
+            this.FontFlow = fontFlow;
+        }
 
         #endregion
 

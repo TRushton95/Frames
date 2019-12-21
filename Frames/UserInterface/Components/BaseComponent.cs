@@ -27,8 +27,8 @@
         /// Initialises a new instance of the <see cref="BaseComponent"/> class.
         /// </summary>
         public BaseComponent(IPositionProfile positionProfile)
+            : base(positionProfile)
         {
-            this.PositionProfile = positionProfile;
         }
 
         #endregion

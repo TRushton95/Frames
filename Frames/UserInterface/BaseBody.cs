@@ -16,6 +16,18 @@
     /// <remarks>TODO: This will work for now, but the seprataion between elements and component could probably be cleaner/></remarks>
     public abstract class BaseBody : Listener
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initialises a new instance of the <see cref="BaseBody"/> class.
+        /// </summary>
+        public BaseBody(IPositionProfile positionProfile)
+        {
+            this.PositionProfile = positionProfile;
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
