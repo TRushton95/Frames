@@ -18,7 +18,7 @@
     {
         #region Fields
 
-        private ImageGraphics imageGraphics;
+        private ImageGraphics imageGraphics, defaultImageGraphics, hoverImageGraphics;
 
         #endregion
 
@@ -28,6 +28,14 @@
         /// Gets the texture.
         /// </summary>
         public Texture2D Texture
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the texture to use when hovered.
+        /// </summary>
+        public Texture2D HoverTexture
         {
             get;
         }
@@ -66,8 +74,16 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.imageGraphics = new ImageGraphics(this.Texture, PositionFactory.CenteredRelative());
-            this.imageGraphics.Initialise(this.GetBounds());
+            this.defaultImageGraphics = new ImageGraphics(this.Texture, PositionFactory.CenteredRelative());
+            this.defaultImageGraphics.Initialise(this.GetBounds());
+
+            if (this.hoverImageGraphics != null)
+            {
+                this.hoverImageGraphics = new ImageGraphics(this.HoverTexture, PositionFactory.CenteredRelative());
+                this.hoverImageGraphics.Initialise(this.GetBounds());
+            }
+
+            this.imageGraphics = this.defaultImageGraphics;
         }
 
         #endregion
@@ -79,6 +95,10 @@
         /// </summary>
         protected override void HoverDetail()
         {
+            if (this.hoverImageGraphics != null)
+            {
+                this.imageGraphics = this.hoverImageGraphics;
+            }
         }
 
         /// <summary>
@@ -86,6 +106,10 @@
         /// </summary>
         protected override void HoverLeaveDetail()
         {
+            if (this.hoverImageGraphics != null) // This isn't necessary, just convention
+            {
+                this.imageGraphics = this.defaultImageGraphics;
+            }
         }
 
         /// <summary>
