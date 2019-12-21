@@ -30,17 +30,6 @@
 
         #endregion
 
-        #region Constructors
-
-        public Textbox(string name, string text, SpriteFont font, int width, int height, IPositionProfile positionProfile)
-            : base(name, width, height, positionProfile)
-        {
-            this.Text = text;
-            this.Font = font;
-        }
-
-        #endregion
-
         #region Properties
 
         public string Text

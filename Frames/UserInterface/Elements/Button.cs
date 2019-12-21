@@ -35,24 +35,6 @@
 
         #endregion
 
-        #region Constructors
-
-        /// <summary>
-        /// Initialises an instance of the <see cref="Button"/> class.
-        /// </summary>
-        public Button(string name, int width, int height, IPositionProfile positionProfile, string text, SpriteFont font, Color frameColor, Color textColor, Color frameHoverColor, Color textHoverColor)
-            : base(name, width, height, positionProfile)
-        {
-            this.Text = text;
-            this.Font = font;
-            this.FrameColor = frameColor;
-            this.TextColor = textColor;
-            this.FrameHoverColor = frameHoverColor;
-            this.TextHoverColor = textHoverColor;
-        }
-
-        #endregion
-
         #region Properties
 
         /// <summary>

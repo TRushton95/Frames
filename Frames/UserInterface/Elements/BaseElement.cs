@@ -20,17 +20,6 @@
     /// </summary>
     public abstract class BaseElement : BaseBody
     {
-        /// <summary>
-        /// Initialises an instance of the <see cref="BaseElement"/> class.
-        /// </summary>
-        public BaseElement(string name, int width, int height, IPositionProfile positionProfile)
-            : base(positionProfile)
-        {
-            this.Name = name;
-            this.Width = width;
-            this.Height = height;
-        }
-
         #region Properties
 
         /// <summary>

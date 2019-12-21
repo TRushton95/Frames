@@ -22,19 +22,6 @@
 
         #endregion
 
-        #region Constructors
-
-        /// <summary>
-        /// Initialises a new instance of the <see cref="Icon"/> class.
-        /// </summary>
-        public Icon(string name, Texture2D texture, IPositionProfile positionProfile)
-            : base (name, texture.Width, texture.Height, positionProfile)
-        {
-            this.Texture = texture;
-        }
-
-        #endregion
-
         #region Properties
 
         /// <summary>
