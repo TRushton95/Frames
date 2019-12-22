@@ -160,21 +160,8 @@
         /// </summary>
         private void UpdateHoveredElement()
         {
-            List<BaseElement> hoveredElements = this.GetAllElements()
-                                                    .Where(element => element.Visible && element.GetBounds().Contains(MouseInfo.Position))
-                                                    .ToList();
-            
-            hoveredElements.Reverse(); // Ensures that elements rendered last are selected first when priorities are equal
-            
-            BaseElement nextHoveredElement = null;
-
-            if (hoveredElements.Count > 0)
-            {
-                nextHoveredElement = hoveredElements.OrderByDescending(element => element.Priority).First();
-            }
-
             this.previousHoveredElement = this.hoveredElement;
-            this.hoveredElement = nextHoveredElement;
+            this.hoveredElement = this.GetHoveredElement();
 
             if (this.hoveredElement == this.previousHoveredElement)
             {
@@ -190,6 +177,38 @@
             {
                 this.hoveredElement.Hover();
             }
+        }
+
+        private BaseElement GetHoveredElement()
+        {
+            List<BaseElement> blockers = this.GetAllElements().Where(element => element.Visible && element.Blocker).ToList();
+
+            List<BaseElement> hoveredElements = this.GetAllElements()
+                                                    .Where(element => element.Visible && element.GetBounds().Contains(MouseInfo.Position))
+                                                    .ToList();
+            hoveredElements.Reverse(); // Ensures that elements rendered last are selected first when priorities are equal
+
+            if (hoveredElements.Count <= 0)
+            {
+                return null;
+            }
+
+            BaseElement result = hoveredElements.OrderByDescending(element => element.Priority).First();
+
+            if (!blockers.Any())
+            {
+                return result;
+            }
+
+            // Get the highest priority blocker and check whether the hovered element is that blocker or any of it's children
+            BaseElement topBlocker = blockers.OrderByDescending(element => element.Priority).First();
+
+            if (!topBlocker.BuildFlattenedSubTree().Contains(result))
+            {
+                result = null;
+            }
+
+            return result;
         }
 
         #endregion
