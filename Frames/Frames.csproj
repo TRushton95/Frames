@@ -110,6 +110,7 @@
     <Compile Include="UserInterface\Elements\Textbox.cs" />
     <Compile Include="UserInterface\UserInterface.cs" />
     <Compile Include="Utilities\EventHelper.cs" />
+    <Compile Include="Utilities\KeyboardInfo.cs" />
     <Compile Include="Utilities\MouseInfo.cs" />
   </ItemGroup>
   <ItemGroup>
