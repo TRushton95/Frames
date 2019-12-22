@@ -95,7 +95,7 @@
 
             foreach (BaseElement child in this.Children)
             {
-                child.Initialise(this.GetBounds(), 0);
+                child.Initialise(this.GetBounds(), this.Priority + 1);
             }
         }
 

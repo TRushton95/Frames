@@ -117,20 +117,11 @@
         /// </summary>
         public void Initialise(Rectangle parent, int priority)
         {
+            this.Priority = priority;
             this.logger.Debug($"{this.GetType().Name} - {this.Priority}");
 
             this.ExecuteScript();
-
-            this.SetPriority(priority);
             this.InternalInitialise(parent);
-        }
-
-        /// <summary>
-        /// Sets the priority of the element and its children if it has any.
-        /// </summary>
-        protected virtual void SetPriority(int priority)
-        {
-            this.Priority = priority;
         }
 
         /// <summary>
