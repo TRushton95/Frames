@@ -1,4 +1,5 @@
 - Add api methods to components
 
-- Could replace blocking behaviour with placing "blocking" elements inside a screen-wide invisible frame
-	-Avoids building the ui tree an extra time each loop
+[x] Could replace blocking behaviour with placing "blocking" elements inside a screen-wide invisible frame
+	- Avoids building the ui tree an extra time each loop
+	- Opting for blocking property for now to reduce json complexity

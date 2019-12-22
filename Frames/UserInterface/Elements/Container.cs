@@ -65,10 +65,17 @@
         /// <summary>
         /// Recursively searches the element tree and creates a flat list of the element and its children if it has any.
         /// </summary>
+        /// <remarks>
+        /// TODO: This could result in a stack overflow error
+        /// </remarks>
         public override List<BaseElement> BuildFlattenedSubTree()
         {
             List<BaseElement> result = new List<BaseElement> { this };
-            result.AddRange(this.Children);
+            
+            foreach (BaseElement child in this.Children)
+            {
+                result.AddRange(child.BuildFlattenedSubTree());
+            }
 
             return result;
         }
