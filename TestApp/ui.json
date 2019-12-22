@@ -52,7 +52,6 @@
     "Width": 300,
     "Height": 200,
     "Color": "Blue",
-    "HoverColor": "Green",
     "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Middle",
