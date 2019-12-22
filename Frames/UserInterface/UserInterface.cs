@@ -156,7 +156,7 @@
         }
 
         /// <summary>
-        /// Updates the hovered element
+        /// Updates the hovered element.
         /// </summary>
         private void UpdateHoveredElement()
         {
@@ -179,6 +179,9 @@
             }
         }
 
+        /// <summary>
+        /// Get the currently hovered element.
+        /// </summary>
         private BaseElement GetHoveredElement()
         {
             List<BaseElement> blockers = this.GetAllElements().Where(element => element.Visible && element.Blocker).ToList();
