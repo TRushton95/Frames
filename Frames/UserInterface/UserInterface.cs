@@ -1,4 +1,4 @@
-namespace Frames.UserInterface
+﻿namespace Frames.UserInterface
 {
     #region Usings
 
@@ -41,6 +41,19 @@ namespace Frames.UserInterface
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the path of the ui file.
+        /// </summary>
+        private string Path
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -60,9 +73,20 @@ namespace Frames.UserInterface
                 logger.Warn("No content read from file.");
             }
 
-            elements = JsonConvert.DeserializeObject<List<BaseElement>>(json, new JsonSerializerSettings() { Converters = converters });
+            this.elements = JsonConvert.DeserializeObject<List<BaseElement>>(json, new JsonSerializerSettings() { Converters = converters });
+            this.Path = path;
 
             logger.Debug($"Loaded user interface from: {path}");
+        }
+
+        /// <summary>
+        /// Reloads the ui with the last given path.
+        /// </summary>
+        public void Reload()
+        {
+            logger.Debug($"Reloading ui from {this.Path}");
+
+            this.Load(this.Path);
         }
 
         /// <summary>

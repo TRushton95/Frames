@@ -1,4 +1,4 @@
-﻿namespace TestApp
+namespace TestApp
 {
     #region Usings
 
@@ -89,6 +89,12 @@
                 Exit();
 
             this.userInterface.Update(MouseInfo.Position);
+
+            if (KeyboardInfo.IsKeyPressed(Keys.Enter))
+            {
+                this.userInterface.Reload();
+                this.userInterface.Initialise();
+            }
 
             base.Update(gameTime);
         }
