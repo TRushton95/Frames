@@ -144,7 +144,7 @@
             if (hoveredElements.Count > 0)
             {
                 // If multiple hovered elements share priority, leave it to fate
-                nextHoveredElement = hoveredElements.OrderBy(element => element.Priority).First();
+                nextHoveredElement = hoveredElements.OrderByDescending(element => element.Priority).First();
             }
 
             this.previousHoveredElement = this.hoveredElement;
