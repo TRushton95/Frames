@@ -1,5 +1,4 @@
 - Add api methods to components
 
-- Implement Blocking behaviour
-
-- Implement Interactive behaviour
+- Could replace blocking behaviour with placing "blocking" elements inside a screen-wide invisible frame
+	-Avoids building the ui tree an extra time each loop
