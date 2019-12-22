@@ -1,4 +1,4 @@
-﻿namespace Frames.UserInterface
+namespace Frames.UserInterface
 {
     #region Usings
 
@@ -84,6 +84,7 @@
         public void Update(Vector2 mousePosition)
         {
             MouseInfo.Update();
+            KeyboardInfo.Update();
 
             this.UpdateHoveredElement();
             if (this.hoveredElement != null)
