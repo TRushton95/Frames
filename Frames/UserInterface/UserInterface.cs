@@ -164,11 +164,12 @@
                                                     .Where(element => element.GetBounds().Contains(MouseInfo.Position))
                                                     .ToList();
             
+            hoveredElements.Reverse(); // Ensures that elements rendered last are selected first when priorities are equal
+            
             BaseElement nextHoveredElement = null;
 
             if (hoveredElements.Count > 0)
             {
-                // If multiple hovered elements share priority, leave it to fate
                 nextHoveredElement = hoveredElements.OrderByDescending(element => element.Priority).First();
             }
 
