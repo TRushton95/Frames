@@ -118,7 +118,7 @@ namespace TestApp
         private void InitialiseTestComponents()
         {
             userInterface = new UserInterface();
-            userInterface.Load("ui.json");
+            userInterface.Load("C:\\Tom\\gitrepos\\Frames\\TestApp\\ui.json");
             userInterface.Initialise();
         }
 
