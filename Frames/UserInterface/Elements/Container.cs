@@ -4,6 +4,7 @@
 
     using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
+    using Frames.Factories;
     using Frames.UserInterface.Components;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -104,7 +105,7 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.frame = new Frame(this.Width, this.Height, this.Color, this.PositionProfile);
+            this.frame = new Frame(this.Width, this.Height, this.Color, PositionFactory.CenteredRelative());
             this.frame.Initialise(this.GetBounds());
         }
 

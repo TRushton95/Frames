@@ -33,6 +33,7 @@
     "Width": 300,
     "Height": 200,
     "Color": "Blue",
+    "HoverColor": "Green",
     "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Middle",
@@ -44,17 +45,17 @@
         "Name": "button",
         "Width": 150,
         "Height": 50,
-        "PositionProfile": {
-          "Type": "Relative",
-          "HorizontalAlign": "Middle",
-          "VerticalAlign": "Bottom"
-        },
         "Text": "Click to toggle text!",
         "Font": "Font",
         "FrameColor": "Red",
         "TextColor": "Black",
         "FrameHoverColor": "Black",
-        "TextHoverColor": "White"
+        "TextHoverColor": "White",
+        "PositionProfile": {
+          "Type": "Relative",
+          "HorizontalAlign": "Middle",
+          "VerticalAlign": "Bottom"
+        }
       },
 
       {
