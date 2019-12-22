@@ -48,7 +48,27 @@
   },
 
   {
+    "Type": "Button",
+    "Name": "menu-button",
+    "Width": 150,
+    "Height": 50,
+    "Text": "Menu",
+    "Font": "Font",
+    "FrameColor": "Pink",
+    "TextColor": "Black",
+    "FrameHoverColor": "Black",
+    "TextHoverColor": "White",
+    "PositionProfile": {
+      "Type": "Relative",
+      "HorizontalAlign": "Right",
+      "VerticalAlign": "Top"
+    }
+  },
+
+  {
     "Type": "Container",
+    "Name": "menu",
+    "Visible": false,
     "Width": 300,
     "Height": 200,
     "Color": "Blue",
@@ -60,7 +80,6 @@
     "Children": [
       {
         "Type": "Text",
-        "Name": "menu-text",
         "Value": "Menu",
         "Font": "Font",
         "Color": "Pink",
@@ -76,7 +95,7 @@
 
       {
         "Type": "Icon",
-        "Name": "icon",
+        "Name": "menu-close-icon",
         "Texture": "Fireball",
         "HoverTexture": "Fireball-Hover",
         "PositionProfile": {

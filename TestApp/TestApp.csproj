@@ -59,7 +59,10 @@
   <ItemGroup>
     <Content Include="Content\Textures\Fireball.png" />
     <Content Include="Icon.ico" />
-    <Content Include="Scripts\Text.py">
+    <Content Include="Scripts\menu.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\text.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
