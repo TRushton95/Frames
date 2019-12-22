@@ -148,14 +148,5 @@
         }
 
         #endregion
-
-        #region Api
-
-        public void ToggleVisibility(Event e)
-        {
-            this.Visible = !this.Visible;
-        }
-
-        #endregion
     }
 }

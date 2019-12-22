@@ -262,12 +262,19 @@
 
         #region Api
 
-        /// <summary>
-        /// Set the position.
-        /// </summary>
-        public void SetPosition(IPositionProfile positionProfile)
+        public void Show(Event e)
         {
-            this.PositionProfile = positionProfile;
+            this.Visible = true;
+        }
+
+        public void Hide(Event e)
+        {
+            this.Visible = false;
+        }
+
+        public void ToggleVisibility(Event e)
+        {
+            this.Visible = !this.Visible;
         }
 
         #endregion
