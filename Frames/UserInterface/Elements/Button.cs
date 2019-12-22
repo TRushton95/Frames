@@ -108,14 +108,6 @@
         #region Methods
 
         /// <summary>
-        /// Draws the element.
-        /// </summary>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            this.frame.Draw(spriteBatch);
-        }
-
-        /// <summary>
         /// Gets the size.
         /// </summary>
         public override Size GetSize()
@@ -131,7 +123,15 @@
             this.SetPosition(parent); // TODO: Could this be refactored into the base Initialise() call
             this.BuildComponents();
         }
-        
+
+        /// <summary>
+        /// Draws the element.
+        /// </summary>
+        protected override void InternalDraw(SpriteBatch spriteBatch)
+        {
+            this.frame.Draw(spriteBatch);
+        }
+
         /// <summary>
         /// Builds the components.
         /// </summary>

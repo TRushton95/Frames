@@ -55,24 +55,11 @@
         #region Methods
 
         /// <summary>
-        /// Draws the element.
+        /// Gets the size.
         /// </summary>
         public override Size GetSize()
         {
             return new Size(this.Width, this.Height);
-        }
-
-        /// <summary>
-        /// Gets the size.
-        /// </summary>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            frame.Draw(spriteBatch);
-
-            foreach (BaseElement child in this.Children)
-            {
-                child.Draw(spriteBatch);
-            }
         }
 
         /// <summary>
@@ -97,6 +84,19 @@
             foreach (BaseElement child in this.Children)
             {
                 child.Initialise(this.GetBounds(), this.Priority + 1);
+            }
+        }
+
+        /// <summary>
+        /// Draws the element.
+        /// </summary>
+        protected override void InternalDraw(SpriteBatch spriteBatch)
+        {
+            this.frame.Draw(spriteBatch);
+
+            foreach (BaseElement child in this.Children)
+            {
+                child.Draw(spriteBatch);
             }
         }
 

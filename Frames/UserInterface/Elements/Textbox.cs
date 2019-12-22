@@ -62,25 +62,6 @@
         #region Methods
 
         /// <summary>
-        /// Draws the element.
-        /// </summary>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            RasterizerState origRasterizerState = Resources.Instance.GraphicsDevice.RasterizerState;
-            Rectangle origScissorRect = spriteBatch.GraphicsDevice.ScissorRectangle;
-
-            spriteBatch.End();
-            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetBounds();
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, this.rasterizerState);
-            this.frame.Draw(spriteBatch);
-            spriteBatch.End();
-
-            spriteBatch.GraphicsDevice.ScissorRectangle = origScissorRect;
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, origRasterizerState);
-        }
-
-        /// <summary>
         /// Gets the size.
         /// </summary>
         public override Size GetSize()
@@ -98,6 +79,25 @@
             this.rasterizerState = new RasterizerState();
             rasterizerState.ScissorTestEnable = true;
             this.scrollHeight = this.GetBounds().Y;
+        }
+
+        /// <summary>
+        /// Draws the element.
+        /// </summary>
+        protected override void InternalDraw(SpriteBatch spriteBatch)
+        {
+            RasterizerState origRasterizerState = Resources.Instance.GraphicsDevice.RasterizerState;
+            Rectangle origScissorRect = spriteBatch.GraphicsDevice.ScissorRectangle;
+
+            spriteBatch.End();
+            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetBounds();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, this.rasterizerState);
+            this.frame.Draw(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.GraphicsDevice.ScissorRectangle = origScissorRect;
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, origRasterizerState);
         }
 
         /// <summary>

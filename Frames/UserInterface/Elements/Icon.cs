@@ -59,14 +59,6 @@
         #region Methods
 
         /// <summary>
-        /// Draws the element.
-        /// <param name="spriteBatch"></param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            this.imageGraphics.Draw(spriteBatch);
-        }
-
-        /// <summary>
         /// Gets the size.
         /// </summary>
         public override Size GetSize()
@@ -81,6 +73,13 @@
         {
             this.SetPosition(parent);
             this.BuildComponents();
+        }
+
+        /// <summary>
+        /// Draws the element.
+        protected override void InternalDraw(SpriteBatch spriteBatch)
+        {
+            this.imageGraphics.Draw(spriteBatch);
         }
 
         /// <summary>

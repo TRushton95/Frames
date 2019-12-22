@@ -8,6 +8,7 @@
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
     using NLog;
     using System;
     using System.Collections.Generic;
@@ -149,9 +150,22 @@
             source.Execute(scope);
         }
 
+        /// <summary>
+        /// Draws the element.
+        /// </summary>
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (this.Visible)
+            {
+                this.InternalDraw(spriteBatch);
+            }
+        }
+
         #endregion
 
         #region Internal Implementations
+
+        protected abstract void InternalDraw(SpriteBatch spriteBatch);
 
 
         /// <summary>

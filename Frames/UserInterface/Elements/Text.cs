@@ -84,17 +84,6 @@
         #region Methods
 
         /// <summary>
-        /// Draws the element.
-        /// </summary>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            if (this.Visible)
-            {
-                this.textGraphics.Draw(spriteBatch);
-            }
-        }
-
-        /// <summary>
         /// Gets the size.
         /// </summary>
         public override Size GetSize()
@@ -113,9 +102,15 @@
             this.BuildComponents();
         }
 
-        public void ToggleVisibility(Event e)
+        /// <summary>
+        /// Draws the element.
+        /// </summary>
+        protected override void InternalDraw(SpriteBatch spriteBatch)
         {
-            this.Visible = !this.Visible;
+            if (this.Visible)
+            {
+                this.textGraphics.Draw(spriteBatch);
+            }
         }
 
         /// <summary>
@@ -150,6 +145,15 @@
         /// </summary>
         protected override void LeftClickDetail()
         {
+        }
+
+        #endregion
+
+        #region Api
+
+        public void ToggleVisibility(Event e)
+        {
+            this.Visible = !this.Visible;
         }
 
         #endregion
