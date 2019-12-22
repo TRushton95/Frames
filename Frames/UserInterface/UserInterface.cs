@@ -161,7 +161,7 @@
         private void UpdateHoveredElement()
         {
             List<BaseElement> hoveredElements = this.GetAllElements()
-                                                    .Where(element => element.GetBounds().Contains(MouseInfo.Position))
+                                                    .Where(element => element.Visible && element.GetBounds().Contains(MouseInfo.Position))
                                                     .ToList();
             
             hoveredElements.Reverse(); // Ensures that elements rendered last are selected first when priorities are equal
