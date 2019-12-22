@@ -71,7 +71,7 @@
         {
             get;
             set;
-        }
+        } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether the element is interactive.
