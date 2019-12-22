@@ -53,8 +53,6 @@
             List<Listener> eventListeners;
             bool eventTypeFound = eventListenerLookup.TryGetValue(eventId, out eventListeners);
 
-            Debug.WriteLine(string.Format("Event received: {0} ({1} listeners)", eventId, eventListeners == null ? 0 : eventListeners.Count)); //TODO: Remove me
-
             if (!eventTypeFound)
             {
                 return;
