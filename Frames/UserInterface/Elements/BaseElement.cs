@@ -5,10 +5,10 @@
     using Frames.DataStructures.PositionProfiles;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
-    using Frames.UserInterface.Components;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
+    using NLog;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -20,6 +20,12 @@
     /// </summary>
     public abstract class BaseElement : BaseBody
     {
+        #region Fields
+
+        private Logger logger = LogManager.GetCurrentClassLogger(); 
+
+        #endregion
+
         /// <summary>
         /// Initialises an instance of the <see cref="BaseElement"/> class.
         /// </summary>
@@ -32,15 +38,6 @@
         }
 
         #region Properties
-
-        /// <summary>
-        /// Gets the name of the property.
-        /// This is used for linking an element with its corresponding script file.
-        /// </summary>
-        public string Name
-        {
-            get;
-        }
 
         /// <summary>
         /// Gets the width.
@@ -120,6 +117,8 @@
         /// </summary>
         public void Initialise(Rectangle parent, int priority)
         {
+            this.logger.Debug($"{this.GetType().Name} - {this.Priority}");
+
             this.ExecuteScript();
 
             this.SetPriority(priority);

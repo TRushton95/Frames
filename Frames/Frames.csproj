@@ -104,6 +104,7 @@
     <Compile Include="UserInterface\Components\TextGraphics.cs" />
     <Compile Include="UserInterface\Elements\BaseElement.cs" />
     <Compile Include="UserInterface\Elements\Button.cs" />
+    <Compile Include="UserInterface\Elements\Container.cs" />
     <Compile Include="UserInterface\Elements\Icon.cs" />
     <Compile Include="UserInterface\Elements\Text.cs" />
     <Compile Include="UserInterface\Elements\Textbox.cs" />

@@ -1,25 +1,5 @@
 [
   {
-    "Type": "Button",
-    "Name": "button",
-    "Width": 150,
-    "Height": 50,
-    "PositionProfile": {
-      "Type": "Relative",
-      "HorizontalAlign": "Left",
-      "VerticalAlign": "Middle",
-      "OffsetX": 0,
-      "OffsetY": 0
-    },
-    "Text": "Click to toggle text!",
-    "Font": "Font",
-    "FrameColor": "Red",
-    "TextColor": "Black",
-    "FrameHoverColor": "Black",
-    "TextHoverColor": "White"
-  },
-
-  {
     "Type": "Text",
     "Name": "text",
     "Value": "Here is some test text, and a lot of it too to test the scaling! There is a lot of text!",
@@ -30,9 +10,7 @@
     "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Left",
-      "VerticalAlign": "Bottom",
-      "OffsetX": 0,
-      "OffsetY": 0
+      "VerticalAlign": "Bottom"
     }
   },
 
@@ -46,23 +24,50 @@
     "PositionProfile": {
       "Type": "Relative",
       "HorizontalAlign": "Middle",
-      "VerticalAlign": "Top",
-      "OffsetX": 0,
-      "OffsetY": 0
+      "VerticalAlign": "Top"
     }
   },
 
   {
-    "Type": "Icon",
-    "Name": "icon",
-    "Texture": "Fireball",
-    "HoverTexture": "Fireball-Hover",
+    "Type": "Container",
+    "Width": 300,
+    "Height": 200,
+    "Color": "Blue",
     "PositionProfile": {
       "Type": "Relative",
-      "HorizontalAlign": "Left",
-      "VerticalAlign": "Top",
-      "OffsetX": 0,
-      "OffsetY": 0
-    }
+      "HorizontalAlign": "Middle",
+      "VerticalAlign": "Middle"
+    },
+    "Children": [
+      {
+        "Type": "Button",
+        "Name": "button",
+        "Width": 150,
+        "Height": 50,
+        "PositionProfile": {
+          "Type": "Relative",
+          "HorizontalAlign": "Middle",
+          "VerticalAlign": "Bottom"
+        },
+        "Text": "Click to toggle text!",
+        "Font": "Font",
+        "FrameColor": "Red",
+        "TextColor": "Black",
+        "FrameHoverColor": "Black",
+        "TextHoverColor": "White"
+      },
+
+      {
+        "Type": "Icon",
+        "Name": "icon",
+        "Texture": "Fireball",
+        "HoverTexture": "Fireball-Hover",
+        "PositionProfile": {
+          "Type": "Relative",
+          "HorizontalAlign": "Middle",
+          "VerticalAlign": "Top"
+        }
+      }
+    ]
   }
 ]
