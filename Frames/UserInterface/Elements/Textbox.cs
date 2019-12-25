@@ -86,14 +86,15 @@
         /// </summary>
         protected override void InternalDraw(SpriteBatch spriteBatch)
         {
+            this.frame.Draw(spriteBatch);
             RasterizerState origRasterizerState = Resources.Instance.GraphicsDevice.RasterizerState;
             Rectangle origScissorRect = spriteBatch.GraphicsDevice.ScissorRectangle;
 
             spriteBatch.End();
-            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetBounds();
+            spriteBatch.GraphicsDevice.ScissorRectangle = this.GetContentBounds();
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, this.rasterizerState);
-            this.frame.Draw(spriteBatch);
+            this.textGraphics.Draw(spriteBatch);
             spriteBatch.End();
 
             spriteBatch.GraphicsDevice.ScissorRectangle = origScissorRect;
@@ -112,9 +113,27 @@
             }
 
             this.frame = new Frame(this.Width, this.Height, Color.Cyan, PositionFactory.CenteredRelative(), this.Border);
-            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, textMaxWidth, FontFlow.Wrap, PositionFactory.TopCenterRelative());
-            frame.Children.Add(this.textGraphics);
             this.frame.Initialise(this.GetBounds());
+            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, textMaxWidth, FontFlow.Wrap, PositionFactory.TopCenterRelative());
+            this.textGraphics.Initialise(this.GetContentBounds());
+        }
+
+        /// <summary>
+        /// Gets the boundaries of the content within the frame border.
+        /// </summary>
+        private Rectangle GetContentBounds()
+        {
+            if (this.Border == null)
+            {
+                return this.GetBounds();
+            }
+
+            int x = this.X + this.Border.Width;
+            int y = this.Y + this.Border.Width;
+            int width = this.Width - (this.Border.Width * 2);
+            int height = this.Height - (this.Border.Width * 2);
+
+            return new Rectangle(x, y, width, height);
         }
 
         #endregion
@@ -156,7 +175,7 @@
             RelativePositionProfile positionProfile = PositionFactory.TopCenterRelative();
             positionProfile.OffsetY = offsety;
             this.textGraphics.PositionProfile = positionProfile;
-            this.frame.Initialise(this.GetBounds());
+            this.textGraphics.Initialise(this.GetContentBounds());
         }
 
         #endregion
