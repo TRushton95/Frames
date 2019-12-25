@@ -125,6 +125,39 @@
 
             result.SetData(data);
 
+            return result;
+        }
+
+        /// <summary>
+        /// TEST
+        /// Builds the texture with a border width of 5px.
+        /// </summary>
+        /// <returns>TODO: This method exists as a test and elements do not compensate content with for borders</returns>
+        private Texture2D BuildTextureWithBorder()
+        {
+            Texture2D result = new Texture2D(Resources.Instance.GraphicsDevice, this.Width, this.Height);
+
+            Color[] data = new Color[this.Width * this.Height];
+
+            const int BorderWidth = 5;
+            for (int y = 0; y < this.Height; y++)
+            {
+                for (int x = 0; x < this.Width; x++)
+                {
+                    Color color = this.Color;
+
+                    if (y < BorderWidth || y > this.Height - BorderWidth ||
+                        x < BorderWidth || x > this.Width - BorderWidth)
+                    {
+                        color = Color.Black;
+                    }
+
+                    int index = (y * this.Width) + x;
+                    data[index] = color;
+                }
+            }
+
+            result.SetData(data);
 
             return result;
         }
