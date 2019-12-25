@@ -73,6 +73,28 @@
                                                 previousState.LeftButton == ButtonState.Released;
 
         /// <summary>
+        /// Checks if the left mouse has been held.
+        /// </summary>
+        public static bool LeftMouseHeld => currentState.LeftButton == ButtonState.Pressed &&
+                                            previousState.LeftButton == ButtonState.Pressed;
+
+        /// <summary>
+        /// Checks if the right mouse has been held.
+        /// </summary>
+        public static bool RightMouseHeld => currentState.RightButton == ButtonState.Pressed &&
+                                            previousState.RightButton == ButtonState.Pressed;
+
+        /// <summary>
+        /// Checks if the mouse has been moved.
+        /// </summary>
+        public static bool Moved => currentState.Position != previousState.Position;
+
+        /// <summary>
+        /// Checks if the left mouse has been dragged.
+        /// </summary>
+        public static bool LeftMouseDragged => LeftMouseHeld && Moved;
+
+        /// <summary>
         /// Checks if the mouse wheel has just been scrolled up.
         /// </summary>
         public static bool MouseWheelScrolledUp => currentState.ScrollWheelValue > previousState.ScrollWheelValue;
