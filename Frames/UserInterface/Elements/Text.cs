@@ -98,7 +98,6 @@
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
-            this.SetPosition(parent); // TODO: Could this be refactored into the base Initialise() call
             this.BuildComponents();
         }
 

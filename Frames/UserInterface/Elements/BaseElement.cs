@@ -132,6 +132,7 @@
             this.logger.Debug($"{this.GetType().Name} - {this.Priority}");
 
             this.ExecuteScript();
+            this.SetPosition(parent);
             this.InternalInitialise(parent);
         }
 

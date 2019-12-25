@@ -71,7 +71,6 @@
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
-            this.SetPosition(parent);
             this.BuildComponents();
         }
 
