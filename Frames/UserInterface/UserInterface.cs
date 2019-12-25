@@ -130,7 +130,6 @@
                 if (MouseInfo.LeftMouseDragged)
                 {
                     this.hoveredElement.Move(MouseInfo.Position);
-                    System.Diagnostics.Debug.WriteLine($"({hoveredElement.X}, {hoveredElement.Y})");
                 }
             }
         }
@@ -149,13 +148,13 @@
         /// <summary>
         /// Gets all the elements in the user interface.
         /// </summary>
-        private List<BaseElement> GetAllElements()
+        private List<BaseElement> GetAllElements(bool onlyVisibleElements = false)
         {
             List<BaseElement> result = new List<BaseElement>();
 
             foreach (BaseElement element in this.elements)
             {
-                result.AddRange(element.BuildFlattenedSubTree());
+                result.AddRange(element.BuildFlattenedSubTree(onlyVisibleElements));
             }
 
             return result;
@@ -190,10 +189,10 @@
         /// </summary>
         private BaseElement GetHoveredElement()
         {
-            List<BaseElement> blockers = this.GetAllElements().Where(element => element.Visible && element.Blocker).ToList();
+            List<BaseElement> blockers = this.GetAllElements(true).Where(element => element.Blocker).ToList();
 
-            List<BaseElement> hoveredElements = this.GetAllElements()
-                                                    .Where(element => element.Visible && element.GetBounds().Contains(MouseInfo.Position))
+            List<BaseElement> hoveredElements = this.GetAllElements(true)
+                                                    .Where(element => element.GetBounds().Contains(MouseInfo.Position))
                                                     .ToList();
             hoveredElements.Reverse(); // Ensures that elements rendered last are selected first when priorities are equal
 
@@ -212,7 +211,7 @@
             // Get the highest priority blocker and check whether the hovered element is that blocker or any of it's children
             BaseElement topBlocker = blockers.OrderByDescending(element => element.Priority).First();
 
-            if (!topBlocker.BuildFlattenedSubTree().Contains(result))
+            if (!topBlocker.BuildFlattenedSubTree(true).Contains(result))
             {
                 result = null;
             }

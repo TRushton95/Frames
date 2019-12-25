@@ -1,4 +1,4 @@
-﻿namespace Frames.UserInterface.Elements
+namespace Frames.UserInterface.Elements
 {
     #region Usings
 
@@ -131,9 +131,18 @@
         /// <summary>
         /// Recursively searches the element tree and creates a flat list of the element and its children if it has any.
         /// </summary>
-        public virtual List<BaseElement> BuildFlattenedSubTree()
+        public virtual List<BaseElement> BuildFlattenedSubTree(bool onlyVisibleElements)
         {
-            return new List<BaseElement> { this };
+            List<BaseElement> result = new List<BaseElement> { };
+
+            if (onlyVisibleElements && !this.Visible)
+            {
+                return result;
+            }
+
+            result.Add(this);
+
+            return result;
         }
 
         /// <summary>

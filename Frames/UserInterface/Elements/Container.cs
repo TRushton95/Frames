@@ -68,13 +68,19 @@
         /// <remarks>
         /// TODO: This could result in a stack overflow error
         /// </remarks>
-        public override List<BaseElement> BuildFlattenedSubTree()
+        public override List<BaseElement> BuildFlattenedSubTree(bool onlyVisibleElements)
         {
-            List<BaseElement> result = new List<BaseElement> { this };
-            
+            List<BaseElement> result = new List<BaseElement> { };
+
+            if (onlyVisibleElements && !this.Visible)
+            {
+                return result;
+            }
+
+            result.Add(this);
             foreach (BaseElement child in this.Children)
             {
-                result.AddRange(child.BuildFlattenedSubTree());
+                result.AddRange(child.BuildFlattenedSubTree(onlyVisibleElements));
             }
 
             return result;
