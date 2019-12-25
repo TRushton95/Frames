@@ -116,6 +116,17 @@
         #region Methods
 
         /// <summary>
+        /// Draws the element.
+        /// </summary>
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (this.Visible)
+            {
+                this.InternalDraw(spriteBatch);
+            }
+        }
+
+        /// <summary>
         /// Recursively searches the element tree and creates a flat list of the element and its children if it has any.
         /// </summary>
         public virtual List<BaseElement> BuildFlattenedSubTree()
@@ -134,6 +145,24 @@
             this.ExecuteScript();
             this.SetPosition(parent);
             this.InternalInitialise(parent);
+        }
+
+        /// <summary>
+        /// Gets the boundaries of the content within the border.
+        /// </summary>
+        protected Rectangle GetContentBounds()
+        {
+            if (this.Border == null)
+            {
+                return this.GetBounds();
+            }
+
+            int x = this.X + this.Border.Width;
+            int y = this.Y + this.Border.Width;
+            int width = this.Width - (this.Border.Width * 2);
+            int height = this.Height - (this.Border.Width * 2);
+
+            return new Rectangle(x, y, width, height);
         }
 
         /// <summary>
@@ -159,17 +188,6 @@
             ScriptSource source = scriptEngine.CreateScriptSourceFromFile(scriptFilePath);
             scope.SetVariable("this", this);
             source.Execute(scope);
-        }
-
-        /// <summary>
-        /// Draws the element.
-        /// </summary>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            if (this.Visible)
-            {
-                this.InternalDraw(spriteBatch);
-            }
         }
 
         #endregion

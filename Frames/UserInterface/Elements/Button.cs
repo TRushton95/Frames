@@ -32,6 +32,7 @@
         #region Fields
 
         private Frame frame, defaultFrame, hoverFrame;
+        private TextGraphics textGraphics, defaultTextGraphics, hoverTextGraphics;
 
         #endregion
 
@@ -129,6 +130,7 @@
         protected override void InternalDraw(SpriteBatch spriteBatch)
         {
             this.frame.Draw(spriteBatch);
+            this.textGraphics.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -136,17 +138,18 @@
         /// </summary>
         private void BuildComponents()
         {
-            defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative(), this.Border);
-            TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
-            defaultFrame.Children.Add(defaultTextGraphics);
-            defaultFrame.Initialise(this.GetBounds());
+            this.defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative(), this.Border);
+            this.defaultFrame.Initialise(this.GetBounds());
+            this.defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
+            this.defaultTextGraphics.Initialise(this.GetContentBounds());
 
-            hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative(), this.Border);
-            TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
-            hoverFrame.Children.Add(hoverTextGraphics);
-            hoverFrame.Initialise(this.GetBounds());
+            this.hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative(), this.Border);
+            this.hoverFrame.Initialise(this.GetBounds());
+            this.hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
+            this.hoverTextGraphics.Initialise(this.GetContentBounds());
 
-            frame = defaultFrame;
+            this.frame = this.defaultFrame;
+            this.textGraphics = this.defaultTextGraphics;
         }
 
         #endregion
@@ -159,6 +162,7 @@
         protected override void HoverDetail()
         {
             this.frame = this.hoverFrame;
+            this.textGraphics = this.hoverTextGraphics;
         }
 
         /// <summary>
@@ -167,6 +171,7 @@
         protected override void HoverLeaveDetail()
         {
             this.frame = this.defaultFrame;
+            this.textGraphics = this.defaultTextGraphics;
         }
 
         /// <summary>

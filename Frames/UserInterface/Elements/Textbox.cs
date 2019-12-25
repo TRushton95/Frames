@@ -117,24 +117,6 @@
             this.textGraphics.Initialise(this.GetContentBounds());
         }
 
-        /// <summary>
-        /// Gets the boundaries of the content within the frame border.
-        /// </summary>
-        private Rectangle GetContentBounds()
-        {
-            if (this.Border == null)
-            {
-                return this.GetBounds();
-            }
-
-            int x = this.X + this.Border.Width;
-            int y = this.Y + this.Border.Width;
-            int width = this.Width - (this.Border.Width * 2);
-            int height = this.Height - (this.Border.Width * 2);
-
-            return new Rectangle(x, y, width, height);
-        }
-
         #endregion
 
         #region Internal Interaction Handlers

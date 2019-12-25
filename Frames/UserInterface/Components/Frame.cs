@@ -34,8 +34,6 @@
             this.Height = height;
             this.Color = color;
             this.Border = border;
-
-            this.Children = new List<BaseComponent>();
         }
 
         #endregion
@@ -74,14 +72,6 @@
             get;
         }
 
-        /// <summary>
-        /// Gets the children components.
-        /// </summary>
-        public List<BaseComponent> Children
-        {
-            get;
-        }
-
         #endregion
 
         #region Methods
@@ -100,11 +90,6 @@
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.texture, this.GetPosition(), Color.White);
-
-            foreach (BaseComponent child in this.Children)
-            {
-                child.Draw(spriteBatch);
-            }
         }
 
         /// <summary>
@@ -115,29 +100,6 @@
             this.SetPosition(parent);
 
             this.texture = this.Border != null ? this.BuildTextureWithBorder() : this.BuildTexture();
-
-            foreach (BaseComponent child in this.Children)
-            {
-                child.Initialise(this.GetContentBounds());
-            }
-        }
-
-        /// <summary>
-        /// Gets the boundaries of the content within the frame border.
-        /// </summary>
-        private Rectangle GetContentBounds()
-        {
-            if (this.Border == null)
-            {
-                return this.GetBounds();
-            }
-
-            int x = this.X + this.Border.Width;
-            int y = this.Y + this.Border.Width;
-            int width = this.Width - (this.Border.Width * 2);
-            int height = this.Height - (this.Border.Width * 2);
-
-            return new Rectangle(x, y, width, height);
         }
 
         private Texture2D BuildTexture()
