@@ -4,6 +4,7 @@
 
     using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
+    using Frames.Enums;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using IronPython.Hosting;
@@ -24,7 +25,8 @@
     {
         #region Fields
 
-        private Logger logger = LogManager.GetCurrentClassLogger(); 
+        private Logger logger = LogManager.GetCurrentClassLogger();
+        private Rectangle parentBounds;
 
         #endregion
 
@@ -137,14 +139,15 @@
         /// <summary>
         /// Initialise the element.
         /// </summary>
-        public void Initialise(Rectangle parent, int priority)
+        public void Initialise(Rectangle parentBounds, int priority)
         {
             this.Priority = priority;
             this.logger.Debug($"{this.GetType().Name} - {this.Priority}");
+            this.parentBounds = parentBounds;
 
             this.ExecuteScript();
-            this.SetPosition(parent);
-            this.InternalInitialise(parent);
+            this.SetPosition(parentBounds);
+            this.InternalInitialise();
         }
 
         /// <summary>
@@ -200,7 +203,7 @@
         /// <summary>
         /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>
-        protected abstract void InternalInitialise(Rectangle parent);
+        protected abstract void InternalInitialise();
 
         #endregion
 

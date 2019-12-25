@@ -126,6 +126,12 @@
                 {
                     this.hoveredElement.MouseWheelScrollDown();
                 }
+
+                if (MouseInfo.LeftMouseDragged)
+                {
+                    this.hoveredElement.Move(MouseInfo.Position);
+                    System.Diagnostics.Debug.WriteLine($"({hoveredElement.X}, {hoveredElement.Y})");
+                }
             }
         }
 
