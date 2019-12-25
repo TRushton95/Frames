@@ -17,7 +17,7 @@
     {
         #region Constants
 
-        private const int Gutter = 20;
+        private const int Gutter = 15;
 
         #endregion
 
