@@ -113,6 +113,15 @@ namespace Frames.UserInterface.Elements
             set;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the element can be dragged with the mouse.
+        /// </summary>
+        public bool Draggable
+        {
+            get;
+            set;
+        } = false;
+
         #endregion
 
         #region Methods
@@ -156,6 +165,16 @@ namespace Frames.UserInterface.Elements
 
             this.ExecuteScript();
             this.SetPosition(parentBounds);
+            this.InternalInitialise();
+        }
+
+        /// <summary>
+        /// Moves the element to a new position.
+        /// </summary>
+        public void Move(Vector2 position)
+        {
+            this.PositionProfile = new RelativePositionProfile(HorizontalAlign.Left, VerticalAlign.Top, (int)position.X, (int)position.Y);
+            this.SetPosition(this.parentBounds);
             this.InternalInitialise();
         }
 

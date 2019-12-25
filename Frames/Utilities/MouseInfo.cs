@@ -50,9 +50,13 @@
         public static Vector2 Position => currentState.Position.ToVector2();
 
         /// <summary>
+        /// Gets the previous position of the mouse.
+        /// </summary>
+        public static Vector2 PreviousPosition => previousState.Position.ToVector2();
+
+        /// <summary>
         /// Gets a value indicating whether the left mouse button is currently down.
         /// </summary>
-
         public static bool LeftMouseDown => currentState.LeftButton == ButtonState.Pressed;
 
         /// <summary>
@@ -63,14 +67,31 @@
         /// <summary>
         /// Checks if the left mouse button has just been clicked.
         /// </summary>
+        /// <remarks>
+        /// TODO: Misnoma - not a click, it's pressed
+        /// </remarks>
         public static bool LeftMouseClicked => currentState.LeftButton == ButtonState.Pressed &&
                                                 previousState.LeftButton == ButtonState.Released;
 
         /// <summary>
         /// Checks if the right mouse button has just been clicked.
         /// </summary>
+        /// <remarks>
+        /// TODO: Misnoma - not a click, it's pressed
+        /// </remarks>
         public static bool RightMouseClicked => currentState.LeftButton == ButtonState.Pressed &&
                                                 previousState.LeftButton == ButtonState.Released;
+
+        /// <summary>
+        /// Checks if the right mouse button has just been released.
+        /// </summary>
+        public static bool RightMouseReleased => currentState.LeftButton == ButtonState.Released &&
+                                                previousState.LeftButton == ButtonState.Pressed;
+        /// <summary>
+        /// Checks if the left mouse button has just been released.
+        /// </summary>
+        public static bool LeftMouseReleased => currentState.LeftButton == ButtonState.Released &&
+                                                previousState.LeftButton == ButtonState.Pressed;
 
         /// <summary>
         /// Checks if the left mouse has been held.

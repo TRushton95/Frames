@@ -28,7 +28,8 @@
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private List<BaseElement> elements = new List<BaseElement>();
-        private BaseElement hoveredElement, previousHoveredElement;
+        private BaseElement hoveredElement, previousHoveredElement, heldElement;
+        private Vector2 heldElementPosition;
 
         private readonly JsonConverter[] converters = {
                 new PositionProfileConverter(),
@@ -127,10 +128,26 @@
                     this.hoveredElement.MouseWheelScrollDown();
                 }
 
-                if (MouseInfo.LeftMouseDragged)
+                if (MouseInfo.LeftMouseClicked)
                 {
-                    this.hoveredElement.Move(MouseInfo.Position);
+                    this.heldElement = this.GetDraggableElement();
                 }
+            }
+
+            if (MouseInfo.LeftMouseDragged)
+            {
+                if (this.heldElement != null && this.heldElement.Draggable)
+                {
+                    Vector2 delta = MouseInfo.Position - MouseInfo.PreviousPosition;
+                    Vector2 newPosition = this.heldElement.GetPosition() + delta;
+
+                    this.heldElement?.Move(newPosition);
+                }
+            }
+
+            if (MouseInfo.LeftMouseReleased)
+            {
+                this.heldElement = null;
             }
         }
 
@@ -182,6 +199,38 @@
             {
                 this.hoveredElement.Hover();
             }
+        }
+
+        private BaseElement GetDraggableElement()
+        {
+            List<BaseElement> blockers = this.GetAllElements(true).Where(element => element.Blocker).ToList();
+
+            List<BaseElement> hoveredDraggableElements = this.GetAllElements(true)
+                                                    .Where(element => element.Draggable && element.GetBounds().Contains(MouseInfo.Position))
+                                                    .ToList();
+            hoveredDraggableElements.Reverse(); // Ensures that elements rendered last are selected first when priorities are equal
+
+            if (hoveredDraggableElements.Count <= 0)
+            {
+                return null;
+            }
+
+            BaseElement result = hoveredDraggableElements.OrderByDescending(element => element.Priority).First();
+
+            if (!blockers.Any())
+            {
+                return result;
+            }
+
+            // Get the highest priority blocker and check whether the hovered element is that blocker or any of it's children
+            BaseElement topBlocker = blockers.OrderByDescending(element => element.Priority).First();
+
+            if (!topBlocker.BuildFlattenedSubTree(true).Contains(result))
+            {
+                result = null;
+            }
+
+            return result;
         }
 
         /// <summary>
