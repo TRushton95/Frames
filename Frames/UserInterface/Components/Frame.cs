@@ -27,12 +27,13 @@
         /// <summary>
         /// Initialises an instance of the <see cref="Frame"/> class.
         /// </summary>
-        public Frame(int width, int height, Color color, IPositionProfile positionProfile)
+        public Frame(int width, int height, Color color, IPositionProfile positionProfile, Border border = null)
             : base(positionProfile)
         {
             this.Width = width;
             this.Height = height;
             this.Color = color;
+            this.Border = border;
 
             this.Children = new List<BaseComponent>();
         }
@@ -53,6 +54,14 @@
         /// Gets the height.
         /// </summary>
         public int Height
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the border.
+        /// </summary>
+        public Border Border
         {
             get;
         }
@@ -105,12 +114,30 @@
         {
             this.SetPosition(parent);
 
-            this.texture = this.BuildTexture();
+            this.texture = this.Border != null ? this.BuildTextureWithBorder() : this.BuildTexture();
 
             foreach (BaseComponent child in this.Children)
             {
-                child.Initialise(this.GetBounds());
+                child.Initialise(this.GetContentBounds());
             }
+        }
+
+        /// <summary>
+        /// Gets the boundaries of the content within the frame border.
+        /// </summary>
+        private Rectangle GetContentBounds()
+        {
+            if (this.Border == null)
+            {
+                return this.GetBounds();
+            }
+
+            int x = this.X + this.Border.Width;
+            int y = this.Y + this.Border.Width;
+            int width = this.Width - (this.Border.Width * 2);
+            int height = this.Height - (this.Border.Width * 2);
+
+            return new Rectangle(x, y, width, height);
         }
 
         private Texture2D BuildTexture()
@@ -139,15 +166,14 @@
 
             Color[] data = new Color[this.Width * this.Height];
 
-            const int BorderWidth = 5;
             for (int y = 0; y < this.Height; y++)
             {
                 for (int x = 0; x < this.Width; x++)
                 {
                     Color color = this.Color;
 
-                    if (y < BorderWidth || y > this.Height - BorderWidth ||
-                        x < BorderWidth || x > this.Width - BorderWidth)
+                    if (y < this.Border.Width || y >= this.Height - this.Border.Width ||
+                        x < this.Border.Width || x >= this.Width - this.Border.Width)
                     {
                         color = Color.Black;
                     }

@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
@@ -30,12 +31,13 @@
         /// <summary>
         /// Initialises an instance of the <see cref="BaseElement"/> class.
         /// </summary>
-        public BaseElement(string name, int width, int height, IPositionProfile positionProfile)
+        public BaseElement(string name, int width, int height, Border border, IPositionProfile positionProfile)
             : base(positionProfile)
         {
             this.Name = name;
             this.Width = width;
             this.Height = height;
+            this.Border = border == null ? Border.Default : border;
         }
 
         #region Properties
@@ -52,6 +54,14 @@
         /// Gets the height.
         /// </summary>
         public int Height
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the border.
+        /// </summary>
+        public Border Border
         {
             get;
         }

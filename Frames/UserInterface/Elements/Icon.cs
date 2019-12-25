@@ -27,8 +27,8 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="Icon"/> class.
         /// </summary>
-        public Icon(string name, IPositionProfile positionProfile, Texture2D texture, Texture2D hoverTexture = null)
-            : base (name, texture.Width, texture.Height, positionProfile)
+        public Icon(string name, Border border, IPositionProfile positionProfile, Texture2D texture, Texture2D hoverTexture = null)
+            : base (name, texture.Width, texture.Height, border, positionProfile)
         {
             this.Texture = texture;
             this.HoverTexture = hoverTexture;

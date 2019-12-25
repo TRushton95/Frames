@@ -40,8 +40,8 @@
         /// <summary>
         /// Initialises an instance of the <see cref="Button"/> class.
         /// </summary>
-        public Button(string name, int width, int height, IPositionProfile positionProfile, string text, SpriteFont font, Color frameColor, Color textColor, Color frameHoverColor, Color textHoverColor)
-            : base(name, width, height, positionProfile)
+        public Button(string name, int width, int height, Border border, IPositionProfile positionProfile, string text, SpriteFont font, Color frameColor, Color textColor, Color frameHoverColor, Color textHoverColor)
+            : base(name, width, height, border, positionProfile)
         {
             this.Text = text;
             this.Font = font;
@@ -137,12 +137,12 @@
         /// </summary>
         private void BuildComponents()
         {
-            defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative());
+            defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative(), this.Border);
             TextGraphics defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
             defaultFrame.Children.Add(defaultTextGraphics);
             defaultFrame.Initialise(this.GetBounds());
 
-            hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative());
+            hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative(), this.Border);
             TextGraphics hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
             hoverFrame.Children.Add(hoverTextGraphics);
             hoverFrame.Initialise(this.GetBounds());

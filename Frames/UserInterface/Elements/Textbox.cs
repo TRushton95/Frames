@@ -32,8 +32,8 @@
 
         #region Constructors
 
-        public Textbox(string name, string text, SpriteFont font, int width, int height, IPositionProfile positionProfile)
-            : base(name, width, height, positionProfile)
+        public Textbox(string name, string text, SpriteFont font, int width, int height, Border border, IPositionProfile positionProfile)
+            : base(name, width, height, border, positionProfile)
         {
             this.Text = text;
             this.Font = font;
@@ -105,8 +105,14 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.frame = new Frame(this.Width, this.Height, Color.Cyan, PositionFactory.CenteredRelative());
-            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, this.Width - (Gutter * 2), FontFlow.Wrap, PositionFactory.TopCenterRelative());
+            int textMaxWidth = this.Width - (Gutter * 2);
+            if (this.Border != null && this.Border.Width > 0)
+            {
+                textMaxWidth -= this.Border.Width * 2;
+            }
+
+            this.frame = new Frame(this.Width, this.Height, Color.Cyan, PositionFactory.CenteredRelative(), this.Border);
+            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, textMaxWidth, FontFlow.Wrap, PositionFactory.TopCenterRelative());
             frame.Children.Add(this.textGraphics);
             this.frame.Initialise(this.GetBounds());
         }

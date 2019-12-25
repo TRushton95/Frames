@@ -22,8 +22,8 @@
 
         #region Constructors
 
-        public Container(string name, int width, int height, Color color, IPositionProfile positionProfile, List<BaseElement> children)
-            : base(name, width, height, positionProfile)
+        public Container(string name, int width, int height, Border border, Color color, IPositionProfile positionProfile, List<BaseElement> children)
+            : base(name, width, height, border, positionProfile)
         {
             this.Color = color;
             this.Children = children;
@@ -112,7 +112,7 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.frame = new Frame(this.Width, this.Height, this.Color, PositionFactory.CenteredRelative());
+            this.frame = new Frame(this.Width, this.Height, this.Color, PositionFactory.CenteredRelative(), this.Border);
             this.frame.Initialise(this.GetBounds());
         }
 
