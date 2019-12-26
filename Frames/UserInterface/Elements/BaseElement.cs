@@ -4,10 +4,10 @@ namespace Frames.UserInterface.Elements
 
     using Frames.DataStructures;
     using Frames.DataStructures.PositionProfiles;
-    using Frames.Enums;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;
+    using Frames.Utilities;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
@@ -336,6 +336,16 @@ namespace Frames.UserInterface.Elements
         public void ToggleVisibility(Event e)
         {
             this.Visible = !this.Visible;
+        }
+
+        public void Move(Event e)
+        {
+            bool converted = EventHelper.TryConvertData(e, out Vector2 position);
+
+            if (converted)
+            {
+                this.Move(position);
+            }
         }
 
         #endregion
