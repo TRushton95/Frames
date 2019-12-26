@@ -29,10 +29,8 @@
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private List<BaseElement> elements = new List<BaseElement>();
         private BaseElement hoveredElement, previousHoveredElement, heldElement;
-        private Vector2 heldElementPosition;
 
         private readonly JsonConverter[] converters = {
-                new PositionProfileConverter(),
                 new SpriteFontConverter(),
                 new ColorConverter(),
                 new ElementConverter(),

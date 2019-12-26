@@ -28,7 +28,7 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="Text"/> class.
         /// </summary>
-        public Text(string name, string value, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, Border border, IPositionProfile positionProfile)
+        public Text(string name, string value, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, Border border, PositionProfile positionProfile)
             : base(name, 0, 0, border, positionProfile)
         {
             this.Value = value;

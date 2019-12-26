@@ -19,7 +19,7 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="ImageGraphics"/> class.
         /// </summary>
-        public ImageGraphics(Texture2D texture, IPositionProfile positionProfile)
+        public ImageGraphics(Texture2D texture, PositionProfile positionProfile)
             : base(positionProfile)
         {
             this.Texture = texture;

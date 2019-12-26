@@ -4,11 +4,12 @@
 
     using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
+    using Microsoft.Xna.Framework;
 
     #endregion
 
     /// <summary>
-    /// Creates preset <see cref="IPositionProfile"/> implementations.
+    /// Creates preset <see cref="PositionProfile"/> implementations.
     /// </summary>
     public static class PositionFactory
     {
@@ -17,73 +18,81 @@
         /// <summary>
         /// Creates a position profile anchored to the top left.
         /// </summary>
-        public static RelativePositionProfile TopLeftRelative()
+        public static PositionProfile TopLeftRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Left, VerticalAlign.Top, 0, 0);
+            return new PositionProfile(HorizontalAlign.Left, VerticalAlign.Top, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the top center.
         /// </summary>
-        public static RelativePositionProfile TopCenterRelative()
+        public static PositionProfile TopCenterRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Middle, VerticalAlign.Top, 0, 0);
+            return new PositionProfile(HorizontalAlign.Middle, VerticalAlign.Top, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the top right.
         /// </summary>
-        public static RelativePositionProfile TopRightRelative()
+        public static PositionProfile TopRightRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Right, VerticalAlign.Top, 0, 0);
+            return new PositionProfile(HorizontalAlign.Right, VerticalAlign.Top, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the center left.
         /// </summary>
-        public static RelativePositionProfile CenterLeftRelative()
+        public static PositionProfile CenterLeftRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Left, VerticalAlign.Middle, 0, 0);
+            return new PositionProfile(HorizontalAlign.Left, VerticalAlign.Middle, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the center.
         /// </summary>
-        public static RelativePositionProfile CenteredRelative()
+        public static PositionProfile CenteredRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Middle, VerticalAlign.Middle, 0, 0);
+            return new PositionProfile(HorizontalAlign.Middle, VerticalAlign.Middle, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the center right.
         /// </summary>
-        public static RelativePositionProfile CenterRightRelative()
+        public static PositionProfile CenterRightRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Right, VerticalAlign.Middle, 0, 0);
+            return new PositionProfile(HorizontalAlign.Right, VerticalAlign.Middle, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the bottom left.
         /// </summary>
-        public static RelativePositionProfile BottomLeftRelative()
+        public static PositionProfile BottomLeftRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Left, VerticalAlign.Bottom, 0, 0);
+            return new PositionProfile(HorizontalAlign.Left, VerticalAlign.Bottom, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the bottom center.
         /// </summary>
-        public static RelativePositionProfile BottomCenterRelative()
+        public static PositionProfile BottomCenterRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Middle, VerticalAlign.Bottom, 0, 0);
+            return new PositionProfile(HorizontalAlign.Middle, VerticalAlign.Bottom, 0, 0);
         }
 
         /// <summary>
         /// Creates a position profile anchored to the bottom right.
         /// </summary>
-        public static RelativePositionProfile BottomRightRelative()
+        public static PositionProfile BottomRightRelative()
         {
-            return new RelativePositionProfile(HorizontalAlign.Right, VerticalAlign.Bottom, 0, 0);
+            return new PositionProfile(HorizontalAlign.Right, VerticalAlign.Bottom, 0, 0);
+        }
+
+        /// <summary>
+        /// Creates a position profile that is absolutely positioned by its (x,y) coordinates.
+        /// </summary>
+        public static PositionProfile Absolute(Vector2 position)
+        {
+            return new PositionProfile(HorizontalAlign.Left, VerticalAlign.Top, (int)position.X, (int)position.Y);
         }
 
         #endregion

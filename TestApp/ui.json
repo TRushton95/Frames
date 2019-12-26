@@ -9,7 +9,6 @@
     "FontFlow": "Scale",
     "Visible": "false",
     "PositionProfile": {
-      "Type": "Relative",
       "HorizontalAlign": "Left",
       "VerticalAlign": "Bottom"
     }
@@ -23,7 +22,6 @@
     "Height": 150,
     "Text": "Here is a load of text, we need to make sure it's a lot because it has to wrap around and then get cut off by this new system that is being tested. This ought to be enough. What happens if I add a shit load more and just bombard it, does it expand?",
     "PositionProfile": {
-      "Type": "Relative",
       "HorizontalAlign": "Middle",
       "VerticalAlign": "Top"
     }
@@ -41,7 +39,6 @@
     "FrameHoverColor": "Black",
     "TextHoverColor": "White",
     "PositionProfile": {
-      "Type": "Relative",
       "HorizontalAlign": "Left",
       "VerticalAlign": "Top"
     }
@@ -59,7 +56,6 @@
     "FrameHoverColor": "Black",
     "TextHoverColor": "White",
     "PositionProfile": {
-      "Type": "Relative",
       "HorizontalAlign": "Right",
       "VerticalAlign": "Top"
     }
@@ -75,7 +71,6 @@
     "Color": "Blue",
     "Blocker": true,
     "PositionProfile": {
-      "Type": "Relative",
       "HorizontalAlign": "Middle",
       "VerticalAlign": "Middle"
     },
@@ -88,7 +83,6 @@
         "MaxWidth": 250,
         "FontFlow": "Scale",
         "PositionProfile": {
-          "Type": "Relative",
           "HorizontalAlign": "Middle",
           "VerticalAlign": "Top",
           "OffsetY": 5
@@ -101,7 +95,6 @@
         "Texture": "Fireball",
         "HoverTexture": "Fireball-Hover",
         "PositionProfile": {
-          "Type": "Relative",
           "HorizontalAlign": "Middle",
           "VerticalAlign": "Bottom",
           "OffsetY": -10

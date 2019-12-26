@@ -10,14 +10,14 @@
     /// <summary>
     /// Defines how a UI component should be positioned relative to its parent.
     /// </summary>
-    public class RelativePositionProfile : IPositionProfile
+    public class PositionProfile
     {
         #region Constructors
 
         /// <summary>
-        /// Initialises an instance of the <see cref="RelativePositionProfile"/> class.
+        /// Initialises an instance of the <see cref="PositionProfile"/> class.
         /// </summary>
-        public RelativePositionProfile(HorizontalAlign horizontalAlign, VerticalAlign verticalAlign, int offsetX, int offsetY)
+        public PositionProfile(HorizontalAlign horizontalAlign, VerticalAlign verticalAlign, int offsetX, int offsetY)
         {
             this.HorizontalAlign = horizontalAlign;
             this.VerticalAlign = verticalAlign;

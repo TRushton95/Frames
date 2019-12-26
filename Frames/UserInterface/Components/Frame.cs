@@ -27,7 +27,7 @@
         /// <summary>
         /// Initialises an instance of the <see cref="Frame"/> class.
         /// </summary>
-        public Frame(int width, int height, Color color, IPositionProfile positionProfile, Border border = null)
+        public Frame(int width, int height, Color color, PositionProfile positionProfile, Border border = null)
             : base(positionProfile)
         {
             this.Width = width;

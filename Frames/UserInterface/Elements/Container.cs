@@ -25,7 +25,7 @@
 
         #region Constructors
 
-        public Container(string name, int width, int height, Border border, Color color, IPositionProfile positionProfile, List<BaseElement> children)
+        public Container(string name, int width, int height, Border border, Color color, PositionProfile positionProfile, List<BaseElement> children)
             : base(name, width, height, border, positionProfile)
         {
             this.Color = color;

@@ -41,7 +41,7 @@
         /// <summary>
         /// Initialises an instance of the <see cref="Button"/> class.
         /// </summary>
-        public Button(string name, int width, int height, Border border, IPositionProfile positionProfile, string text, SpriteFont font, Color frameColor, Color textColor, Color frameHoverColor, Color textHoverColor)
+        public Button(string name, int width, int height, Border border, PositionProfile positionProfile, string text, SpriteFont font, Color frameColor, Color textColor, Color frameHoverColor, Color textHoverColor)
             : base(name, width, height, border, positionProfile)
         {
             this.Text = text;

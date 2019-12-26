@@ -7,6 +7,7 @@ namespace Frames.UserInterface.Elements
     using Frames.Enums;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
+    using Frames.Factories;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
@@ -33,7 +34,7 @@ namespace Frames.UserInterface.Elements
         /// <summary>
         /// Initialises an instance of the <see cref="BaseElement"/> class.
         /// </summary>
-        public BaseElement(string name, int width, int height, Border border, IPositionProfile positionProfile)
+        public BaseElement(string name, int width, int height, Border border, PositionProfile positionProfile)
             : base(positionProfile)
         {
             this.Name = name;
@@ -173,7 +174,7 @@ namespace Frames.UserInterface.Elements
         /// </summary>
         public void Move(Vector2 position)
         {
-            this.PositionProfile = new RelativePositionProfile(HorizontalAlign.Left, VerticalAlign.Top, (int)position.X, (int)position.Y);
+            this.PositionProfile = PositionFactory.Absolute(position);
             this.SetPosition(this.parentBounds);
             this.InternalInitialise();
         }

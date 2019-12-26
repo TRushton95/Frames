@@ -21,7 +21,7 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="BaseBody"/> class.
         /// </summary>
-        public BaseBody(IPositionProfile positionProfile)
+        public BaseBody(PositionProfile positionProfile)
         {
             this.PositionProfile = positionProfile;
         }
@@ -51,7 +51,7 @@
         /// <summary>
         /// Gets or sets the position profile.
         /// </summary>
-        public IPositionProfile PositionProfile
+        public PositionProfile PositionProfile
         {
             get;
             set;

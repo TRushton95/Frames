@@ -26,7 +26,7 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="BaseComponent"/> class.
         /// </summary>
-        public BaseComponent(IPositionProfile positionProfile)
+        public BaseComponent(PositionProfile positionProfile)
             : base(positionProfile)
         {
         }

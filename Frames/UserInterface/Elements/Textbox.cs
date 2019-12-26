@@ -35,7 +35,7 @@
 
         #region Constructors
 
-        public Textbox(string name, string text, SpriteFont font, int width, int height, Border border, IPositionProfile positionProfile)
+        public Textbox(string name, string text, SpriteFont font, int width, int height, Border border, PositionProfile positionProfile)
             : base(name, width, height, border, positionProfile)
         {
             this.Text = text;
@@ -162,7 +162,7 @@
         /// </summary>
         private void SetTextOffsetY(int offsety)
         {
-            RelativePositionProfile positionProfile = PositionFactory.TopCenterRelative();
+            PositionProfile positionProfile = PositionFactory.TopCenterRelative();
             positionProfile.OffsetY = offsety;
             this.textGraphics.PositionProfile = positionProfile;
             this.textGraphics.Initialise(this.GetContentBounds());

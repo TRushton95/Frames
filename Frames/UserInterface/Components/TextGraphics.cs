@@ -27,7 +27,7 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="TextGraphics"/> class.
         /// </summary>
-        public TextGraphics(string text, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, IPositionProfile positionProfile)
+        public TextGraphics(string text, SpriteFont font, Color color, int maxWidth, FontFlow fontFlow, PositionProfile positionProfile)
             : base(positionProfile)
         {
             this.Text = text;
