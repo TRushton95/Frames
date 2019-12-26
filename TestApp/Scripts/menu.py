@@ -5,7 +5,14 @@ from Frames.EventSystem import *
 clr.AddReference("Monogame.Framework")
 from Microsoft.Xna.Framework import Vector2
 
-this.AddEventHandler('menu-button', EventTypeConstants.Frames.ElementClick, this.Show)
-this.AddEventHandler('menu-close-icon', EventTypeConstants.Frames.ElementClick, this.Hide)
+def showElement(e):
+    this.Show()
 
-this.AddEventHandler('textbox', EventTypeConstants.Frames.ElementClick, this.Move)
+def hideElement(e):
+    this.Hide()
+
+def moveElement(e):
+    position = Vector2(this.X, this.Y + 5)
+    this.Move(position)
+
+this.AddEventHandler('shift-button', EventTypeConstants.Frames.ElementClick, moveElement)

@@ -7,7 +7,6 @@ namespace Frames.UserInterface.Elements
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;
-    using Frames.Utilities;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Xna.Framework;
@@ -170,16 +169,6 @@ namespace Frames.UserInterface.Elements
         }
 
         /// <summary>
-        /// Moves the element to a new position.
-        /// </summary>
-        public void Move(Vector2 position)
-        {
-            this.PositionProfile = PositionFactory.Absolute(position);
-            this.SetPosition(this.parentBounds);
-            this.InternalInitialise();
-        }
-
-        /// <summary>
         /// Gets the boundaries of the content within the border.
         /// </summary>
         protected Rectangle GetContentBounds()
@@ -323,29 +312,26 @@ namespace Frames.UserInterface.Elements
 
         #region Api
 
-        public void Show(Event e)
+        public void Show()
         {
             this.Visible = true;
         }
 
-        public void Hide(Event e)
+        public void Hide()
         {
             this.Visible = false;
         }
 
-        public void ToggleVisibility(Event e)
+        public void ToggleVisibility()
         {
             this.Visible = !this.Visible;
         }
 
-        public void Move(Event e)
+        public void Move(Vector2 position)
         {
-            bool converted = EventHelper.TryConvertData(e, out Vector2 position);
-
-            if (converted)
-            {
-                this.Move(position);
-            }
+            this.PositionProfile = PositionFactory.Absolute(position);
+            this.SetPosition(this.parentBounds);
+            this.InternalInitialise();
         }
 
         #endregion

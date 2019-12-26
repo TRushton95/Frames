@@ -2,5 +2,8 @@
 clr.AddReference("Frames")
 from Frames.EventSystem import *
 
-this.AddEventHandler('button', EventTypeConstants.Frames.ElementClick, this.ToggleVisibility)
+def toggleElementVisibility(e):
+    this.ToggleVisibility()
+
+this.AddEventHandler('button', EventTypeConstants.Frames.ElementClick, toggleElementVisibility)
 

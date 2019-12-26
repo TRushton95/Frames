@@ -63,41 +63,71 @@
 
   {
     "Type": "Container",
-    "Name": "menu",
+    "Name": "menu-blocker",
     "Visible": false,
-    "Draggable": true,
-    "Width": 300,
-    "Height": 200,
-    "Color": "Blue",
     "Blocker": true,
+    "Width": "WindowWidth",
+    "Height": "WindowHeight",
     "PositionProfile": {
       "HorizontalAlign": "Middle",
       "VerticalAlign": "Middle"
     },
     "Children": [
       {
-        "Type": "Text",
-        "Value": "Menu",
-        "Font": "Font",
-        "Color": "Pink",
-        "MaxWidth": 250,
-        "FontFlow": "Scale",
+        "Type": "Container",
+        "Name": "menu",
+        "Draggable": true,
+        "Width": 300,
+        "Height": 200,
+        "Color": "Blue",
         "PositionProfile": {
           "HorizontalAlign": "Middle",
-          "VerticalAlign": "Top",
-          "OffsetY": 5
-        }
+          "VerticalAlign": "Middle"
+        },
+        "Children": [
+          {
+            "Type": "Text",
+            "Name": "menu-title",
+            "Value": "Menu",
+            "Font": "Font",
+            "Color": "Pink",
+            "MaxWidth": 250,
+            "FontFlow": "Scale",
+            "PositionProfile": {
+              "HorizontalAlign": "Middle",
+              "VerticalAlign": "Top",
+              "OffsetY": 5
+            }
+          },
+
+          {
+            "Type": "Icon",
+            "Name": "menu-close-icon",
+            "Texture": "Fireball",
+            "HoverTexture": "Fireball-Hover",
+            "PositionProfile": {
+              "HorizontalAlign": "Middle",
+              "VerticalAlign": "Bottom",
+              "OffsetY": -10
+            }
+          }
+        ]
       },
 
       {
-        "Type": "Icon",
-        "Name": "menu-close-icon",
-        "Texture": "Fireball",
-        "HoverTexture": "Fireball-Hover",
+        "Type": "Button",
+        "Name": "shift-button",
+        "Width": 150,
+        "Height": 50,
+        "Text": "Click to shift menu down",
+        "Font": "Font",
+        "FrameColor": "Pink",
+        "TextColor": "Black",
+        "FrameHoverColor": "Black",
+        "TextHoverColor": "White",
         "PositionProfile": {
-          "HorizontalAlign": "Middle",
-          "VerticalAlign": "Bottom",
-          "OffsetY": -10
+          "HorizontalAlign": "Right",
+          "VerticalAlign": "Middle"
         }
       }
     ]
