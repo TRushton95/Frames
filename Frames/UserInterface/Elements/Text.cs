@@ -12,6 +12,9 @@
 
     #endregion
 
+    /// <summary>
+    /// The text element.
+    /// </summary>
     public class Text : BaseElement
     {
         #region Fields

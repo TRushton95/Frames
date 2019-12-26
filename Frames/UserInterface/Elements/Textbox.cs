@@ -13,6 +13,9 @@
 
     #endregion
 
+    /// <summary>
+    /// The textbox element that defines a background frame and scrolling text within it.
+    /// </summary>
     public class Textbox : BaseElement
     {
         #region Constants
@@ -43,6 +46,9 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
         public string Text
         {
             get;
@@ -151,6 +157,9 @@
             this.SetTextOffsetY(scrollHeight);
         }
 
+        /// <summary>
+        /// Sets the y offset of the text within the textbox.
+        /// </summary>
         private void SetTextOffsetY(int offsety)
         {
             RelativePositionProfile positionProfile = PositionFactory.TopCenterRelative();

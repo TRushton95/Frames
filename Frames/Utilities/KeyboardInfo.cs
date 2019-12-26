@@ -6,6 +6,9 @@
 
     #endregion
 
+    /// <summary>
+    /// A wrapper class for <see cref="KeyboardState"/> that provides easy access to the changing of mouse states.
+    /// </summary>
     public static class KeyboardInfo
     {
         #region Fields

@@ -12,7 +12,7 @@
     #endregion
 
     /// <summary>
-    /// The icon element.
+    /// The icon element that displays an image.
     /// </summary>
     public class Icon : BaseElement
     {

@@ -201,6 +201,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets the top draggable element that is currently hovered.
+        /// </summary>
         private BaseElement GetDraggableElement()
         {
             List<BaseElement> blockers = this.GetAllElements(true).Where(element => element.Blocker).ToList();

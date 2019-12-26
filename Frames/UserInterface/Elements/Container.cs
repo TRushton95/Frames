@@ -12,6 +12,9 @@
 
     #endregion
 
+    /// <summary>
+    /// The container element that defines a background frame and can hold children elements.
+    /// </summary>
     public class Container : BaseElement
     {
         #region Fields
