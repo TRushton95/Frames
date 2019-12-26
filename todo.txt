@@ -1,5 +1,9 @@
 - Add api methods to components
 
-[x] Could replace blocking behaviour with placing "blocking" elements inside a screen-wide invisible frame
-	- Avoids building the ui tree an extra time each loop
-	- Opting for blocking property for now to reduce json complexity
+- Investigate method of blocking the ui with an invisible element
+	- Must allow for multiple children within element (e1, e2 and e3 all have matching priorities and are marked as blockers so they share a single blocking container)
+	- Investigate how to wire up to script - possibly use naming convention "--blocker" on the end of the element
+
+- Logging
+
+- Write up documentation for using Frames
