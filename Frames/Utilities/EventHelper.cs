@@ -8,7 +8,7 @@
 
     #endregion
 
-    public class EventHelper
+    public static class EventHelper
     {
         #region Fields
 
@@ -26,6 +26,9 @@
             return $"{sender}.{eventTypeName}";
         }
 
+        /// <summary>
+        /// Safely attempts to convert event data to an output type.
+        /// </summary>
         public static bool TryConvertData<T>(Event e, out T data)
         {
             bool result = false;
@@ -44,6 +47,9 @@
             return result;
         }
 
+        /// <summary>
+        /// Gets the error message for a failed event data conversion.
+        /// </summary>
         private static string GetEventHandlerErrorMessage(Event e, string dataCastType)
         {
             StringBuilder sb = new StringBuilder();
