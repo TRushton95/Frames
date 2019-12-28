@@ -62,17 +62,11 @@
   },
 
   {
-    "Type": "Container",
+    "Type": "Blocker",
     "Name": "menu-blocker",
     "Visible": false,
-    "Blocker": true,
-    "Width": "WindowWidth",
-    "Height": "WindowHeight",
-    "PositionProfile": {
-      "HorizontalAlign": "Middle",
-      "VerticalAlign": "Middle"
-    },
-    "Children": [
+    "Children":
+    [
       {
         "Type": "Container",
         "Name": "menu",

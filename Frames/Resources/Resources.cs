@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using System.Collections.Generic;
@@ -67,6 +68,11 @@
         /// Gets the textures.
         /// </summary>
         public Dictionary<string, Texture2D> Textures => this.textures;
+
+        /// <summary>
+        /// Gets the screen bounds.
+        /// </summary>
+        public Rectangle Screen => this.graphicsDevice.Viewport.Bounds;
 
         #endregion
 

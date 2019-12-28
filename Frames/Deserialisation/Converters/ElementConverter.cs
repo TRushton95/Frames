@@ -3,10 +3,14 @@
     #region Usings
 
     using System;
+    using System.Collections.Generic;
+    using Frames.Factories;
     using Frames.UserInterface.Elements;
+    using Microsoft.Xna.Framework;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using NLog;
+    using Resources;
 
     #endregion
 
@@ -15,6 +19,12 @@
     /// </summary>
     public class ElementConverter : JsonConverter
     {
+        #region Constants
+
+        private const string BlockerTypeName = "Blocker";
+
+        #endregion
+
         #region Fields
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -35,6 +45,11 @@
 
             string typeName = jObject["Type"].Value<string>();
 
+            if (typeName == BlockerTypeName)
+            {
+                return this.ConvertToBlocker(jObject, serializer);
+            }
+
             Type type = Type.GetType($"{this.elementsNamespace}.{typeName}");
 
             if (type == null || !type.IsSubclassOf(typeof(BaseElement)))
@@ -49,6 +64,23 @@
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Converts the jObject to a container blocker.
+        /// </summary>
+        /// <remarks>
+        /// A blocker is just a transparent container that matches the window bounds in order to prevent interaction with the rest of the ui.
+        /// </remarks>
+        private Container ConvertToBlocker(JObject jObject, JsonSerializer serializer)
+        {
+            string name = jObject["Name"].Value<string>();
+            List<BaseElement> children = jObject["Children"].ToObject<List<BaseElement>>(serializer);
+
+            Container result =  new Container(name, Resources.Instance.Screen.Width, Resources.Instance.Screen.Height, null, Color.Transparent, PositionFactory.CenteredRelative(), children);
+            result.Visible = jObject["Visible"] == null ? true : jObject["Visible"].Value<bool>();
+
+            return result;
         }
 
         #endregion
