@@ -1,11 +1,5 @@
 - Add api methods to components
 
-- Investigate method of blocking the ui with an invisible element
-	- Must allow for multiple children within element (e1, e2 and e3 all have matching priorities and are marked as blockers so they share a single blocking container)
-	- Investigate how to wire up to script - possibly use naming convention "--blocker" on the end of the element
-
-	- Define blocker element that is transparent, centered, full-width container -> minimal markup and allows name to hook events to
-
 - Logging
 
 - Write up documentation for using Frames
