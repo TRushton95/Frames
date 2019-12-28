@@ -115,6 +115,7 @@
   <ItemGroup>
     <Content Include="Lib\MonoGame.Framework.dll" />
     <Content Include="Lib\MonoGame.Framework.xml" />
+    <Content Include="todo.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLog.config">
