@@ -138,14 +138,14 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.CenteredRelative(), this.Border);
+            this.defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.Center(), this.Border);
             this.defaultFrame.Initialise(this.GetBounds());
-            this.defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
+            this.defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.Center());
             this.defaultTextGraphics.Initialise(this.GetContentBounds());
 
-            this.hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.CenteredRelative(), this.Border);
+            this.hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.Center(), this.Border);
             this.hoverFrame.Initialise(this.GetBounds());
-            this.hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.CenteredRelative());
+            this.hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.Center());
             this.hoverTextGraphics.Initialise(this.GetContentBounds());
 
             this.frame = this.defaultFrame;

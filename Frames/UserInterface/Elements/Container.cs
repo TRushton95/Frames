@@ -120,7 +120,7 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.frame = new Frame(this.Width, this.Height, this.Color, PositionFactory.CenteredRelative(), this.Border);
+            this.frame = new Frame(this.Width, this.Height, this.Color, PositionFactory.Center(), this.Border);
             this.frame.Initialise(this.GetBounds());
         }
 

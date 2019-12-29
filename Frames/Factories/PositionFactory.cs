@@ -18,7 +18,7 @@
         /// <summary>
         /// Creates a position profile anchored to the top left.
         /// </summary>
-        public static PositionProfile TopLeftRelative()
+        public static PositionProfile TopLeft()
         {
             return new PositionProfile(HorizontalAlign.Left, VerticalAlign.Top, 0, 0);
         }
@@ -26,7 +26,7 @@
         /// <summary>
         /// Creates a position profile anchored to the top center.
         /// </summary>
-        public static PositionProfile TopCenterRelative()
+        public static PositionProfile TopCenter()
         {
             return new PositionProfile(HorizontalAlign.Middle, VerticalAlign.Top, 0, 0);
         }
@@ -34,7 +34,7 @@
         /// <summary>
         /// Creates a position profile anchored to the top right.
         /// </summary>
-        public static PositionProfile TopRightRelative()
+        public static PositionProfile TopRight()
         {
             return new PositionProfile(HorizontalAlign.Right, VerticalAlign.Top, 0, 0);
         }
@@ -42,7 +42,7 @@
         /// <summary>
         /// Creates a position profile anchored to the center left.
         /// </summary>
-        public static PositionProfile CenterLeftRelative()
+        public static PositionProfile CenterLeft()
         {
             return new PositionProfile(HorizontalAlign.Left, VerticalAlign.Middle, 0, 0);
         }
@@ -50,7 +50,7 @@
         /// <summary>
         /// Creates a position profile anchored to the center.
         /// </summary>
-        public static PositionProfile CenteredRelative()
+        public static PositionProfile Center()
         {
             return new PositionProfile(HorizontalAlign.Middle, VerticalAlign.Middle, 0, 0);
         }
@@ -58,7 +58,7 @@
         /// <summary>
         /// Creates a position profile anchored to the center right.
         /// </summary>
-        public static PositionProfile CenterRightRelative()
+        public static PositionProfile CenterRight()
         {
             return new PositionProfile(HorizontalAlign.Right, VerticalAlign.Middle, 0, 0);
         }
@@ -66,7 +66,7 @@
         /// <summary>
         /// Creates a position profile anchored to the bottom left.
         /// </summary>
-        public static PositionProfile BottomLeftRelative()
+        public static PositionProfile BottomLeft()
         {
             return new PositionProfile(HorizontalAlign.Left, VerticalAlign.Bottom, 0, 0);
         }
@@ -74,7 +74,7 @@
         /// <summary>
         /// Creates a position profile anchored to the bottom center.
         /// </summary>
-        public static PositionProfile BottomCenterRelative()
+        public static PositionProfile BottomCenter()
         {
             return new PositionProfile(HorizontalAlign.Middle, VerticalAlign.Bottom, 0, 0);
         }
@@ -82,7 +82,7 @@
         /// <summary>
         /// Creates a position profile anchored to the bottom right.
         /// </summary>
-        public static PositionProfile BottomRightRelative()
+        public static PositionProfile BottomRight()
         {
             return new PositionProfile(HorizontalAlign.Right, VerticalAlign.Bottom, 0, 0);
         }

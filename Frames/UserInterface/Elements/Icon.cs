@@ -86,12 +86,12 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.defaultImageGraphics = new ImageGraphics(this.Texture, PositionFactory.CenteredRelative());
+            this.defaultImageGraphics = new ImageGraphics(this.Texture, PositionFactory.Center());
             this.defaultImageGraphics.Initialise(this.GetBounds());
 
             if (this.HoverTexture != null)
             {
-                this.hoverImageGraphics = new ImageGraphics(this.HoverTexture, PositionFactory.CenteredRelative());
+                this.hoverImageGraphics = new ImageGraphics(this.HoverTexture, PositionFactory.Center());
                 this.hoverImageGraphics.Initialise(this.GetBounds());
             }
 

@@ -77,7 +77,7 @@
             string name = jObject["Name"].Value<string>();
             List<BaseElement> children = jObject["Children"].ToObject<List<BaseElement>>(serializer);
 
-            Container result =  new Container(name, Resources.Instance.Screen.Width, Resources.Instance.Screen.Height, null, Color.Transparent, PositionFactory.CenteredRelative(), children);
+            Container result =  new Container(name, Resources.Instance.Screen.Width, Resources.Instance.Screen.Height, null, Color.Transparent, PositionFactory.Center(), children);
             result.Visible = jObject["Visible"] == null ? true : jObject["Visible"].Value<bool>();
 
             return result;

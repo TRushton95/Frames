@@ -117,9 +117,9 @@
                 textMaxWidth -= this.Border.Width * 2;
             }
 
-            this.frame = new Frame(this.Width, this.Height, Color.Cyan, PositionFactory.CenteredRelative(), this.Border);
+            this.frame = new Frame(this.Width, this.Height, Color.Cyan, PositionFactory.Center(), this.Border);
             this.frame.Initialise(this.GetBounds());
-            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, textMaxWidth, FontFlow.Wrap, PositionFactory.TopCenterRelative());
+            this.textGraphics = new TextGraphics(this.Text, this.Font, Color.Yellow, textMaxWidth, FontFlow.Wrap, PositionFactory.TopCenter());
             this.textGraphics.Initialise(this.GetContentBounds());
         }
 
@@ -162,7 +162,7 @@
         /// </summary>
         private void SetTextOffsetY(int offsety)
         {
-            PositionProfile positionProfile = PositionFactory.TopCenterRelative();
+            PositionProfile positionProfile = PositionFactory.TopCenter();
             positionProfile.OffsetY = offsety;
             this.textGraphics.PositionProfile = positionProfile;
             this.textGraphics.Initialise(this.GetContentBounds());

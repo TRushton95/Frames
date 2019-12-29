@@ -1,5 +1,7 @@
 - Add api methods to components
 
+- Investigate animations (ie. colour change, moving etc)
+
 - Logging
 
 - Write up documentation for using Frames
