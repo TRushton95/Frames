@@ -3,7 +3,6 @@ namespace Frames.UserInterface.Elements
     #region Usings
 
     using Frames.DataStructures;
-    using Frames.DataStructures.PositionProfiles;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;

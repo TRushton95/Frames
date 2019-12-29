@@ -3,10 +3,7 @@
     #region Usings
 
     using Frames.DataStructures;
-    using Frames.DataStructures.PositionProfiles;
     using Frames.Enums;
-    using Frames.Events.EventSystem;
-    using Frames.EventSystem;
     using Frames.Factories;
     using Frames.UserInterface.Components;
     using Microsoft.Xna.Framework;

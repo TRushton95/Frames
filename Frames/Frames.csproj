@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStructures\Border.cs" />
-    <Compile Include="DataStructures\PositionProfiles\RelativePositionProfile.cs" />
+    <Compile Include="DataStructures\PositionProfile.cs" />
     <Compile Include="DataStructures\Size.cs" />
     <Compile Include="Deserialisation\Converters\ColorConverter.cs" />
     <Compile Include="Deserialisation\Converters\DimensionConverter.cs" />

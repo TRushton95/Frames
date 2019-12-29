@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using Frames.DataStructures.PositionProfiles;
+    using Frames.DataStructures;
     using Frames.Enums;
     using Microsoft.Xna.Framework;
 

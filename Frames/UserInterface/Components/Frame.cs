@@ -4,7 +4,6 @@
 
     using System.Collections.Generic;
     using Frames.DataStructures;
-    using Frames.DataStructures.PositionProfiles;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Resources;

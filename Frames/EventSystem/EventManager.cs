@@ -3,7 +3,6 @@
     #region Usings
 
     using System.Collections.Generic;
-    using System.Diagnostics;
     using Frames.Events.EventSystem;
     using Frames.Utilities;
 

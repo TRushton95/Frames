@@ -1,4 +1,4 @@
-﻿namespace Frames.DataStructures.PositionProfiles
+﻿namespace Frames.DataStructures
 {
     #region Usings
 

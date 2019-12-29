@@ -3,10 +3,7 @@
     #region Usings
 
     using Frames.DataStructures;
-    using Frames.DataStructures.PositionProfiles;
-    using Frames.EventSystem;
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
 
     #endregion
 

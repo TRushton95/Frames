@@ -3,7 +3,6 @@
     #region Usings
 
     using Frames.DataStructures;
-    using Frames.DataStructures.PositionProfiles;
     using Frames.Factories;
     using Frames.UserInterface.Components;
     using Microsoft.Xna.Framework;
