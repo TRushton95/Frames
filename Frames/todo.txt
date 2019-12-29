@@ -2,6 +2,9 @@
 
 - Investigate animations (ie. colour change, moving etc)
 
+- Move components into List<BaseComponent> on BaseElement and access using const keys (eg. ComponentNames.HoverTextGraphics)
+	- Allows for easy mass access
+
 - Logging
 
 - Write up documentation for using Frames
