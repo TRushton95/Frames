@@ -90,7 +90,7 @@
         /// <summary>
         /// Sets the position.
         /// </summary>
-        public void SetPosition(Rectangle parentBounds)
+        public virtual void SetPosition(Rectangle parentBounds)
         {
             Vector2 position = this.PositionProfile.CalculatePosition(parentBounds, this.GetSize());
 

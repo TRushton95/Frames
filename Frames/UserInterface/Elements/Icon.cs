@@ -5,6 +5,7 @@
     using Frames.DataStructures;
     using Frames.Factories;
     using Frames.UserInterface.Components;
+    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     #endregion
@@ -62,6 +63,17 @@
         public override Size GetSize()
         {
             return new Size(this.Width, this.Height);
+        }
+
+        /// <summary>
+        /// Sets the position of the element and composite components.
+        /// </summary>
+        public override void SetPosition(Rectangle parentBounds)
+        {
+            base.SetPosition(parentBounds);
+
+            this.defaultImageGraphics?.SetPosition(this.GetBounds());
+            this.hoverImageGraphics?.SetPosition(this.GetBounds());
         }
 
         /// <summary>

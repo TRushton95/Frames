@@ -75,6 +75,17 @@
         }
 
         /// <summary>
+        /// Sets the position of the element and composite components.
+        /// </summary>
+        public override void SetPosition(Rectangle parentBounds)
+        {
+            base.SetPosition(parentBounds);
+
+            this.frame?.SetPosition(this.GetBounds());
+            this.textGraphics?.SetPosition(this.GetBounds());
+        }
+
+        /// <summary>
         /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>
         protected override void InternalInitialise()

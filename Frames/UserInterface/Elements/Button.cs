@@ -112,7 +112,20 @@
         {
             return new Size(this.Width, this.Height);
         }
-        
+
+        /// <summary>
+        /// Sets the position of the element and composite components.
+        /// </summary>
+        public override void SetPosition(Rectangle parentBounds)
+        {
+            base.SetPosition(parentBounds);
+
+            this.defaultFrame?.SetPosition(this.GetBounds());
+            this.defaultTextGraphics?.SetPosition(this.GetBounds());
+            this.hoverFrame?.SetPosition(this.GetBounds());
+            this.hoverTextGraphics?.SetPosition(this.GetBounds());
+        }
+
         /// <summary>
         /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>

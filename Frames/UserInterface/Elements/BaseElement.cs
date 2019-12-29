@@ -330,7 +330,6 @@ namespace Frames.UserInterface.Elements
         {
             this.PositionProfile = PositionFactory.Absolute(position);
             this.SetPosition(this.parentBounds);
-            this.InternalInitialise();
         }
 
         #endregion

@@ -65,6 +65,17 @@
         }
 
         /// <summary>
+        /// Sets the position of the element and composite components.
+        /// </summary>
+        public override void SetPosition(Rectangle parentBounds)
+        {
+            base.SetPosition(parentBounds);
+
+            this.frame?.SetPosition(this.GetBounds());
+            this.Children?.ForEach(child => child.SetPosition(this.GetBounds()));
+        }
+
+        /// <summary>
         /// Recursively searches the element tree and creates a flat list of the element and its children if it has any.
         /// </summary>
         /// <remarks>
