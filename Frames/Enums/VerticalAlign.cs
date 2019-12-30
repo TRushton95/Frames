@@ -5,8 +5,10 @@
     /// </summary>
     public enum VerticalAlign
     {
+        OffTop,
         Top,
         Middle,
-        Bottom
+        Bottom,
+        OffBottom
     }
 }

@@ -60,70 +60,62 @@
       "VerticalAlign": "Top"
     }
   },
-
   {
-    "Type": "Blocker",
-    "Name": "menu-blocker",
+    "Type": "Container",
+    "Name": "menu",
+    "Draggable": true,
     "Visible": false,
-    "Children":
-    [
+    "Width": 300,
+    "Height": 200,
+    "Color": "Blue",
+    "PositionProfile": {
+      "HorizontalAlign": "Middle",
+      "VerticalAlign": "OffBottom"
+    },
+    "Children": [
       {
-        "Type": "Container",
-        "Name": "menu",
-        "Draggable": true,
-        "Width": 300,
-        "Height": 200,
-        "Color": "Blue",
+        "Type": "Text",
+        "Name": "menu-title",
+        "Value": "Menu",
+        "Font": "Font",
+        "Color": "Pink",
+        "MaxWidth": 250,
+        "FontFlow": "Scale",
         "PositionProfile": {
           "HorizontalAlign": "Middle",
-          "VerticalAlign": "Middle"
-        },
-        "Children": [
-          {
-            "Type": "Text",
-            "Name": "menu-title",
-            "Value": "Menu",
-            "Font": "Font",
-            "Color": "Pink",
-            "MaxWidth": 250,
-            "FontFlow": "Scale",
-            "PositionProfile": {
-              "HorizontalAlign": "Middle",
-              "VerticalAlign": "Top",
-              "OffsetY": 5
-            }
-          },
-
-          {
-            "Type": "Icon",
-            "Name": "menu-close-icon",
-            "Texture": "Fireball",
-            "HoverTexture": "Fireball-Hover",
-            "PositionProfile": {
-              "HorizontalAlign": "Middle",
-              "VerticalAlign": "Bottom",
-              "OffsetY": -10
-            }
-          }
-        ]
+          "VerticalAlign": "Top",
+          "OffsetY": 5
+        }
       },
 
       {
-        "Type": "Button",
-        "Name": "shift-button",
-        "Width": 150,
-        "Height": 50,
-        "Text": "Click to shift menu down",
-        "Font": "Font",
-        "FrameColor": "Pink",
-        "TextColor": "Black",
-        "FrameHoverColor": "Black",
-        "TextHoverColor": "White",
+        "Type": "Icon",
+        "Name": "menu-close-icon",
+        "Texture": "Fireball",
+        "HoverTexture": "Fireball-Hover",
         "PositionProfile": {
-          "HorizontalAlign": "Right",
-          "VerticalAlign": "Middle"
+          "HorizontalAlign": "Middle",
+          "VerticalAlign": "Bottom",
+          "OffsetY": -10
         }
       }
     ]
+  },
+
+  {
+    "Type": "Button",
+    "Name": "shift-button",
+    "Width": 150,
+    "Height": 50,
+    "Text": "Click to shift menu down",
+    "Font": "Font",
+    "FrameColor": "Pink",
+    "TextColor": "Black",
+    "FrameHoverColor": "Black",
+    "TextHoverColor": "White",
+    "PositionProfile": {
+      "HorizontalAlign": "Right",
+      "VerticalAlign": "Middle"
+    }
   }
 ]

@@ -80,6 +80,8 @@
     <Compile Include="DataStructures\Border.cs" />
     <Compile Include="DataStructures\PositionProfile.cs" />
     <Compile Include="DataStructures\Size.cs" />
+    <Compile Include="DataStructures\Transitions\MovementTransition.cs" />
+    <Compile Include="DataStructures\Transitions\Transition.cs" />
     <Compile Include="Deserialisation\Converters\ColorConverter.cs" />
     <Compile Include="Deserialisation\Converters\DimensionConverter.cs" />
     <Compile Include="Deserialisation\Converters\ElementConverter.cs" />

@@ -3,6 +3,7 @@ namespace Frames.UserInterface.Elements
     #region Usings
 
     using Frames.DataStructures;
+    using Frames.DataStructures.Transitions;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;
@@ -26,6 +27,8 @@ namespace Frames.UserInterface.Elements
 
         private Logger logger = LogManager.GetCurrentClassLogger();
         private Rectangle parentBounds;
+
+        private List<Transition> transitions = new List<Transition>();
 
         #endregion
 
@@ -124,6 +127,21 @@ namespace Frames.UserInterface.Elements
         #endregion
 
         #region Methods
+
+        public virtual void Update(GameTime gameTime)
+        {
+            this.transitions.RemoveAll(transition => transition.Done);
+
+            foreach (Transition transition in this.transitions)
+            {
+                if (!transition.Started)
+                {
+                    transition.Start(gameTime);
+                }
+
+                transition.Update(gameTime);
+            }
+        }
 
         /// <summary>
         /// Draws the element.
@@ -314,6 +332,7 @@ namespace Frames.UserInterface.Elements
         public void Show()
         {
             this.Visible = true;
+            this.OnShow();
         }
 
         public void Hide()
@@ -329,6 +348,25 @@ namespace Frames.UserInterface.Elements
         public void Move(Vector2 position)
         {
             this.PositionProfile = PositionFactory.Absolute(position);
+            this.SetPosition(this.parentBounds);
+        }
+
+        private void OnShow()
+        {
+            PositionProfile centerProfile = PositionFactory.Center();
+            Vector2 centeredPosition = centerProfile.CalculatePosition(this.parentBounds, this.GetSize());
+
+            Transition slideIn = new MovementTransition(this.GetPosition(), centeredPosition, 1000, Move);
+
+            this.transitions.Add(slideIn);
+        }
+
+        private void Move(object data)
+        {
+            Vector2 position = (Vector2)data;
+
+            this.PositionProfile.OffsetX += (int)position.X;
+            this.PositionProfile.OffsetY += (int)position.Y;
             this.SetPosition(this.parentBounds);
         }
 

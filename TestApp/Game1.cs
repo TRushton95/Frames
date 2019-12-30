@@ -88,7 +88,7 @@ namespace TestApp
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            this.userInterface.Update(MouseInfo.Position);
+            this.userInterface.Update(gameTime, MouseInfo.Position);
 
             if (KeyboardInfo.IsKeyPressed(Keys.Enter))
             {

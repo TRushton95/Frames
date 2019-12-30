@@ -104,10 +104,15 @@
         /// <summary>
         /// Updates the elements.
         /// </summary>
-        public void Update(Vector2 mousePosition)
+        public void Update(GameTime gameTime, Vector2 mousePosition)
         {
             MouseInfo.Update();
             KeyboardInfo.Update();
+
+            foreach (BaseElement element in this.elements)
+            {
+                element.Update(gameTime);
+            }
 
             this.UpdateHoveredElement();
             if (this.hoveredElement != null)
