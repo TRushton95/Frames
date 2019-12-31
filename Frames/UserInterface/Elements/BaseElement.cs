@@ -365,15 +365,15 @@ namespace Frames.UserInterface.Elements
             this.Visible = !this.Visible;
         }
 
-        #endregion
-
-        #region Transition Callbacks
-
         public void Move(Vector2 position)
         {
             this.PositionProfile = PositionFactory.Absolute(position);
             this.SetPosition(this.parentBounds);
         }
+
+        #endregion
+
+        #region Transition Callbacks
 
         private void OnShow(int duration)
         {
