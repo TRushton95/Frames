@@ -69,8 +69,8 @@
     "Height": 200,
     "Color": "Blue",
     "PositionProfile": {
-      "HorizontalAlign": "Middle",
-      "VerticalAlign": "OffBottom"
+      "HorizontalAlign": "Right",
+      "VerticalAlign": "Middle"
     },
     "Children": [
       {

@@ -4,6 +4,7 @@ namespace Frames.UserInterface.Elements
 
     using Frames.DataStructures;
     using Frames.DataStructures.Transitions;
+    using Frames.Enums;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;
@@ -15,6 +16,7 @@ namespace Frames.UserInterface.Elements
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Timers;
 
     #endregion
 
@@ -23,6 +25,12 @@ namespace Frames.UserInterface.Elements
     /// </summary>
     public abstract class BaseElement : BaseBody
     {
+        #region Constants
+
+        private const int TEST_ANIMATION_DURATION = 500; //TODO: remove me
+
+        #endregion
+
         #region Fields
 
         private Logger logger = LogManager.GetCurrentClassLogger();
@@ -332,12 +340,16 @@ namespace Frames.UserInterface.Elements
         public void Show()
         {
             this.Visible = true;
-            this.OnShow();
+            this.OnShow(TEST_ANIMATION_DURATION);
         }
 
         public void Hide()
         {
-            this.Visible = false;
+            this.OnHide(TEST_ANIMATION_DURATION);
+            Timer timer = new Timer(TEST_ANIMATION_DURATION);
+            timer.Elapsed += OnHideTransitionElapsed;
+            timer.AutoReset = false;
+            timer.Start();
         }
 
         public void ToggleVisibility()
@@ -351,14 +363,24 @@ namespace Frames.UserInterface.Elements
             this.SetPosition(this.parentBounds);
         }
 
-        private void OnShow()
+        private void OnShow(int duration)
         {
             PositionProfile centerProfile = PositionFactory.TopLeft();
             Vector2 centeredPosition = centerProfile.CalculatePosition(this.parentBounds, this.GetSize());
 
-            Transition slideIn = new MovementTransition(this.GetPosition(), centeredPosition, centerProfile, 500, Move);
+            Transition slideIn = new MovementTransition(this.GetPosition(), centeredPosition, centerProfile, duration, Move);
 
             this.transitions.Add(slideIn);
+        }
+
+        private void OnHide(int duration)
+        {
+            PositionProfile offBottomProfile = new PositionProfile(HorizontalAlign.Right, VerticalAlign.Middle, 0, 0);
+            Vector2 offBottomPosition = offBottomProfile.CalculatePosition(this.parentBounds, this.GetSize());
+
+            Transition slideOut = new MovementTransition(this.GetPosition(), offBottomPosition, offBottomProfile, duration, Move);
+
+            this.transitions.Add(slideOut);
         }
 
         private void Move(object data)
@@ -367,6 +389,11 @@ namespace Frames.UserInterface.Elements
 
             this.PositionProfile = positionProfile;
             this.SetPosition(this.parentBounds);
+        }
+
+        private void OnHideTransitionElapsed(object sender, ElapsedEventArgs e)
+        {
+            this.Visible = false;
         }
 
         #endregion

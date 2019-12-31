@@ -62,8 +62,6 @@
             Vector2 offset = this.transitionProfile.Offset + interpolatedPositionDelta;
             PositionProfile data = new PositionProfile(this.DestinationProfile.HorizontalAlign, this.DestinationProfile.VerticalAlign, (int)offset.X, (int)offset.Y);
 
-            System.Diagnostics.Debug.WriteLine($"({interpolatedPositionDelta.X},{interpolatedPositionDelta.Y}) => ({data.OffsetX},{data.OffsetY})");
-
             this.Callback.Invoke(data);
         }
 
