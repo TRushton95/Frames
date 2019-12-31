@@ -346,16 +346,28 @@ namespace Frames.UserInterface.Elements
         public void Hide()
         {
             this.OnHide(TEST_ANIMATION_DURATION);
-            Timer timer = new Timer(TEST_ANIMATION_DURATION);
-            timer.Elapsed += OnHideTransitionElapsed;
-            timer.AutoReset = false;
-            timer.Start();
+
+            if (TEST_ANIMATION_DURATION > 0)
+            {
+                Timer timer = new Timer(TEST_ANIMATION_DURATION);
+                timer.Elapsed += OnHideTransitionElapsed;
+                timer.AutoReset = false;
+                timer.Start();
+            }
+            else
+            {
+                this.Visible = false;
+            }
         }
 
         public void ToggleVisibility()
         {
             this.Visible = !this.Visible;
         }
+
+        #endregion
+
+        #region Transition Callbacks
 
         public void Move(Vector2 position)
         {
