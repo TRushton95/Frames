@@ -8,13 +8,25 @@
 
     public class MovementTransition : Transition
     {
+        #region Fields
+
+        private PositionProfile transitionProfile; // Adds the (x,y) distance required to move to the destination profile offset to arrive at correct anchor.
+
+        #endregion
+
         #region Constructors
 
-        public MovementTransition(Vector2 startPosition, Vector2 finalPosition, int duration, Callback callback)
+        public MovementTransition(Vector2 startPosition, Vector2 finalPosition, PositionProfile destinationProfile, int duration, Callback callback)
             : base(duration, callback)
         {
             this.StartPosition = startPosition;
             this.FinalPosition = finalPosition;
+            this.DestinationProfile = destinationProfile;
+
+            Vector2 delta = this.FinalPosition - this.StartPosition;
+            this.transitionProfile = this.DestinationProfile;
+            this.transitionProfile.Offset += delta;
+            this.transitionProfile.Offset = Vector2.Multiply(this.transitionProfile.Offset, -1f);
         }
 
         #endregion
@@ -24,13 +36,15 @@
         public Vector2 StartPosition
         {
             get;
-            set;
         }
-
         public Vector2 FinalPosition
         {
             get;
-            set;
+        }
+
+        public PositionProfile DestinationProfile
+        {
+            get;
         }
 
         #endregion
@@ -41,13 +55,16 @@
         {
             base.Update(gameTime);
 
-            double updateRatio = this.timeElapsedSinceLastUpdate / this.Duration;
-            Vector2 positionDelta = this.FinalPosition - this.StartPosition;
-            double deltaX = positionDelta.X * updateRatio;
-            double deltaY = positionDelta.Y * updateRatio;
-            Vector2 positionStep = new Vector2((int)deltaX, (int)deltaY);
+            double updateRatio = this.totalElapsedTime / this.Duration;
+            Vector2 totalPositionDelta = this.FinalPosition - this.StartPosition;
+            Vector2 interpolatedPositionDelta = Vector2.Multiply(totalPositionDelta, (float)updateRatio);
 
-            this.Callback.Invoke(positionStep);
+            Vector2 offset = this.transitionProfile.Offset + interpolatedPositionDelta;
+            PositionProfile data = new PositionProfile(this.DestinationProfile.HorizontalAlign, this.DestinationProfile.VerticalAlign, (int)offset.X, (int)offset.Y);
+
+            System.Diagnostics.Debug.WriteLine($"({interpolatedPositionDelta.X},{interpolatedPositionDelta.Y}) => ({data.OffsetX},{data.OffsetY})");
+
+            this.Callback.Invoke(data);
         }
 
         #endregion

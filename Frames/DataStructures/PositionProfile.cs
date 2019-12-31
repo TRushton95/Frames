@@ -65,7 +65,18 @@
             set;
         }
 
-        public Vector2 Offset => new Vector2(this.OffsetX, this.OffsetY);
+        public Vector2 Offset
+        {
+            get
+            {
+                return new Vector2(this.OffsetX, this.OffsetY);
+            }
+            set
+            {
+                this.OffsetX = (int)value.X;
+                this.OffsetY = (int)value.Y;
+            }
+        }
 
         #endregion
 

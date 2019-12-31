@@ -17,7 +17,7 @@
     {
         #region Fields
 
-        protected double timeStart, timeElapsedSinceLastUpdate;
+        protected double timeStart, timeElapsedSinceLastUpdate, totalElapsedTime;
 
         #endregion
 
@@ -70,8 +70,9 @@
         public virtual void Update(GameTime gameTime)
         {
             this.timeElapsedSinceLastUpdate = gameTime.ElapsedGameTime.TotalMilliseconds;
+            this.totalElapsedTime = gameTime.TotalGameTime.TotalMilliseconds - this.timeStart;
 
-            if (gameTime.TotalGameTime.TotalMilliseconds - this.timeStart >= this.Duration)
+            if (this.totalElapsedTime >= this.Duration)
             {
                 this.Done = true;
                 return;

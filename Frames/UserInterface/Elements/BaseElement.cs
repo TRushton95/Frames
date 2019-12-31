@@ -353,20 +353,19 @@ namespace Frames.UserInterface.Elements
 
         private void OnShow()
         {
-            PositionProfile centerProfile = PositionFactory.Center();
+            PositionProfile centerProfile = PositionFactory.TopLeft();
             Vector2 centeredPosition = centerProfile.CalculatePosition(this.parentBounds, this.GetSize());
 
-            Transition slideIn = new MovementTransition(this.GetPosition(), centeredPosition, 1000, Move);
+            Transition slideIn = new MovementTransition(this.GetPosition(), centeredPosition, centerProfile, 500, Move);
 
             this.transitions.Add(slideIn);
         }
 
         private void Move(object data)
         {
-            Vector2 position = (Vector2)data;
+            PositionProfile positionProfile = (PositionProfile)data;
 
-            this.PositionProfile.OffsetX += (int)position.X;
-            this.PositionProfile.OffsetY += (int)position.Y;
+            this.PositionProfile = positionProfile;
             this.SetPosition(this.parentBounds);
         }
 
