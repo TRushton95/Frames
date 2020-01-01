@@ -10,7 +10,7 @@
     {
         #region Fields
 
-        private PositionProfile transitionProfile; // Adds the (x,y) distance required to move to the destination profile offset to arrive at correct anchor.
+        private PositionProfile projectedCurrentProfile; // Adds the (x,y) distance required to move to the destination profile offset to arrive at correct anchor.
 
         #endregion
 
@@ -24,9 +24,12 @@
             this.DestinationProfile = destinationProfile;
 
             Vector2 delta = this.FinalPosition - this.StartPosition;
-            this.transitionProfile = this.DestinationProfile;
-            this.transitionProfile.Offset += delta;
-            this.transitionProfile.Offset = Vector2.Multiply(this.transitionProfile.Offset, -1f);
+
+            this.projectedCurrentProfile = new PositionProfile(
+                this.DestinationProfile.HorizontalAlign,
+                this.DestinationProfile.VerticalAlign,
+                this.DestinationProfile.OffsetX - (int)delta.X,
+                this.DestinationProfile.OffsetY - (int)delta.Y);
         }
 
         #endregion
@@ -66,7 +69,7 @@
             Vector2 totalPositionDelta = this.FinalPosition - this.StartPosition;
             Vector2 interpolatedPositionDelta = Vector2.Multiply(totalPositionDelta, (float)updateRatio);
 
-            Vector2 offset = this.transitionProfile.Offset + interpolatedPositionDelta;
+            Vector2 offset = this.projectedCurrentProfile.Offset + interpolatedPositionDelta;
             PositionProfile data = new PositionProfile(this.DestinationProfile.HorizontalAlign, this.DestinationProfile.VerticalAlign, (int)offset.X, (int)offset.Y);
 
             this.Callback.Invoke(data);
