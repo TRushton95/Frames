@@ -58,14 +58,21 @@
             private set;
         }
 
+        public bool Ready => !this.Started && !this.Done;
+
         #endregion
 
         #region Methods
 
         public void Start(GameTime gameTime)
         {
-            this.timeStart = gameTime.TotalGameTime.TotalMilliseconds;
             this.Started = true;
+            this.timeStart = gameTime.TotalGameTime.TotalMilliseconds;
+        }
+
+        public void Stop()
+        {
+            this.Done = false;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -80,12 +87,6 @@
                 this.Done = true;
                 return;
             }
-        }
-
-        public void Restart()
-        {
-            this.Started = false;
-            this.Done = false;
         }
 
         #endregion

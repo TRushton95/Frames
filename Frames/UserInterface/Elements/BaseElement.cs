@@ -147,24 +147,17 @@ namespace Frames.UserInterface.Elements
         {
             foreach (Transition transition in this.activeTransitions)
             {
-                if (!transition.Started && !transition.Done)
+                if (transition.Ready)
                 {
                     transition.Start(gameTime);
                 }
-
-                transition.Update(gameTime);
-            }
-
-            List<Transition> finishedTransitions = this.activeTransitions.Where(transition => transition.Done).ToList();
-
-            if (finishedTransitions.Any())
-            {
-                for (int i = 0; i < finishedTransitions.Count(); i++)
+                else
                 {
-                    finishedTransitions[i].Restart();
-                    this.activeTransitions.Remove(finishedTransitions[i]);
+                    transition.Update(gameTime);
                 }
             }
+
+            this.activeTransitions.RemoveAll(transition => transition.Done);
         }
 
         /// <summary>
