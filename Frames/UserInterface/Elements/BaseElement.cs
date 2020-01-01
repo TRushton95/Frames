@@ -2,9 +2,9 @@ namespace Frames.UserInterface.Elements
 {
     #region Usings
 
+    using Frames.Constants;
     using Frames.DataStructures;
     using Frames.DataStructures.Transitions;
-    using Frames.Enums;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;
@@ -17,7 +17,6 @@ namespace Frames.UserInterface.Elements
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Timers;
 
     #endregion
 
@@ -207,7 +206,7 @@ namespace Frames.UserInterface.Elements
 
             this.SetPosition(parentBounds);
             this.InternalInitialise();
-            this.ExecuteScript();
+            this.TryExecuteScript(ScriptHooks.Default);
         }
 
         /// <summary>
@@ -231,18 +230,18 @@ namespace Frames.UserInterface.Elements
         /// <summary>
         /// Executes the corresponding python script, if it exists.
         /// </summary>
-        private void ExecuteScript()
+        private bool TryExecuteScript(string scriptName)
         {
-            if (string.IsNullOrWhiteSpace(this.Name))
+            if (string.IsNullOrWhiteSpace(this.Name) || string.IsNullOrWhiteSpace(scriptName))
             {
-                return;
+                return false;
             }
 
-            string scriptFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Scripts", $"{this.Name}.py");
+            string scriptFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Scripts", this.Name, $"{scriptName}.py");
 
             if (!File.Exists(scriptFilePath))
             {
-                return;
+                return false;
             }
 
             ScriptEngine scriptEngine = Python.CreateEngine();
@@ -254,6 +253,8 @@ namespace Frames.UserInterface.Elements
             ScriptSource source = scriptEngine.CreateScriptSourceFromFile(scriptFilePath);
             scope.SetVariable("this", this);
             source.Execute(scope);
+
+            return true;
         }
 
         #endregion
@@ -279,6 +280,7 @@ namespace Frames.UserInterface.Elements
         {
             this.Hovered = true;
             this.HoverDetail();
+            this.TryExecuteScript(ScriptHooks.Hover);
 
             this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementHover, null));
         }
@@ -290,6 +292,7 @@ namespace Frames.UserInterface.Elements
         {
             this.Hovered = false;
             this.HoverLeaveDetail();
+            this.TryExecuteScript(ScriptHooks.HoverLeave);
 
             this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementHoverLeave, null));
         }
@@ -300,6 +303,7 @@ namespace Frames.UserInterface.Elements
         public void LeftClick()
         {
             this.LeftClickDetail();
+            this.TryExecuteScript(ScriptHooks.LeftClick);
 
             this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementClick, null));
         }

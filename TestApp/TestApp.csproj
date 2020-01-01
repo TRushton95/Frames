@@ -59,13 +59,13 @@
   <ItemGroup>
     <Content Include="Content\Textures\Fireball.png" />
     <Content Include="Icon.ico" />
-    <Content Include="Scripts\menu.py">
+    <Content Include="Scripts\menu\default.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\menu-blocker.py">
+    <Content Include="Scripts\menu-blocker\default.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\text.py">
+    <Content Include="Scripts\text\default.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
