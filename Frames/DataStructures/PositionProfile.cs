@@ -65,6 +65,19 @@
             set;
         }
 
+        public Vector2 Offset
+        {
+            get
+            {
+                return new Vector2(this.OffsetX, this.OffsetY);
+            }
+            set
+            {
+                this.OffsetX = (int)value.X;
+                this.OffsetY = (int)value.Y;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -78,6 +91,10 @@
 
             switch (HorizontalAlign)
             {
+                case HorizontalAlign.OffLeft:
+                    resultX -= componentSize.Width;
+                    break;
+
                 case HorizontalAlign.Left:
                     break;
 
@@ -88,12 +105,20 @@
                 case HorizontalAlign.Right:
                     resultX += parentBounds.Width - componentSize.Width;
                     break;
+
+                case HorizontalAlign.OffRight:
+                    resultX += parentBounds.Width;
+                    break;
             }
 
             int resultY = parentBounds.Y + OffsetY;
 
             switch (VerticalAlign)
             {
+                case VerticalAlign.OffTop:
+                    resultY -= componentSize.Height;
+                    break;
+
                 case VerticalAlign.Top:
                     break;
 
@@ -103,6 +128,10 @@
 
                 case VerticalAlign.Bottom:
                     resultY += parentBounds.Height - componentSize.Height;
+                    break;
+
+                case VerticalAlign.OffBottom:
+                    resultY += parentBounds.Height;
                     break;
             }
 

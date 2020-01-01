@@ -3,6 +3,8 @@ namespace Frames.UserInterface.Elements
     #region Usings
 
     using Frames.DataStructures;
+    using Frames.DataStructures.Transitions;
+    using Frames.Enums;
     using Frames.Events.EventSystem;
     using Frames.EventSystem;
     using Frames.Factories;
@@ -14,6 +16,8 @@ namespace Frames.UserInterface.Elements
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
+    using System.Timers;
 
     #endregion
 
@@ -40,6 +44,7 @@ namespace Frames.UserInterface.Elements
 
         private Logger logger = LogManager.GetCurrentClassLogger();
         private Rectangle parentBounds;
+        private List<Transition> activeTransitions = new List<Transition>();
 
         #endregion
 
@@ -139,6 +144,30 @@ namespace Frames.UserInterface.Elements
 
         #region Methods
 
+        public virtual void Update(GameTime gameTime)
+        {
+            foreach (Transition transition in this.activeTransitions)
+            {
+                if (!transition.Started && !transition.Done)
+                {
+                    transition.Start(gameTime);
+                }
+
+                transition.Update(gameTime);
+            }
+
+            List<Transition> finishedTransitions = this.activeTransitions.Where(transition => transition.Done).ToList();
+
+            if (finishedTransitions.Any())
+            {
+                for (int i = 0; i < finishedTransitions.Count(); i++)
+                {
+                    finishedTransitions[i].Restart();
+                    this.activeTransitions.Remove(finishedTransitions[i]);
+                }
+            }
+        }
+
         /// <summary>
         /// Draws the element.
         /// </summary>
@@ -176,9 +205,9 @@ namespace Frames.UserInterface.Elements
             this.logger.Debug($"{this.GetType().Name} - {this.Priority}");
             this.parentBounds = parentBounds;
 
-            this.ExecuteScript();
             this.SetPosition(parentBounds);
             this.InternalInitialise();
+            this.ExecuteScript();
         }
 
         /// <summary>
@@ -346,6 +375,25 @@ namespace Frames.UserInterface.Elements
         public void Move(Vector2 position)
         {
             this.PositionProfile = PositionFactory.Absolute(position);
+            this.SetPosition(this.parentBounds);
+        }
+
+        public void AddMovementTransition(PositionProfile destinationProfile, int duration)
+        {
+            Vector2 destinationPosition = destinationProfile.CalculatePosition(this.parentBounds, this.GetSize());
+            MovementTransition transition = new MovementTransition(this.GetPosition(), destinationPosition, destinationProfile, duration, Move);
+            this.activeTransitions.Add(transition);
+        }
+
+        #endregion
+
+        #region Transition Callbacks
+
+        private void Move(object data)
+        {
+            PositionProfile positionProfile = (PositionProfile)data;
+
+            this.PositionProfile = positionProfile;
             this.SetPosition(this.parentBounds);
         }
 

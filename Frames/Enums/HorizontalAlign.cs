@@ -5,8 +5,10 @@
     /// </summary>
     public enum HorizontalAlign
     {
+        OffLeft,
         Left,
         Middle,
-        Right
+        Right,
+        OffRight
     }
 }

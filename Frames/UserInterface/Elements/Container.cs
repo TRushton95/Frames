@@ -75,6 +75,16 @@
             this.Children?.ForEach(child => child.SetPosition(this.GetBounds()));
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            foreach (BaseElement child in this.Children)
+            {
+                child.Update(gameTime);
+            }
+        }
+
         /// <summary>
         /// Recursively searches the element tree and creates a flat list of the element and its children if it has any.
         /// </summary>

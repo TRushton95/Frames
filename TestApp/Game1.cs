@@ -35,6 +35,9 @@ namespace TestApp
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
 
+            this.Window.AllowUserResizing = true;
+            this.Window.ClientSizeChanged += OnWindowSizeChange;
+
             this.IsMouseVisible = true;
         }
 
@@ -88,7 +91,7 @@ namespace TestApp
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            this.userInterface.Update(MouseInfo.Position);
+            this.userInterface.Update(gameTime, MouseInfo.Position);
 
             if (KeyboardInfo.IsKeyPressed(Keys.Enter))
             {
@@ -110,6 +113,14 @@ namespace TestApp
             this.spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// The event handler for the <see cref="GameWindow.ClientSizeChanged"/> event.
+        /// </summary>
+        private void OnWindowSizeChange(object sender, System.EventArgs e)
+        {
+            this.userInterface.Initialise();
         }
 
         /// <summary>
