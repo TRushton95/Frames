@@ -2,12 +2,12 @@
 {
     public static class ScriptHooks
     {
-        public static string Default = "Default";
+        public static string Default = "default";
 
-        public static string Hover = "Hover";
+        public static string Hover = "hover";
 
-        public static string HoverLeave = "HoverLeave";
+        public static string HoverLeave = "hover-leave";
 
-        public static string LeftClick = "LeftClick";
+        public static string LeftClick = "left-click";
     }
 }
