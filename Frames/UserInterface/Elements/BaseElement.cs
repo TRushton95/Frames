@@ -22,6 +22,20 @@ namespace Frames.UserInterface.Elements
     /// </summary>
     public abstract class BaseElement : BaseBody
     {
+        #region Constants
+
+        /// <summary>
+        /// TODO: These locations will not be the same in deployed environment - needs fixing
+        /// </summary>
+        private readonly string[] PyPaths = {
+            ".",
+            "C:\\Program Files\\IronPython 2.7\\Lib",
+            "C:\\Program Files\\IronPython 2.7\\DLLs",
+            "C:\\Program Files\\IronPython 2.7\\Lib\\site-packages"
+        };
+
+        #endregion
+
         #region Fields
 
         private Logger logger = LogManager.GetCurrentClassLogger();
@@ -203,6 +217,9 @@ namespace Frames.UserInterface.Elements
             }
 
             ScriptEngine scriptEngine = Python.CreateEngine();
+            var paths = scriptEngine.GetSearchPaths().ToList();
+            paths.AddRange(PyPaths);
+            scriptEngine.SetSearchPaths(paths);
             ScriptScope scope = scriptEngine.CreateScope();
 
             ScriptSource source = scriptEngine.CreateScriptSourceFromFile(scriptFilePath);
