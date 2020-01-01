@@ -56,6 +56,12 @@
             base.Update(gameTime);
 
             double updateRatio = this.totalElapsedTime / this.Duration;
+
+            if (updateRatio <= 0)
+            {
+                return;
+            }
+
             Vector2 totalPositionDelta = this.FinalPosition - this.StartPosition;
             Vector2 interpolatedPositionDelta = Vector2.Multiply(totalPositionDelta, (float)updateRatio);
 

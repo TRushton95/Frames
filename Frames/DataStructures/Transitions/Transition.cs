@@ -79,6 +79,12 @@
             }
         }
 
+        public void Restart()
+        {
+            this.Started = false;
+            this.Done = false;
+        }
+
         #endregion
     }
 }

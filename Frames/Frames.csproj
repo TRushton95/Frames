@@ -90,6 +90,7 @@
     <Compile Include="Enums\FontFlow.cs" />
     <Compile Include="Enums\HorizontalAlign.cs" />
     <Compile Include="Enums\Justify.cs" />
+    <Compile Include="Enums\TransitionHook.cs" />
     <Compile Include="Enums\VerticalAlign.cs" />
     <Compile Include="EventSystem\Event.cs" />
     <Compile Include="EventSystem\EventManager.cs" />

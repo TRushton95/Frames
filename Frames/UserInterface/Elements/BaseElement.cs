@@ -16,6 +16,7 @@ namespace Frames.UserInterface.Elements
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Timers;
 
     #endregion
@@ -25,18 +26,13 @@ namespace Frames.UserInterface.Elements
     /// </summary>
     public abstract class BaseElement : BaseBody
     {
-        #region Constants
-
-        private const int TEST_ANIMATION_DURATION = 500; //TODO: remove me
-
-        #endregion
-
         #region Fields
 
         private Logger logger = LogManager.GetCurrentClassLogger();
         private Rectangle parentBounds;
 
-        private List<Transition> transitions = new List<Transition>();
+        private Dictionary<TransitionHook, List<Transition>> transitionLookup = new Dictionary<TransitionHook, List<Transition>>();
+        private List<Transition> activeTransitions = new List<Transition>();
 
         #endregion
 
@@ -138,16 +134,25 @@ namespace Frames.UserInterface.Elements
 
         public virtual void Update(GameTime gameTime)
         {
-            this.transitions.RemoveAll(transition => transition.Done);
-
-            foreach (Transition transition in this.transitions)
+            foreach (Transition transition in this.activeTransitions)
             {
-                if (!transition.Started)
+                if (!transition.Started && !transition.Done)
                 {
                     transition.Start(gameTime);
                 }
 
                 transition.Update(gameTime);
+            }
+
+            List<Transition> finishedTransitions = this.activeTransitions.Where(transition => transition.Done).ToList();
+
+            if (finishedTransitions.Any())
+            {
+                for (int i = 0; i < finishedTransitions.Count(); i++)
+                {
+                    finishedTransitions[i].Restart();
+                    this.activeTransitions.Remove(finishedTransitions[i]);
+                }
             }
         }
 
@@ -188,9 +193,9 @@ namespace Frames.UserInterface.Elements
             this.logger.Debug($"{this.GetType().Name} - {this.Priority}");
             this.parentBounds = parentBounds;
 
-            this.ExecuteScript();
             this.SetPosition(parentBounds);
             this.InternalInitialise();
+            this.ExecuteScript();
         }
 
         /// <summary>
@@ -340,24 +345,23 @@ namespace Frames.UserInterface.Elements
         public void Show()
         {
             this.Visible = true;
-            this.OnShow(TEST_ANIMATION_DURATION);
+            this.OnShow();
         }
 
-        public void Hide()
+        public void Hide(int duration = 0)
         {
-            this.OnHide(TEST_ANIMATION_DURATION);
+            this.OnHide();
 
-            if (TEST_ANIMATION_DURATION > 0)
-            {
-                Timer timer = new Timer(TEST_ANIMATION_DURATION);
-                timer.Elapsed += OnHideTransitionElapsed;
-                timer.AutoReset = false;
-                timer.Start();
-            }
-            else
+            if (duration == 0)
             {
                 this.Visible = false;
+                return;
             }
+
+            Timer timer = new Timer(duration);
+            timer.Elapsed += OnHideTransitionElapsed;
+            timer.AutoReset = false;
+            timer.Start();
         }
 
         public void ToggleVisibility()
@@ -371,28 +375,46 @@ namespace Frames.UserInterface.Elements
             this.SetPosition(this.parentBounds);
         }
 
+        public void AddMovementTransition(TransitionHook hook, PositionProfile destinationProfile, int duration)
+        {
+            Vector2 destinationPosition = destinationProfile.CalculatePosition(this.parentBounds, this.GetSize());
+            //TODO Bug here - this.GetPosition() gets current position, not position element is at at point of transitioning.
+            MovementTransition transition = new MovementTransition(this.GetPosition(), destinationPosition, destinationProfile, duration, Move); 
+
+            List<Transition> transitions = this.LookupTransitions(hook);
+            transitions.Add(transition);
+        }
+
+        private List<Transition> LookupTransitions(TransitionHook hook)
+        {
+            this.transitionLookup.TryGetValue(hook, out List<Transition> transitions);
+            if (transitions == null)
+            {
+                transitions = new List<Transition>();
+                this.transitionLookup.Add(hook, transitions);
+            }
+
+            return transitions;
+        }
+
         #endregion
 
         #region Transition Callbacks
 
-        private void OnShow(int duration)
+        private void OnShow()
         {
-            PositionProfile centerProfile = PositionFactory.TopLeft();
-            Vector2 centeredPosition = centerProfile.CalculatePosition(this.parentBounds, this.GetSize());
-
-            Transition slideIn = new MovementTransition(this.GetPosition(), centeredPosition, centerProfile, duration, Move);
-
-            this.transitions.Add(slideIn);
+            foreach (Transition transition in this.LookupTransitions(TransitionHook.OnShow))
+            {
+                this.activeTransitions.Add(transition);
+            }
         }
 
-        private void OnHide(int duration)
+        private void OnHide()
         {
-            PositionProfile offBottomProfile = new PositionProfile(HorizontalAlign.Right, VerticalAlign.Middle, 0, 0);
-            Vector2 offBottomPosition = offBottomProfile.CalculatePosition(this.parentBounds, this.GetSize());
-
-            Transition slideOut = new MovementTransition(this.GetPosition(), offBottomPosition, offBottomProfile, duration, Move);
-
-            this.transitions.Add(slideOut);
+            foreach (Transition transition in this.LookupTransitions(TransitionHook.OnHide))
+            {
+                this.activeTransitions.Add(transition);
+            }
         }
 
         private void Move(object data)
