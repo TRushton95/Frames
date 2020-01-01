@@ -362,7 +362,7 @@ namespace Frames.UserInterface.Elements
             this.Visible = true;
         }
 
-        public void Hide(int duration = 0)
+        public void Hide()
         {
             this.Visible = false;
         }
