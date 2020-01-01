@@ -3,6 +3,7 @@
     #region Usings
 
     using Frames.DataStructures;
+    using Frames.DataStructures.Transitions;
     using Frames.Enums;
     using Frames.Factories;
     using Frames.UserInterface.Components;
@@ -28,8 +29,8 @@
 
         #region Fields
 
-        private Frame frame, defaultFrame, hoverFrame;
-        private TextGraphics textGraphics, defaultTextGraphics, hoverTextGraphics;
+        private Frame frame;
+        private TextGraphics textGraphics;
 
         #endregion
 
@@ -75,6 +76,7 @@
         public Color FrameColor
         {
             get;
+            private set;
         }
 
         /// <summary>
@@ -120,10 +122,8 @@
         {
             base.SetPosition(parentBounds);
 
-            this.defaultFrame?.SetPosition(this.GetBounds());
-            this.defaultTextGraphics?.SetPosition(this.GetBounds());
-            this.hoverFrame?.SetPosition(this.GetBounds());
-            this.hoverTextGraphics?.SetPosition(this.GetBounds());
+            this.frame?.SetPosition(this.GetBounds());
+            this.textGraphics?.SetPosition(this.GetBounds());
         }
 
         /// <summary>
@@ -148,18 +148,10 @@
         /// </summary>
         private void BuildComponents()
         {
-            this.defaultFrame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.Center(), this.Border);
-            this.defaultFrame.Initialise(this.GetBounds());
-            this.defaultTextGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.Center());
-            this.defaultTextGraphics.Initialise(this.GetContentBounds());
-
-            this.hoverFrame = new Frame(this.Width, this.Height, this.FrameHoverColor, PositionFactory.Center(), this.Border);
-            this.hoverFrame.Initialise(this.GetBounds());
-            this.hoverTextGraphics = new TextGraphics(this.Text, this.Font, this.TextHoverColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.Center());
-            this.hoverTextGraphics.Initialise(this.GetContentBounds());
-
-            this.frame = this.defaultFrame;
-            this.textGraphics = this.defaultTextGraphics;
+            this.frame = new Frame(this.Width, this.Height, this.FrameColor, PositionFactory.Center(), this.Border);
+            this.frame.Initialise(this.GetBounds());
+            this.textGraphics = new TextGraphics(this.Text, this.Font, this.TextColor, this.Width - (Gutter * 2), FontFlow.Scale, PositionFactory.Center());
+            this.textGraphics.Initialise(this.GetContentBounds());
         }
 
         #endregion
@@ -171,8 +163,17 @@
         /// </summary>
         protected override void HoverDetail()
         {
-            this.frame = this.hoverFrame;
-            this.textGraphics = this.hoverTextGraphics;
+            if (this.FrameHoverColor != null)
+            {
+                ColorTransition backgroundTransition = new ColorTransition(this.frame.Color.ToVector4(), this.FrameHoverColor.ToVector4(), 200, SetBackgroundColor);
+                this.activeTransitions.Add(backgroundTransition);
+            }
+
+            if (this.TextHoverColor != null)
+            {
+                ColorTransition textTransition = new ColorTransition(this.textGraphics.Color.ToVector4(), this.TextHoverColor.ToVector4(), 200, SetTextColor);
+                this.activeTransitions.Add(textTransition);
+            }
         }
 
         /// <summary>
@@ -180,8 +181,12 @@
         /// </summary>
         protected override void HoverLeaveDetail()
         {
-            this.frame = this.defaultFrame;
-            this.textGraphics = this.defaultTextGraphics;
+            ColorTransition transition = new ColorTransition(this.frame.Color.ToVector4(), this.FrameColor.ToVector4(), 200, SetBackgroundColor);
+            this.activeTransitions.Add(transition);
+
+            var test = Color.Pink;
+            ColorTransition textTransition = new ColorTransition(this.textGraphics.Color.ToVector4(), this.TextColor.ToVector4(), 200, SetTextColor);
+            this.activeTransitions.Add(textTransition);
         }
 
         /// <summary>
@@ -191,6 +196,15 @@
         {
         }
 
+        public void SetBackgroundColor(object color)
+        {
+            this.frame.SetColor((Color)color);
+        }
+
+        public void SetTextColor(object color)
+        {
+            this.textGraphics.SetColor((Color)color);
+        }
         #endregion
     }
 }

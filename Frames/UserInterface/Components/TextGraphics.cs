@@ -64,6 +64,7 @@
         public Color Color
         {
             get;
+            private set;
         }
 
         /// <summary>
@@ -112,6 +113,11 @@
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(this.Font, this.displayText, this.GetPosition(), this.Color, 0, default(Vector2), this.Scale, SpriteEffects.None, 0);
+        }
+
+        public void SetColor(Color color)
+        {
+            this.Color = color;
         }
 
         /// <summary>

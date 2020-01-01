@@ -69,6 +69,7 @@
         public Color Color
         {
             get;
+            private set;
         }
 
         #endregion
@@ -91,37 +92,26 @@
             spriteBatch.Draw(this.texture, this.GetPosition(), Color.White);
         }
 
+        public void SetColor(Color color)
+        {
+            this.Color = color;
+            this.texture = this.BuildTexture();
+        }
+
         /// <summary>
         /// Provides the initialisation behaviour specific to the implementing component.
         /// </summary>
         protected override void InternalInitialise(Rectangle parent)
         {
             this.SetPosition(parent);
-
-            this.texture = this.Border != null ? this.BuildTextureWithBorder() : this.BuildTexture();
-        }
-
-        private Texture2D BuildTexture()
-        {
-            Texture2D result = new Texture2D(Resources.Instance.GraphicsDevice, this.Width, this.Height);
-
-            Color[] data = new Color[this.Width * this.Height];
-            for (int pixel = 0; pixel < data.Length; pixel++)
-            {
-                data[pixel] = this.Color;
-            }
-
-            result.SetData(data);
-
-            return result;
+            this.texture = this.BuildTexture();
         }
 
         /// <summary>
-        /// TEST
-        /// Builds the texture with a border width of 5px.
+        /// Builds the texture
         /// </summary>
         /// <returns>TODO: This method exists as a test and elements do not compensate content with for borders</returns>
-        private Texture2D BuildTextureWithBorder()
+        private Texture2D BuildTexture()
         {
             Texture2D result = new Texture2D(Resources.Instance.GraphicsDevice, this.Width, this.Height);
 
@@ -133,8 +123,7 @@
                 {
                     Color color = this.Color;
 
-                    if (y < this.Border.Width || y >= this.Height - this.Border.Width ||
-                        x < this.Border.Width || x >= this.Width - this.Border.Width)
+                    if (this.IsPixelInBorder(x, y))
                     {
                         color = Color.Black;
                     }
@@ -147,6 +136,20 @@
             result.SetData(data);
 
             return result;
+        }
+
+        private bool IsPixelInBorder(int x, int y)
+        {
+            if (this.Border == null)
+            {
+                return false;
+            }
+
+            return
+                y < this.Border.Width ||
+                y >= this.Height - this.Border.Width ||
+                x < this.Border.Width ||
+                x >= this.Width - this.Border.Width;
         }
 
         #endregion

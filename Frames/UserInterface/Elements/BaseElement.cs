@@ -41,9 +41,9 @@ namespace Frames.UserInterface.Elements
 
         #region Fields
 
+        protected List<Transition> activeTransitions = new List<Transition>();
         private Logger logger = LogManager.GetCurrentClassLogger();
         private Rectangle parentBounds;
-        private List<Transition> activeTransitions = new List<Transition>();
 
         #endregion
 
