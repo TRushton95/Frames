@@ -37,6 +37,7 @@
         {
             get;
         }
+
         public Vector2 FinalPosition
         {
             get;

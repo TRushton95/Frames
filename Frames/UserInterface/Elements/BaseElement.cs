@@ -44,8 +44,6 @@ namespace Frames.UserInterface.Elements
 
         private Logger logger = LogManager.GetCurrentClassLogger();
         private Rectangle parentBounds;
-
-        private Dictionary<TransitionHook, List<Transition>> transitionLookup = new Dictionary<TransitionHook, List<Transition>>();
         private List<Transition> activeTransitions = new List<Transition>();
 
         #endregion
@@ -362,23 +360,11 @@ namespace Frames.UserInterface.Elements
         public void Show()
         {
             this.Visible = true;
-            this.OnShow();
         }
 
         public void Hide(int duration = 0)
         {
-            this.OnHide();
-
-            if (duration == 0)
-            {
-                this.Visible = false;
-                return;
-            }
-
-            Timer timer = new Timer(duration);
-            timer.Elapsed += OnHideTransitionElapsed;
-            timer.AutoReset = false;
-            timer.Start();
+            this.Visible = false;
         }
 
         public void ToggleVisibility()
@@ -392,47 +378,16 @@ namespace Frames.UserInterface.Elements
             this.SetPosition(this.parentBounds);
         }
 
-        public void AddMovementTransition(TransitionHook hook, PositionProfile destinationProfile, int duration)
+        public void AddMovementTransition(PositionProfile destinationProfile, int duration)
         {
             Vector2 destinationPosition = destinationProfile.CalculatePosition(this.parentBounds, this.GetSize());
-            //TODO Bug here - this.GetPosition() gets current position, not position element is at at point of transitioning.
-            MovementTransition transition = new MovementTransition(this.GetPosition(), destinationPosition, destinationProfile, duration, Move); 
-
-            List<Transition> transitions = this.LookupTransitions(hook);
-            transitions.Add(transition);
-        }
-
-        private List<Transition> LookupTransitions(TransitionHook hook)
-        {
-            this.transitionLookup.TryGetValue(hook, out List<Transition> transitions);
-            if (transitions == null)
-            {
-                transitions = new List<Transition>();
-                this.transitionLookup.Add(hook, transitions);
-            }
-
-            return transitions;
+            MovementTransition transition = new MovementTransition(this.GetPosition(), destinationPosition, destinationProfile, duration, Move);
+            this.activeTransitions.Add(transition);
         }
 
         #endregion
 
         #region Transition Callbacks
-
-        private void OnShow()
-        {
-            foreach (Transition transition in this.LookupTransitions(TransitionHook.OnShow))
-            {
-                this.activeTransitions.Add(transition);
-            }
-        }
-
-        private void OnHide()
-        {
-            foreach (Transition transition in this.LookupTransitions(TransitionHook.OnHide))
-            {
-                this.activeTransitions.Add(transition);
-            }
-        }
 
         private void Move(object data)
         {
@@ -440,11 +395,6 @@ namespace Frames.UserInterface.Elements
 
             this.PositionProfile = positionProfile;
             this.SetPosition(this.parentBounds);
-        }
-
-        private void OnHideTransitionElapsed(object sender, ElapsedEventArgs e)
-        {
-            this.Visible = false;
         }
 
         #endregion
