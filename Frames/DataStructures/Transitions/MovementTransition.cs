@@ -59,15 +59,8 @@
         {
             base.Update(gameTime);
 
-            double updateRatio = this.totalElapsedTime / this.Duration;
-
-            if (updateRatio <= 0)
-            {
-                return;
-            }
-
             Vector2 totalPositionDelta = this.FinalPosition - this.StartPosition;
-            Vector2 interpolatedPositionDelta = Vector2.Multiply(totalPositionDelta, (float)updateRatio);
+            Vector2 interpolatedPositionDelta = Vector2.Multiply(totalPositionDelta, this.progress);
 
             Vector2 offset = this.projectedCurrentProfile.Offset + interpolatedPositionDelta;
             PositionProfile data = new PositionProfile(this.DestinationProfile.HorizontalAlign, this.DestinationProfile.VerticalAlign, (int)offset.X, (int)offset.Y);

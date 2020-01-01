@@ -18,6 +18,7 @@
         #region Fields
 
         protected double timeStart, timeElapsedSinceLastUpdate, totalElapsedTime;
+        protected float progress;
 
         #endregion
 
@@ -71,8 +72,10 @@
         {
             this.timeElapsedSinceLastUpdate = gameTime.ElapsedGameTime.TotalMilliseconds;
             this.totalElapsedTime = gameTime.TotalGameTime.TotalMilliseconds - this.timeStart;
+            this.progress = (float)this.totalElapsedTime / this.Duration;
 
-            if (this.totalElapsedTime >= this.Duration)
+            //TODO: is the progress == 0 check needed here?
+            if (this.progress == 0 || this.totalElapsedTime >= this.Duration)
             {
                 this.Done = true;
                 return;
