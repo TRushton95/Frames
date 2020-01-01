@@ -1,20 +1,23 @@
 - Add api methods to components
 
-- Investigate animations (ie. colour change, moving etc)
-
 - Move components into List<BaseComponent> on BaseElement and access using const keys (eg. ComponentNames.HoverTextGraphics)
 	- Allows for easy mass access
 
 - If feasible, replace hover components with transitions
-	-Allows for much more flexability, grow/move/change-color transitions etc on hover
+	- Allows for much more flexability, grow/move/change-color transitions etc on hover
+	- Requires overhaul of frame/hoverframe/default frame etc
 
-- On hooks (hover, click etc.), look for and, if exists, fire "{name}.{hook}.py"
+- Logging
+
+- Write up documentation for using Frames
+
+	-----------------
+
+[X] On hooks (hover, click etc.), look for and, if exists, fire "{name}.{hook}.py"
 	- Script uses api methods to do transitions
 	- Include above work as part of this
 	- eg. Special button twinkles and changes color on hover. On hover:
 		- Gets "special-button.hover.py" and execute
 		- Script calls this.AddTwinkleAnimation(duration) and this.ChangeColor(color, duration)
 
-- Logging
-
-- Write up documentation for using Frames
+	-TOO SLOW, DON'T DO THIS, DEFINE ANY TRANSITIONS IN JSON
