@@ -181,12 +181,17 @@
         /// </summary>
         protected override void HoverLeaveDetail()
         {
-            ColorTransition transition = new ColorTransition(this.frame.Color.ToVector4(), this.FrameColor.ToVector4(), 200, SetBackgroundColor);
-            this.activeTransitions.Add(transition);
+            if (this.FrameHoverColor != null)
+            {
+                ColorTransition backgroundTransition = new ColorTransition(this.frame.Color.ToVector4(), this.FrameColor.ToVector4(), 200, SetBackgroundColor);
+                this.activeTransitions.Add(backgroundTransition);
+            }
 
-            var test = Color.Pink;
-            ColorTransition textTransition = new ColorTransition(this.textGraphics.Color.ToVector4(), this.TextColor.ToVector4(), 200, SetTextColor);
-            this.activeTransitions.Add(textTransition);
+            if (this.TextHoverColor != null)
+            {
+                ColorTransition textTransition = new ColorTransition(this.textGraphics.Color.ToVector4(), this.TextColor.ToVector4(), 200, SetTextColor);
+                this.activeTransitions.Add(textTransition);
+            }
         }
 
         /// <summary>
@@ -195,6 +200,10 @@
         protected override void LeftClickDetail()
         {
         }
+
+        #endregion
+
+        #region Transition Callbacks
 
         public void SetBackgroundColor(object color)
         {
@@ -205,6 +214,7 @@
         {
             this.textGraphics.SetColor((Color)color);
         }
+
         #endregion
     }
 }
