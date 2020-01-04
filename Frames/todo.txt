@@ -9,6 +9,8 @@
 
 - Fix bug with 0 or very low transition durations causing incomplete/bad transitions
 
+- Element occasionally disappearing after speed movement transition
+
 - Logging
 
 - Write up documentation for using Frames

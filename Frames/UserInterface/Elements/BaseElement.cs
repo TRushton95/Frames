@@ -41,7 +41,7 @@ namespace Frames.UserInterface.Elements
 
         #region Fields
 
-        private MovementTransition movementTransition;
+        private SpeedMovementTransition movementTransition;
         protected List<Transition> activeTransitions = new List<Transition>();
         private Logger logger = LogManager.GetCurrentClassLogger();
         private Rectangle parentBounds;
@@ -398,7 +398,7 @@ namespace Frames.UserInterface.Elements
         public void AddMovementTransition(PositionProfile destinationProfile, int duration)
         {
             Vector2 destinationPosition = destinationProfile.CalculatePosition(this.parentBounds, this.GetSize());
-            movementTransition = new MovementTransition(this.GetPosition(), destinationPosition, destinationProfile, duration, Move);
+            movementTransition = new SpeedMovementTransition(this.GetPosition(), destinationPosition, destinationProfile, TransitionSpeed.Fast, Move);
         }
 
         #endregion
