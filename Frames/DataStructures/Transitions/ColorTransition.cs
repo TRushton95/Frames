@@ -16,7 +16,11 @@
 
         #region Constructors
 
-        public ColorTransition(Vector4 startColor, Vector4 endColor, int duration, Callback callback)
+        public ColorTransition(
+            Vector4 startColor,
+            Vector4 endColor,
+            int duration,
+            Callback callback)
             : base(callback)
         {
             this.Duration = duration;

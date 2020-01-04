@@ -7,16 +7,15 @@ from Frames.DataStructures import *
 clr.AddReference("Monogame.Framework")
 from Microsoft.Xna.Framework import Vector2
 
-MENU_TRANSITION_DURATION_MS = 1000;
-MENU_TRANSITION_DURATION_S = float(MENU_TRANSITION_DURATION_MS) / 1000
+def hideMenu():
+    this.Hide()
 
 def onMenuOpen(e):
     this.Show()
-    this.AddMovementTransition(PositionProfile(HorizontalAlign.Middle, VerticalAlign.Middle, 0, 0), MENU_TRANSITION_DURATION_MS)
+    this.AddMovementTransition(PositionProfile(HorizontalAlign.Middle, VerticalAlign.Middle, 0, 0))
 
 def onMenuClose(e):
-    threading.Timer(MENU_TRANSITION_DURATION_S, this.Hide).start()
-    this.AddMovementTransition(PositionProfile(HorizontalAlign.Middle, VerticalAlign.OffBottom, 0, 0), MENU_TRANSITION_DURATION_MS)
+    this.AddMovementTransition(PositionProfile(HorizontalAlign.Middle, VerticalAlign.OffBottom, 0, 0), hideMenu)
 
 def moveElement(e):
     position = Vector2(this.X, this.Y + 5)

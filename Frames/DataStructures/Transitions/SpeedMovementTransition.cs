@@ -18,7 +18,12 @@
 
         #region Constructors
 
-        public SpeedMovementTransition(Vector2 startPosition, Vector2 finalPosition, PositionProfile destinationProfile, float distancePerSeconds, Callback callback)
+        public SpeedMovementTransition(
+            Vector2 startPosition,
+            Vector2 finalPosition,
+            PositionProfile destinationProfile,
+            float distancePerSeconds,
+            Callback callback)
             : base(callback)
         {
             this.StartPosition = startPosition;

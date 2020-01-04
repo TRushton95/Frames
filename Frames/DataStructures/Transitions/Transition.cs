@@ -10,6 +10,7 @@
     #region Delegates
 
     public delegate void Callback(object data);
+    public delegate void OnFinish();
 
     #endregion
 
@@ -50,6 +51,12 @@
             set;
         }
 
+        public OnFinish OnFinish
+        {
+            get;
+            set;
+        }
+
         public bool Ready => !this.Started && !this.Done;
 
         public bool IsRunning => this.Started && !this.Done;
@@ -66,11 +73,16 @@
 
         public void Stop()
         {
-            this.Done = false;
+            this.OnFinish?.Invoke();
         }
 
         public void Update(GameTime gameTime)
         {
+            if (this.Done)
+            {
+                return;
+            }
+
             this.timeElapsedSinceLastUpdate = gameTime.ElapsedGameTime.TotalMilliseconds;
             this.totalElapsedTime = gameTime.TotalGameTime.TotalMilliseconds - this.timeStart;
 

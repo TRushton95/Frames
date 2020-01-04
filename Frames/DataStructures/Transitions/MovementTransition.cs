@@ -17,7 +17,12 @@
 
         #region Constructors
 
-        public MovementTransition(Vector2 startPosition, Vector2 finalPosition, PositionProfile destinationProfile, int duration, Callback callback)
+        public MovementTransition(
+            Vector2 startPosition,
+            Vector2 finalPosition,
+            PositionProfile destinationProfile,
+            int duration,
+            Callback callback)
             : base(callback)
         {
             this.StartPosition = startPosition;

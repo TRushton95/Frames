@@ -158,6 +158,8 @@ namespace Frames.UserInterface.Elements
                 }
             }
 
+            // TODO: Unify active transitions with movement transitions after transition work is finished
+            this.activeTransitions.Where(transition => transition.Done).ToList().ForEach(transition => transition.Stop());
             this.activeTransitions.RemoveAll(transition => transition.Done);
 
             if (this.movementTransition != null)
@@ -172,6 +174,7 @@ namespace Frames.UserInterface.Elements
                 }
                 else
                 {
+                    this.movementTransition.Stop();
                     this.movementTransition = null;
                 }
             }
@@ -395,10 +398,13 @@ namespace Frames.UserInterface.Elements
         /// <remark>
         /// Need to tackle initiating identical/opposite time transitions while one is already running causing troughs/peaks of speed
         /// </remark>
-        public void AddMovementTransition(PositionProfile destinationProfile, int duration)
+        public void AddMovementTransition(PositionProfile destinationProfile, OnFinish onFinish = null)
         {
             Vector2 destinationPosition = destinationProfile.CalculatePosition(this.parentBounds, this.GetSize());
+
+            movementTransition?.Stop();
             movementTransition = new SpeedMovementTransition(this.GetPosition(), destinationPosition, destinationProfile, TransitionSpeed.Fast, Move);
+            movementTransition.OnFinish = onFinish;
         }
 
         #endregion

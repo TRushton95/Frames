@@ -11,6 +11,9 @@
 
 - Element occasionally disappearing after speed movement transition
 
+- Callback on transition finish
+	-eg. hiding element after movement transition
+
 - Logging
 
 - Write up documentation for using Frames
