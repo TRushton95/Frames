@@ -41,6 +41,7 @@ namespace Frames.UserInterface.Elements
 
         #region Fields
 
+        private MovementTransition movementTransition;
         protected List<Transition> activeTransitions = new List<Transition>();
         private Logger logger = LogManager.GetCurrentClassLogger();
         private Rectangle parentBounds;
@@ -158,6 +159,22 @@ namespace Frames.UserInterface.Elements
             }
 
             this.activeTransitions.RemoveAll(transition => transition.Done);
+
+            if (this.movementTransition != null)
+            {
+                if (this.movementTransition.Ready)
+                {
+                    this.movementTransition.Start(gameTime);
+                }
+                else if (this.movementTransition.IsRunning)
+                {
+                    this.movementTransition.Update(gameTime);
+                }
+                else
+                {
+                    this.movementTransition = null;
+                }
+            }
         }
 
         /// <summary>
@@ -375,11 +392,13 @@ namespace Frames.UserInterface.Elements
             this.SetPosition(this.parentBounds);
         }
 
+        /// <remark>
+        /// Need to tackle initiating identical/opposite time transitions while one is already running causing troughs/peaks of speed
+        /// </remark>
         public void AddMovementTransition(PositionProfile destinationProfile, int duration)
         {
             Vector2 destinationPosition = destinationProfile.CalculatePosition(this.parentBounds, this.GetSize());
-            MovementTransition transition = new MovementTransition(this.GetPosition(), destinationPosition, destinationProfile, duration, Move);
-            this.activeTransitions.Add(transition);
+            movementTransition = new MovementTransition(this.GetPosition(), destinationPosition, destinationProfile, duration, Move);
         }
 
         #endregion

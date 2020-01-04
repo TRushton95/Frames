@@ -18,15 +18,13 @@
         #region Fields
 
         protected double timeStart, timeElapsedSinceLastUpdate, totalElapsedTime;
-        protected float progress;
 
         #endregion
 
         #region Constructors
 
-        public Transition(int duration, Callback callback)
+        public Transition(Callback callback)
         {
-            this.Duration = duration;
             this.Callback = callback;
         }
 
@@ -37,28 +35,24 @@
         public bool Started
         {
             get;
-            private set;
+            set;
         }
 
         public bool Done
         {
             get;
-            private set;
-        }
-
-        public int Duration
-        {
-            get;
-            private set;
+            set;
         }
 
         public Callback Callback
         {
             get;
-            private set;
+            set;
         }
 
         public bool Ready => !this.Started && !this.Done;
+
+        public bool IsRunning => this.Started && !this.Done;
 
         #endregion
 
@@ -75,19 +69,15 @@
             this.Done = false;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             this.timeElapsedSinceLastUpdate = gameTime.ElapsedGameTime.TotalMilliseconds;
             this.totalElapsedTime = gameTime.TotalGameTime.TotalMilliseconds - this.timeStart;
-            this.progress = (float)this.totalElapsedTime / this.Duration;
 
-            //TODO: is the progress == 0 check needed here?
-            if (this.totalElapsedTime >= this.Duration)
-            {
-                this.Done = true;
-                return;
-            }
+            this.InternalUpdate(gameTime);
         }
+
+        protected virtual void InternalUpdate(GameTime gameTime) { }
 
         #endregion
     }

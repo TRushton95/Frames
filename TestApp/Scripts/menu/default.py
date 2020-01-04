@@ -7,7 +7,7 @@ from Frames.DataStructures import *
 clr.AddReference("Monogame.Framework")
 from Microsoft.Xna.Framework import Vector2
 
-MENU_TRANSITION_DURATION_MS = 250;
+MENU_TRANSITION_DURATION_MS = 1000;
 MENU_TRANSITION_DURATION_S = float(MENU_TRANSITION_DURATION_MS) / 1000
 
 def onMenuOpen(e):

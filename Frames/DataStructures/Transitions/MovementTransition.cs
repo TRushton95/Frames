@@ -10,6 +10,7 @@
     {
         #region Fields
 
+        private float progress;
         private PositionProfile projectedCurrentProfile; // Adds the (x,y) distance required to move to the destination profile offset to arrive at correct anchor.
 
         #endregion
@@ -17,11 +18,12 @@
         #region Constructors
 
         public MovementTransition(Vector2 startPosition, Vector2 finalPosition, PositionProfile destinationProfile, int duration, Callback callback)
-            : base(duration, callback)
+            : base(callback)
         {
             this.StartPosition = startPosition;
             this.FinalPosition = finalPosition;
             this.DestinationProfile = destinationProfile;
+            this.Duration = duration;
 
             Vector2 delta = this.FinalPosition - this.StartPosition;
 
@@ -35,6 +37,11 @@
         #endregion
 
         #region Properties
+
+        public int Duration
+        {
+            get;
+        }
 
         public Vector2 StartPosition
         {
@@ -55,9 +62,15 @@
 
         #region Methods
 
-        public override void Update(GameTime gameTime)
+        protected override void InternalUpdate(GameTime gameTime)
         {
-            base.Update(gameTime);
+            this.progress = (float)this.totalElapsedTime / this.Duration;
+
+            if (this.totalElapsedTime >= this.Duration)
+            {
+                this.Done = true;
+                return;
+            }
 
             Vector2 totalPositionDelta = this.FinalPosition - this.StartPosition;
             Vector2 interpolatedPositionDelta = Vector2.Multiply(totalPositionDelta, this.progress);
