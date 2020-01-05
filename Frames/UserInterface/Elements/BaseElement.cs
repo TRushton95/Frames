@@ -406,7 +406,7 @@ namespace Frames.UserInterface.Elements
             {
                 movementTransition?.Stop();
             }
-            movementTransition = new SpeedMovementTransition(this.GetPosition(), destinationPosition, destinationProfile, 100, Move);
+            movementTransition = new SpeedMovementTransition(this.GetPosition(), destinationPosition, destinationProfile, TransitionSpeed.Fast, Move);
             movementTransition.OnFinish = onFinish;
         }
 

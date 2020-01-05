@@ -3,15 +3,13 @@
 - Move components into List<BaseComponent> on BaseElement and access using const keys (eg. ComponentNames.HoverTextGraphics)
 	- Allows for easy mass access
 
-- If feasible, replace hover components with transitions
-	- Allows for much more flexability, grow/move/change-color transitions etc on hover
-	- Requires overhaul of frame/hoverframe/default frame etc
-
 - Fix bug with 0 or very low transition durations causing incomplete/bad transitions
 
 - Tidy up transition logic:
 	-Grouping
 	-Stopping/removing
+
+- Combine blocking with transitions
 
 - Logging
 
