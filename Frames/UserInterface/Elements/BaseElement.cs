@@ -402,8 +402,11 @@ namespace Frames.UserInterface.Elements
         {
             Vector2 destinationPosition = destinationProfile.CalculatePosition(this.parentBounds, this.GetSize());
 
-            movementTransition?.Stop();
-            movementTransition = new SpeedMovementTransition(this.GetPosition(), destinationPosition, destinationProfile, TransitionSpeed.Fast, Move);
+            if (movementTransition != null && movementTransition.Done)
+            {
+                movementTransition?.Stop();
+            }
+            movementTransition = new SpeedMovementTransition(this.GetPosition(), destinationPosition, destinationProfile, 100, Move);
             movementTransition.OnFinish = onFinish;
         }
 
