@@ -1,13 +1,12 @@
 - Add api methods to components
 
-- Move components into List<BaseComponent> on BaseElement and access using const keys (eg. ComponentNames.HoverTextGraphics)
-	- Allows for easy mass access
-
 - Fix bug with 0 or very low transition durations causing incomplete/bad transitions
 
 - Tidy up transition logic:
 	-Grouping
 	-Stopping/removing
+
+- Elements set to window dimensions do not scale on resize
 
 - Logging
 
