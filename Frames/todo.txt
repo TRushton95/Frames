@@ -9,8 +9,6 @@
 	-Grouping
 	-Stopping/removing
 
-- Combine blocking with transitions
-
 - Logging
 
 - Write up documentation for using Frames

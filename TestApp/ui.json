@@ -65,12 +65,7 @@
     "Type": "Blocker",
     "Name": "menu-blocker",
     "Visible": false,
-    "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 80
-    },
+    "Color": "Black-80",
     "Children": [
       {
         "Type": "Container",

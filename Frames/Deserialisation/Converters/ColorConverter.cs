@@ -31,14 +31,23 @@
             {
                 Color result = Color.Transparent;
 
-                string presetColour = jToken.Value<string>();
                 Color color = new Color();
                 Type colorType = color.GetType();
-                PropertyInfo propertyInfo = colorType.GetProperty(presetColour);
+
+                string[] colorDetails = jToken.Value<string>().Split('-');
+                string presetColor = colorDetails[0];
+
+                PropertyInfo propertyInfo = colorType.GetProperty(presetColor);
 
                 if (propertyInfo != null)
                 {
                     result = (Color)propertyInfo.GetValue(color, null);
+
+                    // If second value given for color, try to get an alpha value from it
+                    if (colorDetails.Length == 2 && byte.TryParse(colorDetails[1], out byte alpha))
+                    {
+                        result.A = alpha;
+                    }
                 }
 
                 return result;
