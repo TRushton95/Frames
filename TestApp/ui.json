@@ -60,44 +60,57 @@
       "VerticalAlign": "Top"
     }
   },
+
   {
-    "Type": "Container",
-    "Name": "menu",
-    "Draggable": true,
+    "Type": "Blocker",
+    "Name": "menu-blocker",
     "Visible": false,
-    "Width": 300,
-    "Height": 200,
-    "Color": "Blue",
-    "PositionProfile": {
-      "HorizontalAlign": "Middle",
-      "VerticalAlign": "OffBottom"
+    "Color": {
+      "R": 0,
+      "G": 0,
+      "B": 0,
+      "A": 80
     },
     "Children": [
       {
-        "Type": "Text",
-        "Name": "menu-title",
-        "Value": "Menu",
-        "Font": "Font",
-        "Color": "Pink",
-        "MaxWidth": 250,
-        "FontFlow": "Scale",
+        "Type": "Container",
+        "Name": "menu",
+        "Draggable": true,
+        "Width": 300,
+        "Height": 200,
+        "Color": "Blue",
         "PositionProfile": {
           "HorizontalAlign": "Middle",
-          "VerticalAlign": "Top",
-          "OffsetY": 5
-        }
-      },
+          "VerticalAlign": "OffBottom"
+        },
+        "Children": [
+          {
+            "Type": "Text",
+            "Name": "menu-title",
+            "Value": "Menu",
+            "Font": "Font",
+            "Color": "Pink",
+            "MaxWidth": 250,
+            "FontFlow": "Scale",
+            "PositionProfile": {
+              "HorizontalAlign": "Middle",
+              "VerticalAlign": "Top",
+              "OffsetY": 5
+            }
+          },
 
-      {
-        "Type": "Icon",
-        "Name": "menu-close-icon",
-        "Texture": "Fireball",
-        "HoverTexture": "Fireball-Hover",
-        "PositionProfile": {
-          "HorizontalAlign": "Middle",
-          "VerticalAlign": "Bottom",
-          "OffsetY": -10
-        }
+          {
+            "Type": "Icon",
+            "Name": "menu-close-icon",
+            "Texture": "Fireball",
+            "HoverTexture": "Fireball-Hover",
+            "PositionProfile": {
+              "HorizontalAlign": "Middle",
+              "VerticalAlign": "Bottom",
+              "OffsetY": -10
+            }
+          }
+        ]
       }
     ]
   },

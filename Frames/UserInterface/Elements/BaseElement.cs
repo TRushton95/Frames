@@ -377,11 +377,15 @@ namespace Frames.UserInterface.Elements
         public void Show()
         {
             this.Visible = true;
+
+            this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementShow, null));
         }
 
         public void Hide()
         {
             this.Visible = false;
+
+            this.eventManager.Notify(new Event(this.Name, EventTypeConstants.Frames.ElementHide, null));
         }
 
         public void ToggleVisibility()

@@ -46,6 +46,12 @@
             Color = Color.Black
         };
 
+        public static Border None => new Border
+        {
+            Width = 0,
+            Color = Color.Transparent
+        };
+
         #endregion
     }
 }

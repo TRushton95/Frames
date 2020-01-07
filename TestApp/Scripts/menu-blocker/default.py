@@ -8,5 +8,5 @@ def showElement(e):
 def hideElement(e):
     this.Hide()
 
-this.AddEventHandler('menu-button', EventTypeConstants.Frames.ElementClick, showElement)
-this.AddEventHandler('menu-close-icon', EventTypeConstants.Frames.ElementClick, hideElement)
+this.AddEventHandler('menu', EventTypeConstants.Frames.ElementShow, showElement)
+this.AddEventHandler('menu', EventTypeConstants.Frames.ElementHide, hideElement)

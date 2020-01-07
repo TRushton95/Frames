@@ -4,6 +4,7 @@
 
     using System;
     using System.Collections.Generic;
+    using Frames.DataStructures;
     using Frames.Factories;
     using Frames.UserInterface.Elements;
     using Microsoft.Xna.Framework;
@@ -75,9 +76,10 @@
         private Container ConvertToBlocker(JObject jObject, JsonSerializer serializer)
         {
             string name = jObject["Name"].Value<string>();
+            Color color = jObject["Color"].ToObject<Color>(serializer);
             List<BaseElement> children = jObject["Children"].ToObject<List<BaseElement>>(serializer);
 
-            Container result =  new Container(name, Resources.Instance.Screen.Width, Resources.Instance.Screen.Height, null, Color.Transparent, PositionFactory.Center(), children);
+            Container result =  new Container(name, Resources.Instance.Screen.Width, Resources.Instance.Screen.Height, Border.None, color, PositionFactory.Center(), children);
             result.Visible = jObject["Visible"] == null ? true : jObject["Visible"].Value<bool>();
 
             return result;
