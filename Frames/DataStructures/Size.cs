@@ -11,20 +11,6 @@
     /// </summary>
     public struct Size
     {
-        #region Fields
-
-        /// <summary>
-        /// The width.
-        /// </summary>
-        public int Width;
-
-        /// <summary>
-        /// The height.
-        /// </summary>
-        public int Height;
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
@@ -43,6 +29,29 @@
             this.Width = (int)dimensions.X;
             this.Height = (int)dimensions.Y;
         }
+
+        #region Properties
+
+        /// <summary>
+        /// The width.
+        /// </summary>
+        public int Width
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The height.
+        /// </summary>
+        public int Height
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
 
         #endregion
     }
