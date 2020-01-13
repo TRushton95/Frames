@@ -165,13 +165,13 @@
         {
             if (this.FrameHoverColor != null)
             {
-                ColorTransition backgroundTransition = new ColorTransition(this.frame.Color.ToVector4(), this.FrameHoverColor.ToVector4(), 200, SetBackgroundColor);
+                TimedColorTransition backgroundTransition = new TimedColorTransition(this.frame.Color.ToVector4(), this.FrameHoverColor.ToVector4(), 200, SetBackgroundColor);
                 this.activeTransitions.Add(backgroundTransition);
             }
 
             if (this.TextHoverColor != null)
             {
-                ColorTransition textTransition = new ColorTransition(this.textGraphics.Color.ToVector4(), this.TextHoverColor.ToVector4(), 200, SetTextColor);
+                TimedColorTransition textTransition = new TimedColorTransition(this.textGraphics.Color.ToVector4(), this.TextHoverColor.ToVector4(), 200, SetTextColor);
                 this.activeTransitions.Add(textTransition);
             }
         }
@@ -183,13 +183,13 @@
         {
             if (this.FrameHoverColor != null)
             {
-                ColorTransition backgroundTransition = new ColorTransition(this.frame.Color.ToVector4(), this.FrameColor.ToVector4(), 200, SetBackgroundColor);
+                TimedColorTransition backgroundTransition = new TimedColorTransition(this.frame.Color.ToVector4(), this.FrameColor.ToVector4(), 200, SetBackgroundColor);
                 this.activeTransitions.Add(backgroundTransition);
             }
 
             if (this.TextHoverColor != null)
             {
-                ColorTransition textTransition = new ColorTransition(this.textGraphics.Color.ToVector4(), this.TextColor.ToVector4(), 200, SetTextColor);
+                TimedColorTransition textTransition = new TimedColorTransition(this.textGraphics.Color.ToVector4(), this.TextColor.ToVector4(), 200, SetTextColor);
                 this.activeTransitions.Add(textTransition);
             }
         }

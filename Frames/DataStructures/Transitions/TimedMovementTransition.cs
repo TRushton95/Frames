@@ -1,4 +1,5 @@
-﻿namespace Frames.DataStructures.Transitions
+﻿/*
+namespace Frames.DataStructures.Transitions
 {
     #region Usings
 
@@ -89,3 +90,4 @@
         #endregion
     }
 }
+*/

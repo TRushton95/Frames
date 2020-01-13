@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class ColorTransition : Transition
+    public class TimedColorTransition : Transition
     {
         #region Fields
 
@@ -16,7 +16,7 @@
 
         #region Constructors
 
-        public ColorTransition(
+        public TimedColorTransition(
             Vector4 startColor,
             Vector4 endColor,
             int duration,

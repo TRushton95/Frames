@@ -82,7 +82,7 @@
     <Compile Include="DataStructures\PositionProfile.cs" />
     <Compile Include="DataStructures\Size.cs" />
     <Compile Include="Constants\TransitionSpeed.cs" />
-    <Compile Include="DataStructures\Transitions\ColorTransition.cs" />
+    <Compile Include="DataStructures\Transitions\TimedColorTransition.cs" />
     <Compile Include="DataStructures\Transitions\MovementTransition.cs" />
     <Compile Include="DataStructures\Transitions\TimedMovementTransition.cs" />
     <Compile Include="DataStructures\Transitions\Transition.cs" />
