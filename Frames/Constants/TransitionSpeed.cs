@@ -1,4 +1,4 @@
-﻿namespace Frames.DataStructures
+﻿namespace Frames.Constants
 {
     public static class TransitionSpeed
     {
