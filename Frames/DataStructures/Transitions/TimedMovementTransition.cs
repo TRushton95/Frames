@@ -3,38 +3,34 @@
     #region Usings
 
     using Microsoft.Xna.Framework;
-    using System;
 
     #endregion
 
-    public class SpeedMovementTransition : Transition
+    public class TimedMovementTransition : Transition
     {
         #region Fields
 
-        private float runtime; // In seconds
+        private float progress;
         private PositionProfile projectedCurrentProfile; // Adds the (x,y) distance required to move to the destination profile offset to arrive at correct anchor.
 
         #endregion
 
         #region Constructors
 
-        public SpeedMovementTransition(
+        public TimedMovementTransition(
             Vector2 startPosition,
             Vector2 finalPosition,
             PositionProfile destinationProfile,
-            float distancePerSeconds,
+            int duration,
             Callback callback)
             : base(callback)
         {
             this.StartPosition = startPosition;
             this.FinalPosition = finalPosition;
             this.DestinationProfile = destinationProfile;
-            this.Speed = distancePerSeconds;
+            this.Duration = duration;
 
             Vector2 delta = this.FinalPosition - this.StartPosition;
-
-            float distance = (float)Math.Sqrt((delta.X * delta.X) + (delta.Y * delta.Y));
-            this.runtime = distance / this.Speed;
 
             this.projectedCurrentProfile = new PositionProfile(
                 this.DestinationProfile.HorizontalAlign,
@@ -47,7 +43,7 @@
 
         #region Properties
 
-        public float Speed
+        public int Duration
         {
             get;
         }
@@ -73,20 +69,18 @@
 
         protected override void InternalUpdate(GameTime gameTime)
         {
-            if (this.totalElapsedTime >= this.runtime * 1000)
+            this.progress = (float)this.totalElapsedTime / this.Duration;
+
+            if (this.totalElapsedTime >= this.Duration)
             {
                 this.Done = true;
-                this.Callback.Invoke(this.DestinationProfile);
-
                 return;
             }
 
-            Vector2 delta = this.FinalPosition - this.StartPosition;
-            Vector2 speedComponents = delta / this.runtime;
+            Vector2 totalPositionDelta = this.FinalPosition - this.StartPosition;
+            Vector2 interpolatedPositionDelta = Vector2.Multiply(totalPositionDelta, this.progress);
 
-            float elapsedSeconds = (float)this.totalElapsedTime / 1000;
-            Vector2 offset = this.projectedCurrentProfile.Offset + Vector2.Multiply(speedComponents, elapsedSeconds);
-
+            Vector2 offset = this.projectedCurrentProfile.Offset + interpolatedPositionDelta;
             PositionProfile data = new PositionProfile(this.DestinationProfile.HorizontalAlign, this.DestinationProfile.VerticalAlign, (int)offset.X, (int)offset.Y);
 
             this.Callback.Invoke(data);

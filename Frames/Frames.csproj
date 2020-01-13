@@ -83,8 +83,8 @@
     <Compile Include="DataStructures\Size.cs" />
     <Compile Include="DataStructures\TransitionSpeed.cs" />
     <Compile Include="DataStructures\Transitions\ColorTransition.cs" />
-    <Compile Include="DataStructures\Transitions\SpeedMovementTransition.cs" />
     <Compile Include="DataStructures\Transitions\MovementTransition.cs" />
+    <Compile Include="DataStructures\Transitions\TimedMovementTransition.cs" />
     <Compile Include="DataStructures\Transitions\Transition.cs" />
     <Compile Include="Deserialisation\Converters\ColorConverter.cs" />
     <Compile Include="Deserialisation\Converters\DimensionConverter.cs" />

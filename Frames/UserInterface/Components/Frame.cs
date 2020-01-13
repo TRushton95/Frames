@@ -2,7 +2,6 @@
 {
     #region Usings
 
-    using System.Collections.Generic;
     using Frames.DataStructures;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
